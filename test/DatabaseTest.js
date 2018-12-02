@@ -29,30 +29,24 @@ describe('DataBase', function(){
 	});
 
 
-	it('should insert account to db', function(done){
+
+
+
+
+
+	it('should insert account and user to db', function(done){
 
 		db.insertUser(user, function(err, result){
 			if(err){
 				throw  err
+			} else {
+				expect(result).to.be.not.null;
+				done()
 			}
-			console.log(result)
-			testResult = result;
-			expect(result.insertId).to.not.equal(0);
-      done();
 		})
 	});
 
-//    console.log("test result, ",testResult);
-// 	it('should insert user to db', function(done){
-// 		db.insertIntoUser(user, testResult, function(err, result){
-// 			if(err){
-// 				throw 
-// 			}
-// 			expect(result.insertId).to.not.equal(0);
-//       done();
-// 		})err
-// 	});
-// });
+});
 
 // db.insertUser(user,function(err, res){
 
