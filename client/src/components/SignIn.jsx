@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/styles.css";
+import "../style/styles.css";
 import {
   Paper,
   Button,
@@ -54,9 +54,10 @@ export default class SignIn extends React.Component {
   // handle when click to send info to server
   handleOnClick() {
     // if the validation true  send data
-    if (this.state.validation) {
+    if (!this.state.validation) {
       console.log(this.state);
     } else {
+
     }
   }
   render() {
