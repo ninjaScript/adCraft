@@ -29,6 +29,7 @@ app.post('/sign-up', function(req, res) {
 	})
 	console.log(res);
 });
+
 // POST request for sign-in.
 app.post('/sign-in', function(req, res) {
 	var phoneNumber = req.body.phoneNumber;
