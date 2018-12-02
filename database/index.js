@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 const mysql = require('mysql')
 const connection = require('./config.js')
 
@@ -62,3 +65,4 @@ const insertIntoUser = function (user, result, callback){
 
 module.exports.selectAll = selectAll;
 module.exports.insertUser = insertUser;
+>>>>>>> 3c900ff835b36fb12ca17b43ecc85ed65b040fc1
