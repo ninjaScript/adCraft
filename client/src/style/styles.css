@@ -1,0 +1,17 @@
+/*stylel to Sign in and Sign Up  */
+.container {
+  display: "flex";
+  justify-content: center;
+}
+.style {
+  padding: 15px;
+  margin: 40px;
+  max-width: 500px;
+}
+.btnStyle {
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/***********************/
