@@ -7,7 +7,7 @@ import Login from './Login.js';
 import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
 import SideBar from './sidebar';
-
+import {Grid} from '@material-ui/core';
 //App component for Rendering Usage User experience
 class App extends Component {
   constructor(props) {
@@ -36,12 +36,8 @@ class App extends Component {
   // Imaging experience for DOM appearance containing header, video, and other components with react base functionality
   render() {
     return (
-<<<<<<< HEAD
-      <body>
-=======
 
->>>>>>> 41e0934c747e51098277511d68d3fb2f28c2bc5f
-        <div className="container center">
+      <Grid container spacing={16} className="container center">
           <nav className="menu">
             <h1 className="menu__logo">adCraft</h1>
               <div className="menu__right">
@@ -59,18 +55,25 @@ class App extends Component {
             <video width="300" height="200" loop autoPlay>
               <source src={video} type="video/mp4" />
             </video>
+
+            <div className="content">
+              <button id="myBtn">USER</button>
+              <button id="myBtn1">ADVERTISER</button>
+            </div>
+          </div>
+     
+
           <div className="content">
             <button id="myBtn">USER</button>
             <button id="myBtn1">ADVERTISER</button>
           </div>
-          </div>
-           <Signup show={this.state.isOpenSignUp}  onClose={this.toggleSignup}></Signup>
-           <Login show={this.state.isOpenSignIn}  onClose={this.toggleLogin}></Login>
-        </div>  
-      </body>
+          <Signup show={this.state.isOpenSignUp}  onClose={this.toggleSignup}></Signup>
+          <Login show={this.state.isOpenSignIn}  onClose={this.toggleLogin}></Login>
+        </Grid>
+
     );
   }
 }
-
+ 
 // export for usage
 export default App;
