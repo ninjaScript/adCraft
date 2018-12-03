@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-var router = express.Router();
+const router = express.Router();
 
 const app = express();
 app.use(express.static(__dirname + '/../client/build'));
