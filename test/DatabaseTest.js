@@ -4,6 +4,22 @@ var assert = require('chai').assert;
 var expect = require('chai').expect;
 var should = require('chai').should();
 
+var advertiser ={
+	firstName: "MOhammad",
+	lastName: "hasan",
+	gender: "male",
+	email: "qusay@example.com",
+	imageUrl: "https://i.imgur.com/EDge1nS.jpg",
+	numFeedback: 12,
+	rateAvg: 6,
+	location: "amman",
+	id_account: 2,
+	id_categories: 3,
+	id_roles: 2,
+	phoneNumber: "0796305984",
+	password: "helloworld"
+}
+
 var user ={
 	firstName: "MOhammad",
 	lastName: "hasan",

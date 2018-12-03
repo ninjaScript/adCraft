@@ -48,13 +48,13 @@ const insertUser = function (user, callback) {
 
 }
 
-// this function to insert into user table
+// this function to insert into user table, used in insertUser.
 const insertIntoUser = function (user, result, callback){
 	// sql query  to insert
 	var sqlInsIntoUserTable = `INSERT INTO users (firstName, lastName , gender, id_account) 
     VALUES("${user.firstName}", "${user.lastName}", "${user.gender}", ${result.insertId});`;
 
-    // exute query 
+    // execute query 
 	connection.query(sqlInsIntoUserTable, function(err, result){
 		if(err) {
 			console.log('Error during insert into user table', err)
@@ -66,10 +66,45 @@ const insertIntoUser = function (user, result, callback){
     });
 }
 
-// const isAccountExist = function(phoneNumber, callback){
+////////////////////////////////////
+//this function insert advertiser.
+const insertAdv = function (advertiser, callback) {
 
-// 	var 
-// }
+	// sql query  to insert
+	var sqlInsIntoAccountTable = `INSERT INTO account (phoneNumber, password, id_roles , createdAt) 
+	VALUES("${advertiser.phoneNumber}", "${advertiser.password}", "${advertiser.id_roles}", "${advertiser.createdAt}");`;
+    
+	// exute query 
+	connection.query(sqlInsIntoAccountTable, function(err, result){
+		if (err) {
+		   console.log('Error during insert into account table', err)
+		   callback(err, null)
+		} else {
+			console.log('insert into account Successed!')
+ 			insertIntoAdv(advertiser, result, callback)
+		}
+	})
+
+}
+
+// this function to insert into user table
+const insertIntoAdv = function (user, result, callback){
+	// sql query  to insert
+	var sqlInsIntoAdvertiserTable = `INSERT INTO users (firstName, lastName , gender, id_account) 
+    VALUES("${user.firstName}", "${user.lastName}", "${user.gender}", ${result.insertId});`;
+
+    // execute query 
+	connection.query(sqlInsIntoAdvertiserTable, function(err, result){
+		if(err) {
+			console.log('Error during insert into user table', err)
+			callback(err, null)
+		} else {
+			console.log('insert into user Successed!')
+			callback(null, result);
+		}
+    });
+}
+
 
 
 
