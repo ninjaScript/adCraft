@@ -1,30 +1,30 @@
 /*importing font styles and css components are isential part of we design fonts.googleapis are very good source of any type of designs*/
 @import url('https://fonts.googleapis.com/css?family=Varela Round:300,400,700');
 
-/**/
+/*initial View Styling*/
 * {
     box-sizing: border-box;
     font-family: 'Varela Round', sans-serif;
 }
 
-/**/
+/* set to zero for the page to maximize potential for design*/
 html {
     margin: 0;
     padding: 0;
 }
 
-/**/
+/*set to light color as themed in our website*/
 body {
     background-color: #e5e3dc;
 }
 
-/**/
+/* initial container for header*/
 .container {
     width: 100%;
     margin-top:-10px;
 }
 
-/**/
+/* centered header*/
 .center {
     display: flex;
     justify-content: center;
@@ -126,7 +126,7 @@ i {
     background-repeat: no-repeat;
     background-position: center;
     margin: 0;
-    margin-left: -25px;
+    margin-left: -30px;
 }
 
 /**/
@@ -198,28 +198,225 @@ i {
     border-color: #fff;
 }
 
-/**/
+/*Sign Up*/
 .backdrop {
     position:fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color:rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.3);
     padding: 50px;
 }
 
 
+/**/
+.signUp {
+    background-image: url(signup.jpeg);
+    max-width: 1000px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 30;
+    animation: bounceIn 1s;
+}
+
+/**/
+@keyframes bounceIn {
+  0% {
+    opacity: 1;
+    transform: scale(.3);
+  } 
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  } 
+
+  70% {
+    opacity: 1;
+    transform: scale(.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/**/
+.footer button{
+    background-color: #D7263D;
+    color: white;
+    position: fixed;
+    margin-left: 977px; 
+    margin-top: 0;
+}
+
+/*Animation effect for jumping button while waiting for signup,
+It's one of the CSS transition effect that allow you to translate, rotate, scale, and skew elements.
+A transformation is an effect that lets an element change shape, size and position.*/
+
+@keyframes footer {
+    0% {-webkit-transform: scale(1,1);
+        transform: scale(1,1);}
+   30% { -webkit-transform: scale(1,1) translateY(-.8rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
+
+div.footer {
+  display: flex;
+  animation: footer .7s ease 2s infinite alternate;
+}
+
+div.footer:hover {
+  animation: none;
+}
+
+.forSignUp {
+    text-align: center;
+}
+
+/*Log In*/
+
+.backdrop1 {
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    padding: 50px;
+}
 
 
+/**/
+.Login {
+    background-image: url(login.jpeg);
+    max-width: 1000px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 30;
+    animation: bounceIn 1s;
+}
 
+/**/
+@keyframes bounceIn {
+  0% {
+    opacity: 1;
+    transform: scale(.3);
+  } 
 
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  } 
 
+  70% {
+    opacity: 1;
+    transform: scale(.9);
+  }
 
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
+/**/
+.footer1 button{
+    background-color: #D7263D;
+    color: white;
+    position: fixed;
+    margin-left: 977px; 
+    margin-top: 0;
+}
 
+/*Animation effect for jumping button while waiting for signup,
+It's one of the CSS transition effect that allow you to translate, rotate, scale, and skew elements.
+A transformation is an effect that lets an element change shape, size and position.*/
 
+@keyframes footer1 {
+    0% {-webkit-transform: scale(1,1);
+        transform: scale(1,1);}
+   30% { -webkit-transform: scale(1,1) translateY(-.8rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
 
+div.footer1 {
+  display: flex;
+  animation: footer .7s ease 2s infinite alternate;
+}
 
+div.footer1:hover {
+  animation: none;
+}
 
+.forLogin {
+    text-align: center;
+    margin-left: 160px;
+}
 
+/*side bar CSS*/
+
+.bm-item {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: #ffaa3b;
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+.bm-burger-bars {
+  background: #006789;
+  margin-top: -15px;
+  position: fixed;
+  margin-left: -20px;
+  margin-right: 20px;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.bm-cross {
+  color: #fff;
+  background: #bdc3c7;
+}
+
+.bm-menu {
+  background: #006789;
+  padding: 2.5em 2.5em 0;
+  font-size: 1.15em;
+  margin-left: -20px;
+  margin-right: 16px;
+  height: auto;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
