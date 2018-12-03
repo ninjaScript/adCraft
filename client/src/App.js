@@ -36,7 +36,11 @@ class App extends Component {
   // Imaging experience for DOM appearance containing header, video, and other components with react base functionality
   render() {
     return (
+<<<<<<< HEAD
       <body>
+=======
+
+>>>>>>> 41e0934c747e51098277511d68d3fb2f28c2bc5f
         <div className="container center">
           <nav className="menu">
             <h1 className="menu__logo">adCraft</h1>

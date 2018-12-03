@@ -30,7 +30,7 @@ body {
     justify-content: center;
 }
 
-/**/
+/*styling for our header including effect color display position etc.*/
 .menu {
     background-color: white;
     box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);

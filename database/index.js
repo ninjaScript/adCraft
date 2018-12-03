@@ -1,8 +1,18 @@
-<<<<<<< HEAD
-
-=======
 const mysql = require('mysql')
 const connection = require('./config.js')
+
+
+// to get date format
+let formatDate = () => {
+	var d = new Date();
+	 dformat = [d.getMonth()+1,
+               d.getDate(),
+               d.getFullYear()].join('-')+' '+
+               [d.getHours(),
+               d.getMinutes(),
+               d.getSeconds()].join(':');
+     return dformat;         
+}
 
 const selectAll = function(tableName, callback) {
   connection.query(`SELECT * FROM ${tableName}`, function(err, results) {
@@ -14,8 +24,11 @@ const selectAll = function(tableName, callback) {
   });
 };
 
-// this function to insert into account table
+// function to add roles to database (user and advertiser)
 
+
+
+// this function to insert into account table
 const insertUser = function (user, callback) {
 
 	// sql query  to insert
@@ -65,4 +78,5 @@ const insertIntoUser = function (user, result, callback){
 
 module.exports.selectAll = selectAll;
 module.exports.insertUser = insertUser;
->>>>>>> 3c900ff835b36fb12ca17b43ecc85ed65b040fc1
+module.exports.formatDate = formatDate;
+module.exports.insertIntoUser = insertIntoUser;

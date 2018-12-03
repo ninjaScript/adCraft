@@ -3,7 +3,7 @@ import './style/App.css';
 import PropTypes from 'prop-types';
 import signUpPic from './style/signup.png';
 import SignUp from './components/SignUp.jsx';
-//import Login from './components/SignIn.jsx';
+
 
 class Signup extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class Signup extends React.Component {
       return null;
     }
 
-    // sign up modal render file, as the modern type of web design
+    // sign up model render file, as the modern type of web design
     // declare node file as based on prototype node, anything that can be rendered: numbers, strings, elements or an array (or fragment) containing these types.
     return (
       <div className="backdrop">
