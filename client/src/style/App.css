@@ -1,33 +1,422 @@
+/*importing font styles and css components are isential part of we design fonts.googleapis are very good source of any type of designs*/
+@import url('https://fonts.googleapis.com/css?family=Varela Round:300,400,700');
+
+/*initial View Styling*/
+* {
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+}
+
+/* set to zero for the page to maximize potential for design*/
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/*set to light color as themed in our website*/
+body {
+    background-color: #e5e3dc;
+}
+
+/* initial container for header*/
+.container {
+    width: 100%;
+    margin-top:-10px;
+}
+
+/* centered header*/
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+/*styling for our header including effect color display position etc.*/
+.menu {
+    background-color: white;
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    height: 100px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: fixed;
+    border-bottom: 20px solid #343434;
+}
+
+/**/
+.menu__right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 100%;
+}
+
+/**/
+.menu__list {
+    list-style-type: none;
+    padding: 0;
+    height: 100%;
+    margin: 0;
+    margin-right: 20px;
+}
+
+/**/
+.menu__list-item {
+    display: inline-block;
+    height: 100%;
+    margin-right: 30px;
+    
+}
+
+/**/
+.menu__list-item:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
+    border-bottom: 4px solid #ffaa3b;
+  
+}
+
+/**/
+.menu__link {
+    color: #006789;
+    display: inline-block;
+    height: 100%;
+    font-size: 17px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    padding: 0;
+
+}
+
+/**/
+i {
+    margin: 0;
+    padding: 0;
+}
+
+/**/
 .App {
   display: flex;
   justify-content: center;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+/**/
+.menu__link:hover {
+    color: #ffaa3b;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/**/
+.menu__link:active {
+    color: #ffaa3b;
+    border-bottom: 4px solid #ffaa3b;
+}
+
+/**/
+.menu__logo {
+    text-indent: -9999999px;
+    display: flex;
+    height: 100%;
+    width: 72px;
+    background-image: url(logo.jpg);
+    background-size: cover 250%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    margin-left: -30px;
+}
+
+/**/
+.video-container {
+  position: fixed;
+  margin-top: 100px;
+  padding: 0;
+  width: 100%;
+  height: 60%; 
+  overflow: hidden;   
+
+}
+
+/**/
+.video-container video {
+ 
+  width: 100% !important; 
+  height: auto !important; 
+
+}
+
+/**/
+.content {
+    position: fixed;
+    display: flex;
+    bottom: 200px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    justify-content: space-between;
+    margin-bottom: 150px;
+}
+
+/**/
+#myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 15px;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    margin-left: 700px;
+}
+
+/**/
+#myBtn:hover {
+    background: #343434;
+    color: #fff;
+    border-color: #fff;
+}
+
+/**/
+#myBtn1 {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 15px;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    margin-right: 700px;
+}
+
+/**/
+#myBtn1:hover {
+    background: #343434;
+    color: #fff;
+    border-color: #fff;
+}
+
+/*Sign Up*/
+.backdrop {
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    padding: 50px;
+}
+
+
+/**/
+.signUp {
+    background-image: url(signup.jpeg);
+    max-width: 1000px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 30;
+    animation: bounceIn 1s;
+}
+
+/**/
+@keyframes bounceIn {
+  0% {
+    opacity: 1;
+    transform: scale(.3);
+  } 
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  } 
+
+  70% {
+    opacity: 1;
+    transform: scale(.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/**/
+.footer button{
+    background-color: #D7263D;
+    color: white;
+    position: fixed;
+    margin-left: 977px; 
+    margin-top: 0;
+}
+
+/*Animation effect for jumping button while waiting for signup,
+It's one of the CSS transition effect that allow you to translate, rotate, scale, and skew elements.
+A transformation is an effect that lets an element change shape, size and position.*/
+
+@keyframes footer {
+    0% {-webkit-transform: scale(1,1);
+        transform: scale(1,1);}
+   30% { -webkit-transform: scale(1,1) translateY(-.8rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
+
+div.footer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  animation: footer .7s ease 2s infinite alternate;
 }
 
-.App-link {
-  color: #61dafb;
+div.footer:hover {
+  animation: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.forSignUp {
+    text-align: center;
+}
+
+/*Log In*/
+
+.backdrop1 {
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    padding: 50px;
+}
+
+
+/**/
+.Login {
+    background-image: url(login.jpeg);
+    max-width: 1000px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 30;
+    animation: bounceIn 1s;
+}
+
+/**/
+@keyframes bounceIn {
+  0% {
+    opacity: 1;
+    transform: scale(.3);
+  } 
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  } 
+
+  70% {
+    opacity: 1;
+    transform: scale(.9);
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
+}
+
+/**/
+.footer1 button{
+    background-color: #D7263D;
+    color: white;
+    position: fixed;
+    margin-left: 977px; 
+    margin-top: 0;
+}
+
+/*Animation effect for jumping button while waiting for signup,
+It's one of the CSS transition effect that allow you to translate, rotate, scale, and skew elements.
+A transformation is an effect that lets an element change shape, size and position.*/
+
+@keyframes footer1 {
+    0% {-webkit-transform: scale(1,1);
+        transform: scale(1,1);}
+   30% { -webkit-transform: scale(1,1) translateY(-.8rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
+
+div.footer1 {
+  display: flex;
+  animation: footer .7s ease 2s infinite alternate;
+}
+
+div.footer1:hover {
+  animation: none;
+}
+
+.forLogin {
+    text-align: center;
+    margin-left: 160px;
+}
+
+/*side bar CSS*/
+
+.bm-item {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: #ffaa3b;
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+.bm-burger-bars {
+  background: #006789;
+  margin-top: -15px;
+  position: fixed;
+  margin-left: -20px;
+  margin-right: 20px;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.bm-cross {
+  color: #fff;
+  background: #bdc3c7;
+}
+
+.bm-menu {
+  background: #006789;
+  padding: 2.5em 2.5em 0;
+  font-size: 1.15em;
+  margin-left: -20px;
+  margin-right: 16px;
+  height: auto;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

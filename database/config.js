@@ -7,4 +7,5 @@ var connection = mysql.createConnection({
      database: "adCraft"
 });
 
+
 module.exports = connection;
