@@ -1,6 +1,7 @@
 import React from 'react';
 import {Grid} from '@material-ui/core';
 import Modal  from '../Modal';
+import './style/App.css';
 import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
 
