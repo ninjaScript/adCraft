@@ -1,12 +1,15 @@
 /*stylel to Sign in and Sign Up  */
 .container {
-  display: "flex";
+
+  display: flex;
   justify-content: center;
 }
 .style {
-  padding: 15px;
-  margin: 40px;
+  padding: 40px;
+  margin: 0px;
   max-width: 500px;
+  margin-right: 500px;
+  margin-top: 10px;
 }
 .btnStyle {
   padding: 10px;
@@ -14,4 +17,57 @@
   font-size: 18px;
 }
 
+@keyframes ._Signup {
+    0% {-webkit-transform: scale(1,1);
+        transform: scale(1,1);}
+   30% { -webkit-transform: scale(1,1) translateY(-.8rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
+
+
+._Signup {
+  display: flex;
+  animation: footer 1s ease 2s infinite alternate;
+}
+
+._Signup:hover {
+  animation: none;
+}
+
+
+
 /***********************/
+@keyframes ._Signin {
+    0% {-webkit-transform: scale(1,1);
+        transform: scale(1,1);}
+   30% { -webkit-transform: scale(1,1) translateY(-.8rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
+
+
+._Signin {
+  display: flex;
+  animation: footer 1s ease 2s infinite alternate;
+}
+
+._Signin:hover {
+  animation: none;
+}
+
+
+.style1 {
+  padding: 40px;
+  margin: 0px;
+  max-width: 500px;
+  height: 700px;
+  margin-left: 350px;
+  margin-top: 0px;
+}
+
+.btnStyle1 {
+  padding: 100px;
+  margin-top: 10000px;
+  font-size: 18px;
+}

@@ -7,6 +7,7 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
+import PNG from '../style/signup.png';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -82,11 +83,12 @@ export default class SignIn extends React.Component {
     //   alignItems: "center"
     // };
     return (
-      <div className="container">
-        <Paper className="style">
+      <div className="container1">
+        <Paper className="style1">
           <div>
-            <Typography variant="display2" align="center" color="primary">
-              Sign In
+          <img src={PNG} width="100" height="100"/>
+            <Typography className="_Signin" variant="display2" align="center" color="primary" style={{"color": "#006789"}}>
+              Login
             </Typography>
           </div>
           <form>
@@ -95,16 +97,16 @@ export default class SignIn extends React.Component {
               label="Phone Number"
               type="tel"
               required={true}
+              style={{marginTop: "50px"}}
               placeholder="0790022543"
               name="phoneNumber"
               margin="normal"
-              variant="outlined"
               value={this.state.phoneNumber}
               onChange={this.handleChange.bind(this)}
             />
             <Typography
               variant="caption"
-              color="secondary"
+              style={{"color": "#006789"}}
               gutterBottom
               align="justify"
             >
@@ -116,15 +118,14 @@ export default class SignIn extends React.Component {
               type="password"
               autoComplete="current-password"
               required={true}
-              margin="normal"
               name="password"
               value={this.state.password}
               onChange={this.handleChange.bind(this)}
-              variant="outlined"
+              style={{marginBottom: "100px"}}
             />
             <Typography
               variant="caption"
-              color="secondary"
+              style={{"color": "#006789"}}
               gutterBottom
               align="justify"
             >
@@ -132,10 +133,11 @@ export default class SignIn extends React.Component {
             </Typography>
 
             <Button
-              className="btnStyle"
+              className="btnStyle1"
               variant="contained"
-              color="primary"
               onClick={this.handleOnClick.bind(this)}
+              margin="normal"
+              style={{backgroundColor: "#006789"}}
               fullWidth
             >
               Sign In

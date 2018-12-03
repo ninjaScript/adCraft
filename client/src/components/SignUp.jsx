@@ -12,6 +12,7 @@ import {
   Radio,
   Typography
 } from "@material-ui/core";
+import PNG from '../style/signup.png';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -101,27 +102,28 @@ export default class SignUp extends React.Component {
         <Paper className="style">
           <div>
             <Typography variant="display2" align="center" color="primary" >
-              Sign Up
+              <img src={PNG} width="100" height="100" alt="" />
+              <Typography className="_Signup" variant="display2" align="center" style={{ "color": "#006789" }}>
+                Sign Up
+              </Typography>
             </Typography>
           </div>
-          <form>
+          <form >
             <TextField
-              label="FirstName"
+              label="First Name"
               required={true}
               name="firstName"
               margin="normal"
-              variant="outlined"
               value={this.state.firstName}
               onChange={this.handleChange.bind(this)}
               fullWidth
             />
             <TextField
-              label="LastName"
+              label="Last Name"
               type="text"
               name="lastName"
               required={true}
               margin="normal"
-              variant="outlined"
               value={this.state.lastName}
               onChange={this.handleChange.bind(this)}
               fullWidth
@@ -134,14 +136,13 @@ export default class SignUp extends React.Component {
               placeholder="0790022543"
               name="phoneNumber"
               margin="normal"
-              variant="outlined"
               value={this.state.phoneNumber}
               onChange={this.handleChange.bind(this)}
               fullWidth
             />
             <Typography
               variant="caption"
-              color="secondary"
+              style={{ color: "#006789" }}
               gutterBottom
               align="justify"
             >
@@ -156,19 +157,18 @@ export default class SignUp extends React.Component {
               name="password"
               value={this.state.password}
               onChange={this.handleChange.bind(this)}
-              variant="outlined"
               fullWidth
             />
             <Typography
               variant="caption"
-              color="secondary"
+              style={{ color: "#006789" }}
               gutterBottom
               align="justify"
             >
               {this.state.errorPassword}
             </Typography>
             <FormControl style={{ marginTop: "10px" }} component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
+              <FormLabel style={{ color: "#006789" }} component="legend">Gender</FormLabel>
               <RadioGroup
                 aria-label="Gender"
                 value={this.state.gender}
@@ -177,12 +177,12 @@ export default class SignUp extends React.Component {
               >
                 <FormControlLabel
                   value="male"
-                  control={<Radio color="primary" />}
+                  control={<Radio style={{ color: "#006789" }} />}
                   label="Male"
                 />
                 <FormControlLabel
                   value="female"
-                  control={<Radio color="primary" />}
+                  control={<Radio style={{ color: "#006789" }} />}
                   label="Female"
                 />
               </RadioGroup>
@@ -190,8 +190,8 @@ export default class SignUp extends React.Component {
             <Button
               onClick={this.handleOnClick.bind(this)}
               className="btnStyle"
-              variant="contained"
-              color="primary"
+              color="inherit"
+              style={{ backgroundColor: "#006789" }}
               type="submit"
               fullWidth
             >
@@ -207,7 +207,7 @@ export default class SignUp extends React.Component {
             color="default"
             fullWidth
           >
-            Already have an account
+            Already have an Account?
           </Button>
         </Paper>
       </div>
