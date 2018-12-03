@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './style/App.css';
 import video from './style/cooking.mp4';
-import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Modal from './Modal';
+import { Grid } from "@material-ui/core";
 import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
 
@@ -21,9 +22,8 @@ class App extends Component {
 
   render() {
     return (
-
-        <div className="container center">
-          <nav className="menu">
+      <Grid container spacing={16} className="container center">
+        <nav className="menu">
             <h1 className="menu__logo">adCraft</h1>
               <div className="menu__right">
                 <ul className="menu__list">
@@ -46,11 +46,10 @@ class App extends Component {
               <button id="myBtn1">ADVERTISER</button>
             </div>
          </div>
-    </div>
-       
+      </Grid>
+
     );
   }
 }
-
 
 export default App;

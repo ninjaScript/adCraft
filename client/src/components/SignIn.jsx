@@ -1,10 +1,10 @@
 import React from "react";
 import "../style/styles.css";
+import $ from "jquery";
 import {
   Paper,
   Button,
   TextField,
-  FormControl,
   Typography
 } from "@material-ui/core";
 
@@ -23,7 +23,6 @@ export default class SignIn extends React.Component {
   handleChange(e) {
     let target = e.target;
     this.setState({ [target.name]: target.value });
-    console.log(this.state[target.name]);
 
     // validation to  phone number
     if (this.state.phoneNumber.length < 10) {
@@ -54,11 +53,21 @@ export default class SignIn extends React.Component {
   // handle when click to send info to server
   handleOnClick() {
     // if the validation true  send data
-    if (!this.state.validation) {
-      console.log(this.state);
-    } else {
-
-    }
+    $.ajax({
+      url: 'http://127.0.0.1:5000/sign-in',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        phoneNumber: this.state.phoneNumber,
+        password : this.state.password
+      }),
+      success: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
   }
   render() {
     // const style = {
@@ -80,7 +89,7 @@ export default class SignIn extends React.Component {
               Sign In
             </Typography>
           </div>
-          <form onSubmit={this.handleOnClick.bind(this)}>
+          <form>
             <TextField
               fullWidth
               label="Phone Number"
@@ -126,7 +135,7 @@ export default class SignIn extends React.Component {
               className="btnStyle"
               variant="contained"
               color="primary"
-              type="submit"
+              onClick={this.handleOnClick.bind(this)}
               fullWidth
             >
               Sign In
@@ -136,7 +145,7 @@ export default class SignIn extends React.Component {
             style={{
               marginTop: "15px",
               size: "medium",
-              textTransform: "lowercase"
+              textTransform: "lowercase",
             }}
             color="default"
             fullWidth

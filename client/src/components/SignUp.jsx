@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/styles.css";
+import $ from "jquery";
 import {
   Paper,
   Button,
@@ -23,17 +24,18 @@ export default class SignUp extends React.Component {
       gender: "male",
       errorPhone: "",
       errorPassword: "",
-      validation: true
+      validation: false
     };
   }
   // this function to deal eith the textField and get the data
   handleChange(e) {
+    e.preventDefault();
     let target = e.target;
     this.setState({ [target.name]: target.value });
     console.log(this.state[target.name]);
 
     // validation to  phone number
-    if (this.state.phoneNumber.length < 10) {
+    if (this.state.phoneNumber.length < 9) {
       this.setState({
         errorPhone: "The phone number should be in this format 0790011200",
         validation: false
@@ -45,7 +47,7 @@ export default class SignUp extends React.Component {
       });
     }
     // validation to  password
-    if (this.state.password.length <= 8) {
+    if (this.state.password.length < 8) {
       this.setState({
         errorPassword: "The password should be more than 8 character!",
         validation: false
@@ -59,11 +61,30 @@ export default class SignUp extends React.Component {
   }
 
   // handle when click to send info to server
-  handleOnClick() {
+  handleOnClick(e) {
+    e.preventDefault();
+    console.log(this.state);
     // if the validation true  send data
     if (this.state.validation) {
-      console.log(this.state);
-    } else {
+      $.ajax({
+        url: 'http://127.0.0.1:5000/sign-up',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          phoneNumber: this.state.phoneNumber,
+          password: this.state.password,
+          gender: this.state.gender,
+          id_roles: 1
+        }),
+        success: (data) => {
+          console.log(data)
+        },
+        error: (err) => {
+          console.log('err', err);
+        }
+      });
     }
   }
   render() {
@@ -79,7 +100,7 @@ export default class SignUp extends React.Component {
       <div className="container">
         <Paper className="style">
           <div>
-            <Typography variant="display2" align="center" color="primary">
+            <Typography variant="display2" align="center" color="primary" >
               Sign Up
             </Typography>
           </div>
