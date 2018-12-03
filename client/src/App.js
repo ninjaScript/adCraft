@@ -2,38 +2,52 @@ import React, { Component } from 'react';
 import './style/App.css';
 import video from './style/cooking.mp4';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
-import Modal from './Modal';
+import Signup from './Signup.js';
+import Login from './Login.js';
 import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
-
+import SideBar from './sidebar';
+import {Grid} from '@material-ui/core';
+//App component for Rendering Usage User experience
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { isOpen: false };
+    // state to open and close modal effect by onclick button for sign in and out
+    this.state = { isOpenSignUp: false, isOpenSignIn: false };
   }
 
-  toggleModal = () => {
+  // setstate for initial render (sign up)
+  toggleSignup = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpenSignUp: !this.state.isOpenSignUp,
+      isOpenSignIn: false
     });
   }
 
+  // setstate for initial render (Log In)
+  toggleLogin = () => {
+    this.setState({
+      isOpenSignIn: !this.state.isOpenSignIn,
+      isOpenSignUp: false
+    });
+  }
+
+
+  // Imaging experience for DOM appearance containing header, video, and other components with react base functionality
   render() {
     return (
 
-        <div className="container center">
+      <Grid container spacing={16} className="container center">
           <nav className="menu">
             <h1 className="menu__logo">adCraft</h1>
               <div className="menu__right">
                 <ul className="menu__list">
-                    <li className="menu__list-item"><a className="menu__link" href="#"><i className="fa fa-facebook fa-lg"></i></a></li>
-                    <li className="menu__list-item"><a className="menu__link" href="#"><i className="fa fa-instagram fa-lg"></i></a></li>
-                    <li className="menu__list-item"><a className="menu__link" href="#"><i className="fa fa-twitter fa-lg"></i></a></li>
+                    <li className="menu__list-item"><a className="menu__link" href="https://www.facebook.com/ad.craft.79"><i className="fa fa-facebook fa-lg"></i></a></li>
+                    <li className="menu__list-item"><a className="menu__link" href="https://www.instagram.com/adcraft_advertisement/?hl=en"><i className="fa fa-instagram fa-lg"></i></a></li>
+                    <li className="menu__list-item"><a className="menu__link" href="https://twitter.com/adCraft20"><i className="fa fa-twitter fa-lg"></i></a></li>
                     
-                    <li className="menu__list-item"><a className="menu__link" href="#">Login</a></li>
-                    <li className="menu__list-item"><a className="menu__link" href="#" onClick={this.toggleModal}>SIGN UP</a></li>
-                      <Modal show={this.state.isOpen}  onClose={this.toggleModal}></Modal>
+                    <li className="menu__list-item"><a className="menu__link" href="#" onClick={this.toggleLogin}>Login</a></li>
+                    <li className="menu__list-item"><a className="menu__link"  href="#" onClick={this.toggleSignup}>SIGN UP</a></li>
                 </ul>
              </div>
           </nav>
@@ -41,16 +55,25 @@ class App extends Component {
             <video width="300" height="200" loop autoPlay>
               <source src={video} type="video/mp4" />
             </video>
+
             <div className="content">
               <button id="myBtn">USER</button>
               <button id="myBtn1">ADVERTISER</button>
             </div>
-         </div>
-    </div>
-       
+          </div>
+     
+
+          <div className="content">
+            <button id="myBtn">USER</button>
+            <button id="myBtn1">ADVERTISER</button>
+          </div>
+          <Signup show={this.state.isOpenSignUp}  onClose={this.toggleSignup}></Signup>
+          <Login show={this.state.isOpenSignIn}  onClose={this.toggleLogin}></Login>
+        </Grid>
+
     );
   }
 }
-
-
+ 
+// export for usage
 export default App;

@@ -1,12 +1,13 @@
 import React from "react";
 import "../style/styles.css";
+import $ from "jquery";
 import {
   Paper,
   Button,
   TextField,
-  FormControl,
   Typography
 } from "@material-ui/core";
+import PNG from '../style/signup.png';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -23,7 +24,6 @@ export default class SignIn extends React.Component {
   handleChange(e) {
     let target = e.target;
     this.setState({ [target.name]: target.value });
-    console.log(this.state[target.name]);
 
     // validation to  phone number
     if (this.state.phoneNumber.length < 10) {
@@ -54,11 +54,21 @@ export default class SignIn extends React.Component {
   // handle when click to send info to server
   handleOnClick() {
     // if the validation true  send data
-    if (!this.state.validation) {
-      console.log(this.state);
-    } else {
-
-    }
+    $.ajax({
+      url: 'http://127.0.0.1:5000/sign-in',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        phoneNumber: this.state.phoneNumber,
+        password : this.state.password
+      }),
+      success: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
   }
   render() {
     // const style = {
@@ -73,29 +83,30 @@ export default class SignIn extends React.Component {
     //   alignItems: "center"
     // };
     return (
-      <div className="container">
-        <Paper className="style">
+      <div className="container1">
+        <Paper className="style1">
           <div>
-            <Typography variant="display2" align="center" color="primary">
-              Sign In
+          <img src={PNG} width="100" height="100"/>
+            <Typography className="_Signin" variant="display2" align="center" color="primary" style={{"color": "#006789"}}>
+              Login
             </Typography>
           </div>
-          <form onSubmit={this.handleOnClick.bind(this)}>
+          <form>
             <TextField
               fullWidth
               label="Phone Number"
               type="tel"
               required={true}
+              style={{marginTop: "50px"}}
               placeholder="0790022543"
               name="phoneNumber"
               margin="normal"
-              variant="outlined"
               value={this.state.phoneNumber}
               onChange={this.handleChange.bind(this)}
             />
             <Typography
               variant="caption"
-              color="secondary"
+              style={{"color": "#006789"}}
               gutterBottom
               align="justify"
             >
@@ -107,15 +118,14 @@ export default class SignIn extends React.Component {
               type="password"
               autoComplete="current-password"
               required={true}
-              margin="normal"
               name="password"
               value={this.state.password}
               onChange={this.handleChange.bind(this)}
-              variant="outlined"
+              style={{marginBottom: "100px"}}
             />
             <Typography
               variant="caption"
-              color="secondary"
+              style={{"color": "#006789"}}
               gutterBottom
               align="justify"
             >
@@ -123,10 +133,11 @@ export default class SignIn extends React.Component {
             </Typography>
 
             <Button
-              className="btnStyle"
+              className="btnStyle1"
               variant="contained"
-              color="primary"
-              type="submit"
+              onClick={this.handleOnClick.bind(this)}
+              margin="normal"
+              style={{backgroundColor: "#006789"}}
               fullWidth
             >
               Sign In
@@ -136,7 +147,7 @@ export default class SignIn extends React.Component {
             style={{
               marginTop: "15px",
               size: "medium",
-              textTransform: "lowercase"
+              textTransform: "lowercase",
             }}
             color="default"
             fullWidth
