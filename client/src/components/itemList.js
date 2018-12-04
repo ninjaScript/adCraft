@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import sampleProductList from './sampleProductList';
-import { Card, Paper, IconButton, GridListTileBar } from "@material-ui/core";
+import sampleProductList from '../sampleProductList';
+import {IconButton, GridListTileBar } from "@material-ui/core";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
@@ -15,7 +14,7 @@ class ItemList extends Component {
          <GridList cellHeight={400} className="gridList" cols={3}>
            {sampleProductList.map(tile => (
              <GridListTile className="item" key={tile.img} cols={tile.cols || 1}>
-                <img src={tile.img}/>
+                <img src={tile.img} alt=""/>
                   <GridListTileBar
                     title={tile.title}
                     subtitle={<span>by: {tile.Advertiser}</span>}
