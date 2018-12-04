@@ -16,7 +16,7 @@ export default class Video extends React.Component {
         </video>
         <div spacing={16} className="content">
           <p><span className="titleDesc">AdCraft</span> is the big community for adcraft@homemade you can  </p>
-          <Button variant="contained" size="large" className= "myBtn">Join us now</Button>
+          <Button variant="contained" size="medium">Join us now</Button>
         </div>
       </div>
     )

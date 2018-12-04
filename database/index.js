@@ -26,21 +26,9 @@ const formatDate = () => {
 
 
 
-
-
-
-
-
-
-
 // function to add roles to database (user and advertiser)
-<<<<<<< HEAD
-const addRoles  = function (role, callback) {
-	var sqlInsIntoRolesTable = `INSERT INTO roles (role) VALUES("${role.role}");`;
-=======
-const addRoles = function () {
->>>>>>> a5c97f29adeddc3b1d6aa4a98eab84f1ebfa735c
 
+const addRoles = function () {
     // execute query 
 	connection.query(sqlInsIntoRolesTable, function(err, result){
 		if(err) {
@@ -107,9 +95,6 @@ const insertIntoUser = function (user, result, callback) {
 		}
 	});
 }
-
-<<<<<<< HEAD
-
 
 
 const insertIntoCat = function (catName, callback){
@@ -194,15 +179,8 @@ const advertiser_Items  = function (adv_id, item_id, callback) {
 
 
 
-module.exports.selectAll = selectAll;
-module.exports.insertAccount = insertAccount;
-module.exports.formatDate = formatDate;
-module.exports.isAccountExist = isAccountExist;
-module.exports.insertIntoCat = insertIntoCat;
-module.exports.insertIntoItems = insertIntoItems;
-module.exports.addRoles = addRoles;
-module.exports.advertiser_Items = advertiser_Items;
-=======
+
+
 ////////////////////////////select functions /////////////
 
 const selectUserInfo = function (id, rolesId, callback) {
@@ -225,4 +203,7 @@ module.exports.formatDate = formatDate;
 module.exports.insertIntoUser = insertIntoUser;
 module.exports.isAccountExist = isAccountExist;
 module.exports.selectUserInfo = selectUserInfo;
->>>>>>> a5c97f29adeddc3b1d6aa4a98eab84f1ebfa735c
+module.exports.insertIntoCat = insertIntoCat;
+module.exports.insertIntoItems = insertIntoItems;
+module.exports.addRoles = addRoles;
+module.exports.advertiser_Items = advertiser_Items;
