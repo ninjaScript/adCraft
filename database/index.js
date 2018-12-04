@@ -79,8 +79,8 @@ const insertIntoUser = function (user, result, callback) {
 	});
 }
 
-module.exports.selectAll = selectAll;
 
+module.exports.selectAll = selectAll;
 module.exports.insertAccount = insertAccount;
 module.exports.formatDate = formatDate;
 module.exports.insertIntoUser = insertIntoUser;
