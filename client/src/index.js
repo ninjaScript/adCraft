@@ -6,6 +6,8 @@ import PopSignUp from './PopSignUp.js';
 import PopSignIn from './PopSignIn.js';
 import UserDashboard from './UserDashboard.jsx';
 import * as serviceWorker from './serviceWorker';
+import AdvertiserStore from './components/advertiser_store.jsx';
+import AdvertiserGridList from './components/advertiser_grid_list.jsx'
 import { Router, Route, browserHistory } from 'react-router';
 
 class Home extends React.Component {
@@ -27,7 +29,7 @@ class Home extends React.Component {
 }
 
 
-ReactDOM.render(<Home />, document.getElementById('root'));
+ReactDOM.render(<Home/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

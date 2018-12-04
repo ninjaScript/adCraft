@@ -123,7 +123,24 @@ app.get('/logout', function(req, res){
     status: 404,
     success: "redirectTologin"
   });
-})
+});
+
+// get request to latest-items 
+app.get('/latest-items',function(req, res) {
+  db.selectLatestItems(req.body, function (err, result) {
+    if (err) {
+      console.log("ERROR", err)
+    } else {
+      res.send({
+        status: 200,
+        success: "get top ten items successfuly",
+        data:result
+      });
+    }
+  });
+});
+
+
 // store  data to session here we pass user_id
 passport.serializeUser(function(user_id, done) {
   done(null, user_id);
