@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/styles.css";
 import $ from "jquery";
+import {browserHistory} from 'react-router';
 import {
   Paper,
   Button,
@@ -25,7 +26,8 @@ export default class SignUp extends React.Component {
       gender: "male",
       errorPhone: "",
       errorPassword: "",
-      validation: false
+      validation: false,
+      isSignUp:false
     };
   }
   // this function to deal eith the textField and get the data
@@ -68,7 +70,7 @@ export default class SignUp extends React.Component {
     // if the validation true  send data
     if (this.state.validation) {
       $.ajax({
-        url: 'http://127.0.0.1:5000/sign-up',
+        url: '/sign-up',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -80,12 +82,16 @@ export default class SignUp extends React.Component {
           id_roles: 1
         }),
         success: (data) => {
-          console.log(data)
+          if(data.success !== 'userExist') {
+            browserHistory.push('/user-dashboard');
+          } else {
+            alert("This user is exist");
+          }
         },
         error: (err) => {
           console.log('err', err);
         }
-      });
+      }); 
     }
   }
   render() {

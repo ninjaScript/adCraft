@@ -1,10 +1,9 @@
 import React from 'react';
 import './style/App.css';
 import PropTypes from 'prop-types';
-import signUpPic from './style/signup.png';
 import SignIn from './components/SignIn.jsx'
 
-class Login extends React.Component {
+class PopSignIn extends React.Component {
   render() {
     // Render blank if its false
     if(!this.props.show) {
@@ -34,10 +33,10 @@ class Login extends React.Component {
 
 // PropTypes was originally exposed as part of the React core module, and is commonly used with React components.
 // this asasigned to declare prototypal type that you want to use in components
-Login.propTypes = {
+PopSignIn.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool,
   children: PropTypes.node
 };
 
-export default Login;
+export default PopSignIn;
