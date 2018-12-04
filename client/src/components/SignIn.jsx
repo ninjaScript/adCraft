@@ -1,6 +1,8 @@
 import React from "react";
 import "../style/styles.css";
 import $ from "jquery";
+import {browserHistory} from 'react-router';
+
 import {
   Paper,
   Button,
@@ -55,15 +57,23 @@ export default class SignIn extends React.Component {
   handleOnClick() {
     // if the validation true  send data
     $.ajax({
-      url: 'http://127.0.0.1:5000/sign-in',
+      url: '/sign-in',
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
         phoneNumber: this.state.phoneNumber,
         password : this.state.password
       }),
-      success: (data) => {
-        console.log(data);
+      success: (res) => {
+        if (res.success === 'login_success'){
+          // redirest to main page
+          browserHistory.push({
+            pathname: "/user-dashboard/" + res.data.id+ "",
+            state: { user: res.data }
+          });
+        } else {
+          alert("check on your password or phone number")
+        }
       },
       error: (err) => {
         console.log('err', err);
@@ -71,22 +81,12 @@ export default class SignIn extends React.Component {
     });
   }
   render() {
-    // const style = {
-    //   padding: "15px",
-    //   margin: "40px",
-    //   maxWidth: "500px"
-    // };
-    // const btnStyle = { padding: "10px", marginTop: "10px", fontSize: "18px" };
-    // const container = {
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   alignItems: "center"
-    // };
+   
     return (
       <div className="container1">
         <Paper className="style1">
           <div>
-          <img src={PNG} width="100" height="100"/>
+          <img src={PNG} width="100" height="100" alt= ""/>
             <Typography className="_Signin" variant="display2" align="center" color="primary" style={{"color": "#006789"}}>
               Login
             </Typography>
