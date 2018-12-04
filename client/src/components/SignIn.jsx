@@ -1,10 +1,12 @@
 import React from "react";
 import "../style/styles.css";
+import $ from "jquery";
+import {browserHistory} from 'react-router';
+
 import {
   Paper,
   Button,
   TextField,
-  FormControl,
   Typography
 } from "@material-ui/core";
 import PNG from '../style/signup.png';
@@ -24,7 +26,6 @@ export default class SignIn extends React.Component {
   handleChange(e) {
     let target = e.target;
     this.setState({ [target.name]: target.value });
-    console.log(this.state[target.name]);
 
     // validation to  phone number
     if (this.state.phoneNumber.length < 10) {
@@ -55,34 +56,42 @@ export default class SignIn extends React.Component {
   // handle when click to send info to server
   handleOnClick() {
     // if the validation true  send data
-    if (!this.state.validation) {
-      console.log(this.state);
-    } else {
-
-    }
+    $.ajax({
+      url: '/sign-in',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        phoneNumber: this.state.phoneNumber,
+        password : this.state.password
+      }),
+      success: (res) => {
+        if (res.success === 'login_success'){
+          // redirest to main page
+          browserHistory.push({
+            pathname: "/user-dashboard/" + res.data.id+ "",
+            state: { user: res.data }
+          });
+        } else {
+          alert("check on your password or phone number")
+        }
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
   }
   render() {
-    // const style = {
-    //   padding: "15px",
-    //   margin: "40px",
-    //   maxWidth: "500px"
-    // };
-    // const btnStyle = { padding: "10px", marginTop: "10px", fontSize: "18px" };
-    // const container = {
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   alignItems: "center"
-    // };
+   
     return (
       <div className="container1">
         <Paper className="style1">
           <div>
-          <img src={PNG} width="100" height="100"/>
+          <img src={PNG} width="100" height="100" alt= ""/>
             <Typography className="_Signin" variant="display2" align="center" color="primary" style={{"color": "#006789"}}>
               Login
             </Typography>
           </div>
-          <form onSubmit={this.handleOnClick.bind(this)}>
+          <form>
             <TextField
               fullWidth
               label="Phone Number"
@@ -126,7 +135,7 @@ export default class SignIn extends React.Component {
             <Button
               className="btnStyle1"
               variant="contained"
-              type="submit"
+              onClick={this.handleOnClick.bind(this)}
               margin="normal"
               style={{backgroundColor: "#006789"}}
               fullWidth
@@ -138,7 +147,7 @@ export default class SignIn extends React.Component {
             style={{
               marginTop: "15px",
               size: "medium",
-              textTransform: "lowercase"
+              textTransform: "lowercase",
             }}
             color="default"
             fullWidth

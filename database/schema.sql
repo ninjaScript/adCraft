@@ -76,11 +76,12 @@ CREATE TABLE `items` (
   `name` VARCHAR(25) NOT NULL,
   `price` DOUBLE NOT NULL,
   `imgUrl` VARCHAR(200) NOT NULL,
-  `desc` MEDIUMTEXT NOT NULL,
+  `descr` VARCHAR(200) NOT NULL,
   `createdAt` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
+-- MEDIUMTEXT
 
 -- Table 'advertiser_Items'
 
@@ -117,7 +118,7 @@ DROP TABLE IF EXISTS `roles`;
 		
 CREATE TABLE `roles` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `role` VARCHAR(25) NOT NULL DEFAULT 'NULL',
+  `role` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`)
 );
 

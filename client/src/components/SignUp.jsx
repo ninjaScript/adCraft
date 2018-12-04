@@ -1,5 +1,7 @@
 import React from "react";
 import "../style/styles.css";
+import $ from "jquery";
+import {browserHistory} from 'react-router';
 import {
   Paper,
   Button,
@@ -24,17 +26,19 @@ export default class SignUp extends React.Component {
       gender: "male",
       errorPhone: "",
       errorPassword: "",
-      validation: true
+      validation: false,
+      isSignUp:false
     };
   }
   // this function to deal eith the textField and get the data
   handleChange(e) {
+    e.preventDefault();
     let target = e.target;
     this.setState({ [target.name]: target.value });
     console.log(this.state[target.name]);
 
     // validation to  phone number
-    if (this.state.phoneNumber.length < 10) {
+    if (this.state.phoneNumber.length < 9) {
       this.setState({
         errorPhone: "The phone number should be in this format 0790011200",
         validation: false
@@ -46,7 +50,7 @@ export default class SignUp extends React.Component {
       });
     }
     // validation to  password
-    if (this.state.password.length <= 8) {
+    if (this.state.password.length < 8) {
       this.setState({
         errorPassword: "The password should be more than 8 character!",
         validation: false
@@ -60,11 +64,34 @@ export default class SignUp extends React.Component {
   }
 
   // handle when click to send info to server
-  handleOnClick() {
+  handleOnClick(e) {
+    e.preventDefault();
+    console.log(this.state);
     // if the validation true  send data
     if (this.state.validation) {
-      console.log(this.state);
-    } else {
+      $.ajax({
+        url: '/sign-up',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          phoneNumber: this.state.phoneNumber,
+          password: this.state.password,
+          gender: this.state.gender,
+          id_roles: 1
+        }),
+        success: (data) => {
+          if(data.success !== 'userExist') {
+            browserHistory.push('/user-dashboard');
+          } else {
+            alert("This user is exist");
+          }
+        },
+        error: (err) => {
+          console.log('err', err);
+        }
+      }); 
     }
   }
   render() {
@@ -80,9 +107,11 @@ export default class SignUp extends React.Component {
       <div className="container">
         <Paper className="style">
           <div>
-          <img src={PNG} width="100" height="100"/>
-            <Typography className="_Signup" variant="display2" align="center" style={{"color": "#006789"}}>
-              Sign Up
+            <Typography variant="display2" align="center" color="primary" >
+              <img src={PNG} width="100" height="100" alt="" />
+              <Typography className="_Signup" variant="display2" align="center" style={{ "color": "#006789" }}>
+                Sign Up
+              </Typography>
             </Typography>
           </div>
           <form >
@@ -119,7 +148,7 @@ export default class SignUp extends React.Component {
             />
             <Typography
               variant="caption"
-              style={{color: "#006789"}}
+              style={{ color: "#006789" }}
               gutterBottom
               align="justify"
             >
@@ -138,14 +167,14 @@ export default class SignUp extends React.Component {
             />
             <Typography
               variant="caption"
-              style={{color: "#006789"}}
+              style={{ color: "#006789" }}
               gutterBottom
               align="justify"
             >
               {this.state.errorPassword}
             </Typography>
             <FormControl style={{ marginTop: "10px" }} component="fieldset">
-              <FormLabel  style={{color: "#006789"}} component="legend">Gender</FormLabel>
+              <FormLabel style={{ color: "#006789" }} component="legend">Gender</FormLabel>
               <RadioGroup
                 aria-label="Gender"
                 value={this.state.gender}
@@ -154,12 +183,12 @@ export default class SignUp extends React.Component {
               >
                 <FormControlLabel
                   value="male"
-                  control={<Radio style={{color: "#006789"}}/>}
+                  control={<Radio style={{ color: "#006789" }} />}
                   label="Male"
                 />
                 <FormControlLabel
                   value="female"
-                  control={<Radio style={{color: "#006789"}}/>}
+                  control={<Radio style={{ color: "#006789" }} />}
                   label="Female"
                 />
               </RadioGroup>
@@ -168,7 +197,7 @@ export default class SignUp extends React.Component {
               onClick={this.handleOnClick.bind(this)}
               className="btnStyle"
               color="inherit"
-              style={{backgroundColor: "#006789"}}
+              style={{ backgroundColor: "#006789" }}
               type="submit"
               fullWidth
             >
