@@ -152,7 +152,6 @@ i {
 /**/
 .content {
     position: absolute;
-    bottom: 100px;
     left: 300px;
     right: 300px;
     padding: 20px;

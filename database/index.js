@@ -1,7 +1,6 @@
 const mysql = require('mysql')
 const connection = require('./config.js')
 
-
 const selectAll = function (tableName, callback) {
 	connection.query(`SELECT * FROM ${tableName}`, function (err, results) {
 		if (err) {
@@ -30,10 +29,10 @@ const addRoles  = function (role, callback) {
     // execute query 
 	connection.query(sqlInsIntoRolesTable, function(err, result){
 		if(err) {
-			console.log('Error during insert into roles table', err)
-			callback(err, null)
+			console.log('Error during insert into roles table', err);
+			callback(err, null);
 		} else {
-			console.log('insert into roles Successed!')
+			console.log('insert into roles Successed!');
 			callback(null, result);
 		}
   });
@@ -50,7 +49,6 @@ const isAccountExist = function (phoneNumber, callback) {
 		}
 	})
 }
-
 
 // this function to insert into account table
 const insertAccount = function (user, callback) {
@@ -70,12 +68,11 @@ const insertAccount = function (user, callback) {
 			if(user.id_roles === 1){
 				insertIntoUser(user, result, callback);
 			}else {
-				insertIntoAdv(user, result, callback)
+				insertIntoAdv(user, result, callback);
 			}	
 		}
 	})
 }
-
 
 // this function to insert into user table
 const insertIntoUser = function (user, result, callback) {
@@ -94,10 +91,6 @@ const insertIntoUser = function (user, result, callback) {
 	});
 }
 
-
-
-
-
 const insertIntoCat = function (catName, callback){
 	// sql query  to insert
 	var sqlInsIntoCategoriesTable = `INSERT INTO categories (name, imgUrl, createdAt) 
@@ -114,9 +107,6 @@ const insertIntoCat = function (catName, callback){
 		}
     });
 }
-
-
-
 
 // this function to insert into advertiser table
 const insertIntoAdv = function (user, result, callback){
@@ -137,7 +127,6 @@ const insertIntoAdv = function (user, result, callback){
 		}
     });
 }
-
 
 const insertIntoItems = function (ad_id, item, callback){
 	// sql query  to insert
@@ -173,26 +162,8 @@ const advertiser_Items  = function (adv_id, item_id, callback) {
   });
 }
 
-
-
-
-
-
-
-
-module.exports.selectAll = selectAll;
-module.exports.insertAccount = insertAccount;
-module.exports.formatDate = formatDate;
-module.exports.isAccountExist = isAccountExist;
-module.exports.insertIntoCat = insertIntoCat;
-module.exports.insertIntoItems = insertIntoItems;
-module.exports.addRoles = addRoles;
-module.exports.advertiser_Items = advertiser_Items;
-=======
-////////////////////////////select functions /////////////
-
 const selectUserInfo = function (id, rolesId, callback) {
-	sql = `select account.phoneNumber, account.id_roles, users.* from account 
+	var sql = `select account.phoneNumber, account.id_roles, users.* from account 
 	inner join users 
 	on account.id = users.id_account
     where account.id = '${id}' and account.id_roles='${rolesId}'`;
@@ -205,10 +176,29 @@ const selectUserInfo = function (id, rolesId, callback) {
 	});
 }
 
+// This function to get the latest 10 items from the items table.
+const selectLatestItems = function (user, callback) {
+  var sqlTopTenItems = `SELECT advertiser.firstName, advertiser.lastName, items.name, items.price, items.imgUrl, items.descr, items.createdAt FROM items
+                          INNER JOIN advertiser_Items ON id_items = items.id
+                          INNER JOIN advertiser ON advertiser.id = id_advertiser
+                        ORDER BY items.id DESC LIMIT 10`;
+  connection.query(sqlTopTenItems, function (err, result) {
+    if (err) {
+      throw err;
+    } else {
+      callback(null,result);
+    }
+  });
+  }
+
 module.exports.selectAll = selectAll;
 module.exports.insertAccount = insertAccount;
 module.exports.formatDate = formatDate;
-module.exports.insertIntoUser = insertIntoUser;
 module.exports.isAccountExist = isAccountExist;
-module.exports.selectUserInfo = selectUserInfo;
+module.exports.insertIntoCat = insertIntoCat;
+module.exports.insertIntoItems = insertIntoItems;
+module.exports.addRoles = addRoles;
+module.exports.advertiser_Items = advertiser_Items;
+module.exports.selectLatestItems = selectLatestItems;
+
 
