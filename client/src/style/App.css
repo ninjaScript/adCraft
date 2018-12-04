@@ -1,5 +1,10 @@
 /*importing font styles and css components are isential part of we design fonts.googleapis are very good source of any type of designs*/
 @import url('https://fonts.googleapis.com/css?family=Varela Round:300,400,700');
+@font-face {
+  font-family: projectFont;
+  src: url(./SmoothieShoppe.ttf);
+}
+
 
 /*initial View Styling*/
 * {
@@ -22,6 +27,7 @@ body {
 .container {
     width: 100%;
     margin-top:-10px;
+    
 }
 
 /* centered header*/
@@ -40,7 +46,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
-    position: fixed;
+    position: absolute;
     border-bottom: 20px solid #343434;
 }
 
@@ -131,7 +137,7 @@ i {
 
 /**/
 .video-container {
-  position: fixed;
+  position: absolute;
   margin-top: 100px;
   padding: 0;
   width: 100%;
@@ -152,6 +158,16 @@ i {
 /**/
 .content {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 200px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: -160px;
+}
+
+.flex-item + .flex-item {
+  margin-left: 10px;
     bottom: 100px;
     left: 300px;
     right: 300px;
@@ -183,29 +199,27 @@ i {
 }
 
 /**/
-#myBtn:hover {
-    background: #343434;
-    color: #fff;
-    border-color: #fff;
-}
-
-/**/
-#myBtn1 {
+#myBtn {
+    position: sticky;
     width: 200px;
     font-size: 18px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 15px;
     background: #fff;
     color: #000;
     cursor: pointer;
-    margin-right: 700px;
+    margin-left: 10px;
+    margin-top: 15px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
-/**/
-#myBtn1:hover {
-    background: #343434;
-    color: #fff;
-    border-color: #fff;
+#myBtn:hover {
+  background: #343434;
+  border-color: white;
+  color: #fff;
 }
 
 /*Sign Up*/
@@ -429,4 +443,115 @@ div.footer1:hover {
 
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.category {
+  margin-top: 750px;
+  
+}
+.category1 {
+  transition: all .2s ease-in-out; 
+}
+
+.category1:hover {
+  transform: scale(1);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.category2 {
+  transition: all .2s ease-in-out; 
+}
+
+.category2:hover {
+  transform: scale(1);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.category3 {
+  transition: all .2s ease-in-out; 
+}
+
+.category3:hover {
+  transform: scale(1);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+#myBtn1 {
+  position: absolute;
+  width: 200px;
+  font-size: 18px;
+  padding: 10px 20px;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  margin-left: 150px;
+  margin-top: -100px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.border {
+  font-family: projectFont;
+  margin-top: 15px;
+  text-align: center;
+  position: absolute;
+  width: 1549px;
+  padding: 5px 5px;
+  background: #f1f1f1;
+  color: #000;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/*Styles for itemList First Page*/
+
+.item {
+  transition: all .3s ease-in-out;
+  
+}
+
+.item:hover {
+  transform: scale(1.02);
+  opacity: 0.7;
+  cursor: pointer;
+  backface-visibility: unset;
+}
+
+
+.root {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
+
+.gridList {
+  position: relative;
+  float: left;
+  width: 900px;
+  min-height: 400px;
+  min-width: 900px;
+  overflow: hidden;
+  height: 100% !important;
+  }
+
+
+
+/*Footer*/
+.lastFooter {
+  margin-top: 150px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  height: 200px;
+  background: #343434;
 }
