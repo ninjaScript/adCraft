@@ -8,9 +8,9 @@
 }
 
 /* set to zero for the page to maximize potential for design*/
-html {
-    margin: 0;
-    padding: 0;
+body {
+    margin: auto;
+    padding: auto;
 }
 
 /*set to light color as themed in our website*/
@@ -142,34 +142,44 @@ i {
 
 /**/
 .video-container video {
- 
+  position: relative;
   width: 100% !important; 
   height: auto !important; 
-
+  background: #006789;
+  opacity: 0.8;
 }
 
 /**/
 .content {
-    position: fixed;
-    display: flex;
-    bottom: 200px;
-    width: 100%;
+    position: absolute;
+    bottom: 100px;
+    left: 300px;
+    right: 300px;
     padding: 20px;
     text-align: center;
-    justify-content: space-between;
-    margin-bottom: 150px;
+    bottom: 120px;
+    
 }
 
+.content p{
+  color: #e5e3dc;
+  font-size: 60px; 
+}
+
+.titleDesc {
+    border-radius: 20px; 
+    padding: 10px;
+    background:#006789 ;
+    color: #ffaa3b;
+}
 /**/
-#myBtn {
+.myBtn {
     width: 200px;
-    font-size: 18px;
+    font-size: 23px;
     padding: 10px;
     border-radius: 15px;
-    background: #fff;
-    color: #000;
-    cursor: pointer;
-    margin-left: 700px;
+    background: #006789;
+    color: #ffaa3b;
 }
 
 /**/
@@ -294,7 +304,7 @@ div.footer:hover {
 .Login {
     background-image: url(login.jpeg);
     max-width: 1000px;
-    min-height: 600px;
+    min-height: 500px;
     margin: 0 auto;
     padding: 30;
     animation: bounceIn 1s;

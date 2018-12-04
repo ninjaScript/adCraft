@@ -15,17 +15,17 @@ const selectAll = function (tableName, callback) {
 // function to return the datetime 
 const formatDate = () => {
 	var d = new Date();
-	 dformat = [d.getMonth()+1,
-						d.getDate(),
-						d.getFullYear()].join('-')+' '+
-						[d.getHours(),
-						d.getMinutes(),
-						d.getSeconds()].join(':');
+	dformat = [d.getMonth() + 1,
+	d.getDate(),
+	d.getFullYear()].join('-') + ' ' +
+		[d.getHours(),
+		d.getMinutes(),
+		d.getSeconds()].join(':');
 	return dformat;
 }
 
 // function to add roles to database (user and advertiser)
-const addRoles  = function () {
+const addRoles = function () {
 
 }
 
@@ -33,10 +33,10 @@ const addRoles  = function () {
 const isAccountExist = function (phoneNumber, callback) {
 	let sql = `select * from account where phoneNumber = ${phoneNumber}`;
 	connection.query(sql, function (err, result) {
-		if(err){
+		if (err) {
 			callback(err, null);
 		} else {
-			 callback (null, result);
+			callback(null, result);
 		}
 	})
 }
@@ -79,8 +79,25 @@ const insertIntoUser = function (user, result, callback) {
 	});
 }
 
+////////////////////////////select functions /////////////
+
+const selectUserInfo = function (id, rolesId, callback) {
+	sql = `select account.phoneNumber, account.id_roles, users.* from account 
+	inner join users 
+	on account.id = users.id_account
+    where account.id = '${id}' and account.id_roles='${rolesId}'`;
+	connection.query(sql, function (err, result) {
+		if (err) {
+			throw err	
+		} else {
+			callback(null, result);
+		}
+	});
+}
+
 module.exports.selectAll = selectAll;
 module.exports.insertAccount = insertAccount;
 module.exports.formatDate = formatDate;
 module.exports.insertIntoUser = insertIntoUser;
 module.exports.isAccountExist = isAccountExist;
+module.exports.selectUserInfo = selectUserInfo;
