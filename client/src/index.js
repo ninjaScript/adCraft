@@ -7,7 +7,6 @@ import PopSignIn from './PopSignIn.js';
 import UserDashboard from './UserDashboard.jsx';
 import * as serviceWorker from './serviceWorker';
 import { Router, Route, browserHistory } from 'react-router';
-import Search from './components/SearchFilter.jsx'
 class Home extends React.Component {
   constructor(props) {
     super(props);
