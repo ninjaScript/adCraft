@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,7 +9,9 @@ import Typography from '@material-ui/core/Typography';
 
 const style = {
   card: {
-    maxWidth: 300,
+    maxWidth: 325,
+    margin : 10,
+    textAlign :"left"
     },
   media: {
     height: 140,
@@ -39,20 +39,22 @@ export default class AdvertiserStore extends React.Component {
               image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXGTHOjkFSw-cjPYwlXvyAwpVJFO0RPc_fxFDVPKsQxicPzKDrA"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" color="primary">
-              Mohammed Rawashdeh
+            <Typography gutterBottom variant="h6" color="primary">
+             {this.props.data.firstName + " " + this.props.data.lastName}
             </Typography>
-            <Typography component="p">
+            <Typography variant="body2" component="p">
               I make food at home, I can make all kinde of food and sweets.
-              We are able to make large amount of food, for partys, wedding, and birthday's.
+            </Typography>
+            <Typography variant="h6" component="h3" color="primary">
+              {"Rating:  "+ this.props.data.rateAvg}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Typography style={style.follower} size="small" color="black">
-            Followers               
+          <Typography style={style.follower} size="small" color="primary">
+            {"Followers: " + this.props.data.numFeedback}               
           </Typography>
-          <Button style={style.button} size="small" color="primary">
+          <Button variant= "outlined" style={style.button} size="small" color="primary">
             Follow +
           </Button>
         </CardActions>
