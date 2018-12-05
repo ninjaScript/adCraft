@@ -48,8 +48,7 @@ class App extends Component {
         </Grid>
         <PopSignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></PopSignUp>
         <PopSignIn show={this.state.isOpenSignIn} onClose={this.toggleLogin}></PopSignIn>
-      </Grid>
-      <div>
+        <div>
         <div className="category">
         <Category/>
         </div>
@@ -61,6 +60,8 @@ class App extends Component {
         </div>
         <Footer/>
         </div>
+      </Grid>
+      
     );
 
   }

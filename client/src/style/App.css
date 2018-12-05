@@ -138,7 +138,7 @@ i {
 /**/
 .video-container {
   position: absolute;
-  margin-top: 100px;
+  margin-top: 80px;
   padding: 0;
   width: 100%;
   height: 60%; 
@@ -444,6 +444,7 @@ div.footer1:hover {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
 
 .category {
   margin-top: 750px;
