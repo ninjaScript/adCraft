@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.6.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-mysql-session": "^2.0.1",

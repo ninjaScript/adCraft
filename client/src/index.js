@@ -7,7 +7,7 @@ import PopSignIn from './PopSignIn.js';
 import UserDashboard from './UserDashboard.jsx';
 import * as serviceWorker from './serviceWorker';
 import { Router, Route, browserHistory } from 'react-router';
-
+import Search from './components/SearchFilter.jsx'
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +27,7 @@ class Home extends React.Component {
 }
 
 
-ReactDOM.render(<Home />, document.getElementById('root'));
+ReactDOM.render(<Search />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
