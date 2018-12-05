@@ -91,10 +91,14 @@ app.post('/sign-in', function (req, res) {
           // select user info from database and pass it to res
           db.selectUserInfo(result[0].id, result[0].id_roles, function (err, result){
             console.log("success",result);
-            res.send({
-              status: 200,
-              success: "login_success",
-              data:result[0]
+            const user_id = result[0].id_account;
+            // use login to make the session to user
+            req.login(user_id, function(err){
+              res.send({
+                status: 200,
+                success: "login_success",
+                data:result[0]
+              });
             });
           })
          
@@ -119,11 +123,46 @@ app.get('/logout', function(req, res){
   // console.log(req.isAuthenticated);
   req.logOut();
   // send response to client to redirect to main page
-  res.res.send({
+  res.send({
     status: 404,
     success: "redirectTologin"
   });
+});
+
+// get request to latest-items 
+app.get('/latest-items',function(req, res) {
+  db.selectLatestItems(req.body, function (err, result) {
+    if (err) {
+      console.log("ERROR", err)
+    } else {
+      res.send({
+        status: 200,
+        success: "get top ten items successfuly",
+        data:result
+      });
+    }
+  });
+});
+
+// get request to retrive all the advertiser
+app.get('/advertisers', function(req, res){
+  db.selectAdvertisers (function(err, results){
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(results);
+    }
+  })
 })
+
+app.post('/search', authenticationMiddleware() ,function(req, res){
+   console.log(req.body);
+   res.send({
+    status: 200,
+    success: "success"
+  });
+});
+
 // store  data to session here we pass user_id
 passport.serializeUser(function(user_id, done) {
   done(null, user_id);
@@ -139,7 +178,7 @@ function authenticationMiddleware () {
 		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
 	    if (req.isAuthenticated()) return next();
-	    res.res.send({
+	    res.send({
         status: 404,
         success: "redirectTologin"
       });

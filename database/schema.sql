@@ -50,10 +50,7 @@ CREATE TABLE `advertiser` (
   PRIMARY KEY (`id`)
 );
 
--- ---
 -- Table 'categories'
--- 
--- ---
 
 DROP TABLE IF EXISTS `categories`;
 		
