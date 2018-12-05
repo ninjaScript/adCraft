@@ -1,26 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import AdvertiserStore from './advertiser_store.jsx';
+import AdvertiserStore from './AdvertiserStore.jsx';
 
-const style = theme => ({
+const style ={
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: '70%',
     height: '100%',
   },
-});
+};
 
 export default class AdvertiserGridList extends React.Component {
   constructor(props) {
@@ -32,13 +24,16 @@ export default class AdvertiserGridList extends React.Component {
     return (
       < div style = {style.root} >
         <GridList cols={3}  style={style.gridList}>
+          { this.props.data.map((advertiesr) =>
+            <AdvertiserStore key ={advertiesr} data ={advertiesr}/>
+          )}
+          {/* <AdvertiserStore/>
           <AdvertiserStore/>
           <AdvertiserStore/>
           <AdvertiserStore/>
           <AdvertiserStore/>
           <AdvertiserStore/>
-          <AdvertiserStore/>
-          <AdvertiserStore/>
+          <AdvertiserStore/> */}
         </GridList>
       </div >
     )

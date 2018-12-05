@@ -8,9 +8,14 @@ export default class DaHeader extends React.Component {
     this.state = {
     };
   }
-
+  
+  logout(){
+    this.props.logout();
+    console.log("you are logout now")
+  }
+  
   render() {
-   
+    const username = this.props.user.firstName + " " + this.props.user.lastName;
     return (
       <div style={{ flexGrow: "1" }}>
         <AppBar position="static" style={{ "background": "#006789" }}>
@@ -19,8 +24,8 @@ export default class DaHeader extends React.Component {
               <MenuIcon />
             </IconButton> */}
             <Typography variant="headline" color="inherit" style={{ flexGrow: "1" ,  marginLeft: "90px"}} >adCraft</Typography>
-            <Typography variant="subtitle1" color="inherit">Mohammad Rawashdah</Typography>
-            <Button color="inherit"> Logout</Button>
+            <Typography variant="subtitle1" color="inherit">{username}</Typography>
+            <Button color="inherit" onClick = {this.logout.bind(this)}> Logout</Button>
           </Toolbar>
         </AppBar>
       </div>

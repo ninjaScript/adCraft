@@ -180,8 +180,9 @@ const selectUserInfo = function (id, rolesId, callback) {
 
 // This function to get the latest 10 items from the items table.
 const selectLatestItems = function (user, callback) {
-  var sqlTopTenItems = `SELECT advertiser.firstName, advertiser.lastName, items.name, items.price, items.imgUrl, items.descr, items.createdAt FROM items
-                          INNER JOIN advertiser_Items ON id_items = items.id
+  var sqlTopTenItems = `SELECT advertiser.firstName, advertiser.lastName, items.name, items.price, items.imgUrl, items.descr,
+                         items.createdAt FROM items
+                         INNER JOIN advertiser_Items ON id_items = items.id
                           INNER JOIN advertiser ON advertiser.id = id_advertiser
                         ORDER BY items.id DESC LIMIT 10`;
   connection.query(sqlTopTenItems, function (err, result) {
@@ -193,14 +194,28 @@ const selectLatestItems = function (user, callback) {
   });
 }
 
+// function to select all the advertiser
+const selectAdvertisers= function(callback){
+  let sql = `select advertiser.*, categories.name  from advertiser 
+            inner join categories on advertiser.id_categories = categories.id `;
+  connection.query(sql, function (err, results){
+    if(err){
+      console.log('Error during select data from advertisers\n', err);
+      callback(err, null);
+    } else {
+      callback (null, results);
+    }
+  })
+}
+
 module.exports.selectAll = selectAll;
 module.exports.insertAccount = insertAccount;
 module.exports.formatDate = formatDate;
 module.exports.isAccountExist = isAccountExist;
-
 module.exports.selectUserInfo = selectUserInfo;
 module.exports.insertIntoCat = insertIntoCat;
 module.exports.insertIntoItems = insertIntoItems;
 module.exports.addRoles = addRoles;
 module.exports.advertiser_Items = advertiser_Items;
 module.exports.selectLatestItems = selectLatestItems;
+module.exports.selectAdvertisers = selectAdvertisers;
