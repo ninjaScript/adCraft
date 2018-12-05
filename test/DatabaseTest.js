@@ -5,16 +5,16 @@ var expect = require('chai').expect;
 var should = require('chai').should();
 
 var advertiser ={
-	firstName: "MOhammad",
-	lastName: "hasan",
+	firstName: "Mohannad",
+	lastName: "bahaa",
 	gender: "male",
 	email: "qusay@example.com",
 	imageUrl: "https://i.imgur.com/EDge1nS.jpg",
-	numFeedback: 12,
-	rateAvg: 6,
+	numFeedback: 80,
+	rateAvg: 5,
 	location: "amman",
 	id_account: 2,
-	id_categories: 1,
+	id_categories: 5,
 	id_roles: 2,
 	phoneNumber: "0796305984",
 	password: "helloworld",
@@ -52,10 +52,6 @@ var categories = {
 	imgUrl: "https://i.imgur.com/oE2cxsA.jpg",
 	createdAt: db.formatDate()
 }
-
-
-
-
 
 var user = {
 
@@ -102,7 +98,6 @@ describe('Database ', function () {
 	});
 
 
-
 	it('should insert accountUser and user to db', function (done) {
 
 		db.insertAccount(user, function (err, result) {
@@ -115,7 +110,6 @@ describe('Database ', function () {
 		})
 	});
 
-
 	it('should insert categories to db', function (done) {
 		db.insertIntoCat(categories, function (err, result) {
 			if (err) {
@@ -126,10 +120,6 @@ describe('Database ', function () {
 			}
 		})
 	});
-
-
-
-
 
 	it('should insert accountAdv and user to db', function (done) {
 
@@ -150,12 +140,10 @@ describe('Database ', function () {
 				throw err
 			} else {
 				expect(result).to.be.not.null;
-				done()
+				done();
 			}
 		})
 	});
-
-
 
 
 	it('should select items from tables', function (done) {

@@ -5,9 +5,9 @@ import PopSignIn from './PopSignIn.js';
 import Header from './components/Header.jsx';
 import Video from './components/Video.jsx';
 import { Grid } from '@material-ui/core';
-import Category from './Category.js';
-import ItemList from './itemList.js';
-import Footer from "./Footer.js";
+import Category from './components/Category.js';
+import ItemList from './components/itemList.js';
+import Footer from "./components/Footer.js";
 //App component for Rendering Usage User experience
 class App extends Component {
   constructor(props) {
@@ -48,20 +48,18 @@ class App extends Component {
         </Grid>
         <PopSignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></PopSignUp>
         <PopSignIn show={this.state.isOpenSignIn} onClose={this.toggleLogin}></PopSignIn>
-        <div>
-        <div className="category">
-        <Category/>
-        </div>
-        <div className="border">
+        <Grid className="category">
+          <Category />
+        </Grid>
+        <Grid className="border">
           <h3>ADCRAFT'S LATEST PRODUCTS</h3>
-        </div>
-        <div>
-        <ItemList/>
-        </div>
-        <Footer/>
-        </div>
+        </Grid>
+        <Grid>
+          <ItemList />
+        </Grid>
+        <Footer />
       </Grid>
-      
+
     );
 
   }
