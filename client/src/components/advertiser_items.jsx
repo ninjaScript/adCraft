@@ -12,19 +12,23 @@ import Typography from '@material-ui/core/Typography';
 const style = {
   card: {
     maxWidth: 300,
+    margin: 10,
     },
   media: {
     height: 140,
   },
-  follower: {
-    marginLeft: 10,
+  Delet: {
+    color: "white",
+    backgroundColor:"#cc0000",
   },
   button: {
-    marginLeft: 100,
+    marginLeft: 80,
+    color: "white",
+    backgroundColor: "#006789",
   },
 };
 
-export default class AdvertiserStore extends React.Component {
+export default class AdvertiserItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -36,27 +40,30 @@ export default class AdvertiserStore extends React.Component {
       <Card style={style.card}>
         <CardActionArea>
           <CardMedia style={style.media}
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXGTHOjkFSw-cjPYwlXvyAwpVJFO0RPc_fxFDVPKsQxicPzKDrA"
+            image="https://cdn-image.foodandwine.com/sites/default/files/1509031600/arugua-and-squash-salad-XL-RECIPE1217.jpg"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" color="primary">
-              Mohammed Rawashdeh
+            <Typography gutterBottom variant="h4" component="h2" style={{"color": "#006789"}}>
+              Salad
             </Typography>
-            <Typography component="p">
-              I make food at home, I can make all kinde of food and sweets.
-              We are able to make large amount of food, for partys, wedding, and birthday's.
+            <Typography componen="p">
+              This dish is very delicious, you should try it.
+            </Typography>
+            <Typography componen="p">
+             The price is: 10JD .
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Typography style={style.follower} size="small" color="black">
-            Followers               
-          </Typography>
-          <Button style={style.button} size="small" color="primary">
-            Follow +
+          <Button size="small" style={style.Delet}>
+            Delet Item
+          </Button>
+          <Button size="small" style={style.button}>
+            Edite Item
           </Button>
         </CardActions>
       </Card>
     );
   }
 }
+// style={{"backgroundColor":"#008ae6"}}
