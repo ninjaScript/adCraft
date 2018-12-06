@@ -1,9 +1,6 @@
 /*importing font styles and css components are isential part of we design fonts.googleapis are very good source of any type of designs*/
 @import url('https://fonts.googleapis.com/css?family=Varela Round:300,400,700');
-@font-face {
-  font-family: projectFont;
-  src: url(./SmoothieShoppe.ttf);
-}
+
 
 
 /*initial View Styling*/
