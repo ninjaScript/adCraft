@@ -84,8 +84,10 @@ export default class SignUp extends React.Component {
         success: (res) => {
           if(res.success !== 'userExist') {
             browserHistory.push({
-            pathname: "/user-dashboard/" + '5'+ "",
-            state: { user: res.data }
+
+              pathname: "/user-dashboard/" + res.data.id+ "",
+              state: { user: res.data }
+
             });
           } else {
             alert("This user is exist");

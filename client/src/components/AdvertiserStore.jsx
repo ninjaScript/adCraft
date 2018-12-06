@@ -36,7 +36,7 @@ export default class AdvertiserStore extends React.Component {
       <Card style={style.card}>
         <CardActionArea>
           <CardMedia style={style.media}
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXGTHOjkFSw-cjPYwlXvyAwpVJFO0RPc_fxFDVPKsQxicPzKDrA"
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXGTHOjkFSw-cjPYwlXvyAwpVJFO0RPc_fxFDVPKsQxicPzKDrA"
           />
           <CardContent>
             <Typography gutterBottom variant="h6" color="primary">
