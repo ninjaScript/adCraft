@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Button from '@material-ui/core/Button';
-import AdvertiserItems from './advertiser_items.jsx';
+
+import AdvertiserItems from './AdvertiserItems.jsx';
 
 const style = {
   root: {
@@ -14,6 +11,7 @@ const style = {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
+    marginLeft: 25
   },
   gridList: {
     width: '70%',
@@ -29,9 +27,11 @@ export default class AdvertiserItemsGrid extends React.Component {
 
   render() {
     return (
-      < div style = {style.root} >
+      <div style = {style.root} >
         <GridList cols={3}  style={style.gridList}>
-          <AdvertiserItems/>
+          <AdvertiserItems 
+            userID = {this.props.userID}
+          />
           <AdvertiserItems/>
           <AdvertiserItems/>
           <AdvertiserItems/>

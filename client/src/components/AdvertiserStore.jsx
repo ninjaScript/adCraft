@@ -29,12 +29,16 @@ export default class AdvertiserStore extends React.Component {
     super(props);
     this.state = {};
   }
-
+  visitProfile () {
+    this.props.visitProfile(this.props.data)
+  }
   render() {
 
     return (
       <Card style={style.card}>
-        <CardActionArea>
+        <CardActionArea
+          onClick = {this.visitProfile.bind(this)}
+        >
           <CardMedia style={style.media}
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXGTHOjkFSw-cjPYwlXvyAwpVJFO0RPc_fxFDVPKsQxicPzKDrA"
           />
