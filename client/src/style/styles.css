@@ -1,4 +1,13 @@
 /*stylel to Sign in and Sign Up  */
+
+.imgTxt {
+  margin-top: 40px;
+}
+
+.imgBtn {
+  color: blue;
+}
+
 .container {
 
   display: flex;
