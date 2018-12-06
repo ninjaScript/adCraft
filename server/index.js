@@ -6,12 +6,15 @@ const session = require('express-session');
 const passport = require('passport');
 var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
+const multer = require("multer");
 
 const app = express();
 app.use(express.static(__dirname + '/../client/build'));
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 // configration MySqlStore to save the sessions;
 var options = {
@@ -62,7 +65,8 @@ app.post('/sign-up', function (req, res) {
             req.login(user_id, function(err){
               res.send({
                 status: 200,
-                success: user
+                success: user,
+                data: user
               });
             });
            
@@ -162,6 +166,73 @@ app.post('/search', authenticationMiddleware() ,function(req, res){
     success: "success"
   });
 });
+
+
+//////////////
+const storage = multer.diskStorage({
+   destination: function(req, file, cb){
+    cb(null, '../public/uploads')
+   },
+   filename: function(req, file, cb){
+      cb(null,"IMAGE-" + Date.now() + file.originalname);
+   }
+});
+
+
+const upload = multer({
+   storage: storage,
+   limits:{fileSize: 1000000},
+}).single('myImage')
+
+
+app.post('/', (req, res) => {
+  if (!req.file) {
+    console.log("No file received");
+  } else {
+    console.log('file received');
+    
+  }
+});
+
+// const upload = multer({
+//    storage: storage,
+//    limits:{fileSize: 1000000},
+// }).single("myImage");
+
+
+
+
+
+// app.post('/',(req, res) => {
+//   upload(req, res,(err) => {
+//     if (err) {
+//       console.log(err)
+//       //error occurred when uploading.
+//     }
+//     console.log(req.file)
+//     res.send("qusaylol")
+//     // Everything went fine.
+//   })
+// })
+
+
+
+// app.post("/upload",function(){
+//    upload(req, res, (err) => {
+//       console.log("Request ---", req.body);
+//       console.log("Request file ---", req.file);
+      
+//       //Here you get file.
+//       /*Now do where ever you want to do*/
+//       if(!err)
+//          return res.send(200).end();
+//    })
+// });
+
+///////////////
+
+
+
 
 // store  data to session here we pass user_id
 passport.serializeUser(function(user_id, done) {

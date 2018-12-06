@@ -14,8 +14,12 @@ import {
   Typography
 } from "@material-ui/core";
 import PNG from '../style/signup.png';
+import DropDown from './DropDownMenu.jsx'
+import ImgComp from './ImgComp.jsx'
 
-export default class SignUp extends React.Component {
+
+
+export default class SignUpAdv extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,19 +28,25 @@ export default class SignUp extends React.Component {
       phoneNumber: "",
       password: "",
       gender: "male",
+      open: false,
+      location: "",
+      img: null,
+      category: "",
       errorPhone: "",
       errorPassword: "",
       validation: false,
       isSignUp:false
     };
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
+
+
   // this function to deal eith the textField and get the data
   handleChange(e) {
     e.preventDefault();
     let target = e.target;
     this.setState({ [target.name]: target.value });
     console.log(this.state[target.name]);
-
     // validation to  phone number
     if (this.state.phoneNumber.length < 9) {
       this.setState({
@@ -63,6 +73,14 @@ export default class SignUp extends React.Component {
     }
   }
 
+
+
+
+
+
+
+
+
   // handle when click to send info to server
   handleOnClick(e) {
     e.preventDefault();
@@ -79,12 +97,15 @@ export default class SignUp extends React.Component {
           phoneNumber: this.state.phoneNumber,
           password: this.state.password,
           gender: this.state.gender,
-          id_roles: 1
+          img: this.state.img,
+          location: this.state.location,
+          category: this.state.category,
+          id_roles: 2
         }),
         success: (res) => {
           if(res.success !== 'userExist') {
             browserHistory.push({
-            pathname: "/user-dashboard/" + '5'+ "",
+            pathname: "/user-dashboard/7Adv",
             state: { user: res.data }
             });
           } else {
@@ -97,15 +118,21 @@ export default class SignUp extends React.Component {
       }); 
     }
   }
+
+  //helping ImgComp
+  getImg(Img) {
+    this.setState({img: Img})
+    console.log(this.state.Img)
+  }
+  // help DropDownMenu
+  getCategory(term) {
+    this.setState({category: term})
+    console.log(this.state.category)
+   }
+
   render() {
-    // const style = {
-    //   padding: "15px",
-    //   margin: "40px",
-    //   maxWidth: "500px",
-    //   display: "inline - block"
-    // };
-    // const btnStyle = { padding: "10px", marginTop: "10px", fontSize: "18px" };
-    // const container = { display: "flex", justifyContent: "center" };
+
+
     return (
       <div className="container">
         <Paper className="style">
@@ -113,11 +140,15 @@ export default class SignUp extends React.Component {
             <Typography variant="display2" align="center" color="primary" >
               <img src={PNG} width="100" height="100" alt="" />
               <Typography className="_Signup" variant="display2" align="center" style={{ "color": "#006789" }}>
-                Sign Up
+                Sign Up As An Advertiser
               </Typography>
             </Typography>
           </div>
-          <form >
+          <form>
+            <ImgComp getImg={this.getImg.bind(this)}/>
+            <div>
+            <DropDown getCategory={this.getCategory.bind(this)}/>               
+            </div>
             <TextField
               label="First Name"
               required={true}
@@ -222,4 +253,8 @@ export default class SignUp extends React.Component {
       </div>
     );
   }
+
 }
+
+
+
