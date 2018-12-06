@@ -23,7 +23,6 @@ const formatDate = () => {
   return dformat;
 }
 
-
 // function to add roles to database (user and advertiser)
 const addRoles = function (role, callback) {
   var sqlInsIntoRolesTable = `INSERT INTO roles (role) VALUES("${role.role}");`;
@@ -179,6 +178,7 @@ const selectUserInfo = function (id, rolesId, callback) {
 }
 
 // This function to get the latest 10 items from the items table.
+
 const selectLatestItems = function (user, callback) {
   var sqlTopTenItems = `SELECT advertiser.firstName, advertiser.lastName, items.name, items.price, items.imgUrl, items.descr,
                          items.createdAt FROM items

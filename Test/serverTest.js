@@ -49,3 +49,16 @@ describe('/POST SingUp', () => {
     });
   });
 });
+
+// Test to check GET top ten items request.
+describe('GET LatestItems', () => {
+  it('it should GET latest ten items', (done) => {
+    chai.request(server)
+    .get('/latest-items')
+    .end((err,res) => {
+      res.body.should.have.status(200);
+      res.body.should.be.a('object');
+      done();
+    });
+  });
+});
