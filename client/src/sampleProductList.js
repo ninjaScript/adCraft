@@ -17,79 +17,92 @@ const sampleProductList = [
     img: food1,
     title: 'Baked Products',
     Advertiser: 'Michael Jordan',
-    desc: "Grab our fresh Baked Goods and you can experience the luxury of the tenderness of perfection",
+    desc: "Grab our fresh Baked Goods and \
+     you can experience the luxury of the tenderness of perfection",
     cols: 2,
     featured: true,
+    price: "10.00 JD"
   },
   {
     img: food2,
     title: 'Home Made Package',
     Advertiser: 'Lebron James',
+    price: "20.25 JD",
     desc: "A taste where you can remember home! try our new and delicious treat for you"
   },
   {
     img: food3,
     title: 'Asian Noddles',
     Advertiser: 'Jhon Smith',
-    desc: "Home of the Satisfying Noddles! You will experience lovely fragrance of any spices in Asia"
+    price: "15.45 JD",
+    desc: "Home of the Satisfying Noddles!"
   },
   {
     img: cloth1,
     title: 'Women Attire',
     Advertiser: 'Esraa Zaitoun',
-    desc: "Fashion is part of the daily air and it changes all the time with all the events You can even see the approaching of a revolution in clothes You can see and feel everything in clothes.",
+    price: "31.99 JD",
+    desc: "Fashion is part of the daily air and it changes all the time",
     featured: true,
   },
   {
     img: cloth2,
     title: 'Male Attire',
     Advertiser: 'Qusay',
-    desc: "Don't be into trends. Don't make fashion own you, but you decide what you are, what you want to express by the way you dress and the way to live."
+    price: "102.45 JD",
+    desc: "Don't be into trends. Don't make fashion own you."
   },
   {
     img: cloth3,
     title: 'Mothers Attire',
     Advertiser: 'Batool',
-    desc: "What you wear is how you present yourself to the world, especially today, when human contacts are so quick. Fashion is instant language." 
+    price: "102.56 JD",
+    desc: "What you wear is how you present yourself to the world." 
   },
   {
     img: weave1,
     title: 'Crafty for You',
     Advertiser: 'Dana and Co.',
-    desc: "Sometimes our product is all we need to rouse our holiday spirits. Available in an array of festive, our naturally weaved will leave your life artistic",
+    price: "25.65 JD",
+    desc: "Sometimes our product is all you need in our holiday spirits.",
     cols: 2,
   },
   {
     img: weave2,
     title: 'Bag',
     Advertiser: 'Yahyeh',
-    desc: "With its sugar sweet colours and sophisticated signature patterning, Yahey's leather tote in pop pink, mauve pink, and white is as iconic as it is easy-to-pair. Carry with sharply tailored separates for a timeless-elegant finish."
+    price: "105.28 JD",
+    desc: "With its sugar sweet colours and sophisticated signature pattern."
   },
   {
     img: weave3,
     title: 'Weaved Basket',
     Advertiser: 'Mustaf',
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    price: "100.99 JD",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing"
   },
   {
     img: weave4,
     title: 'Accessories',
     Advertiser: 'Firas',
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    price: "150.00 JD",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     img: weave5,
     title: 'Jewels',
     cols: 2,
     Advertiser: 'Walid',
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    price: "1005.45 JD",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     img: weave6,
     title: 'Weaved Hat',
     Advertiser: 'Omar',
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
+    price: "50.00 JD",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
 ];
 
 export default sampleProductList;

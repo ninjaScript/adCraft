@@ -200,7 +200,7 @@ const selectLatestItems = function (user, callback) {
 // function to select all the advertiser
 const selectAdvertisers= function(callback){
   let sql = `select advertiser.*, categories.name  from advertiser 
-            inner join categories on advertiser.id_categories = categories.id `;
+            inner join categories on advertiser.id_categories = categories.id where `;
   connection.query(sql, function (err, results){
     if(err){
       console.log('Error during select data from advertisers\n', err);
@@ -217,11 +217,10 @@ const selectAdvertisers= function(callback){
 
 
 
-const selectAdvertiserInfowithItems = function (id, callback) {
-	let sqlAdvertiser = `select account.phoneNumber, account.id_roles, users.* from account 
-	inner join users 
-	on account.id = users.id_account
-    where account.id = '${id}' and account.id_roles='${rolesId}'`;
+const selectAdvertiserforCategory= function (id, callback) {
+	let sqlAdvertiser = `select advertiser.*, categories.name from advertiser 
+	inner join categories on advertiser.id_categories = categories.id
+    where categories.id = '${id}'`;
 	connection.query(sqlAdvertiser, function (err, result) {
 		if (err) {
 			throw err	
