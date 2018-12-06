@@ -133,8 +133,9 @@ app.get('/logout', function (req, res) {
 });
 
 // get request to latest-items 
-app.get('/latest-items', function (req, res) {
-  db.selectLatestItems(req.body, function (err, result) {
+
+app.get('/latest-items',function(req, res) {
+  db.selectLatestItems(function (err, result) {
     if (err) {
       console.log("ERROR", err)
     } else {
