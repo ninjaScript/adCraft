@@ -22,7 +22,7 @@ class Home extends React.Component {
             <Route path="/sign-in" exact component={PopSignIn} />
             <Route path="/sign-up" exact component={PopSignUp} />
           </Route>
-          <Route path="/user-dashboard/:id" exact component={UserDashboard} />
+          <Route path="/c/:id" exact component={UserDashboard} />
           <Route path="/adv-profile/:id" exact component={Advertiser} />
       </Router>
     );

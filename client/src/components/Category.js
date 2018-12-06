@@ -12,7 +12,7 @@ class Category extends Component {
     return (
       <Grid className="adCategory" container spacing={24}>
         <Grid className="category1" item xs>
-          <img src={food} height="300" width="500" alt="" />
+          <img src={food} height="300" width="400" alt="" />
           <Grid className="contento">
             <Paper action="any" class="flex-item1">
               <button id="myBtn1">FOOD</button>
@@ -20,7 +20,7 @@ class Category extends Component {
           </Grid>
         </Grid>
         <Grid className="category2" item xs>
-          <img src={cloth} height="300" width="500" alt="" />
+          <img src={cloth} height="300" width="400" alt="" />
           <Grid className="contento">
             <Paper action="any" class="flex-item1">
               <button id="myBtn1">FASHION</button>
@@ -28,7 +28,7 @@ class Category extends Component {
           </Grid>
         </Grid>
         <Grid className="category3" item xs>
-          <img src={craft} height="300" width="500" alt="" />
+          <img src={craft} height="300" width="400" alt="" />
           <Grid className="contento">
             <Paper action="any" class="flex-item1">
               <button id="myBtn1">CRAFT</button>
