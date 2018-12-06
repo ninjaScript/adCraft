@@ -81,9 +81,12 @@ export default class SignUp extends React.Component {
           gender: this.state.gender,
           id_roles: 1
         }),
-        success: (data) => {
-          if(data.success !== 'userExist') {
-            browserHistory.push('/user-dashboard/5');
+        success: (res) => {
+          if(res.success !== 'userExist') {
+            browserHistory.push({
+              pathname: "/user-dashboard/" + res.data.id+ "",
+              state: { user: res.data }
+            });
           } else {
             alert("This user is exist");
           }
