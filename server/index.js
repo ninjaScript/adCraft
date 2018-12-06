@@ -26,10 +26,10 @@ var sessionStore = new MySQLStore(options)
 
 // configration session
 app.use(session({
-  secret:'ahhsjdhakasfhbasjkfhsakfsahf',
+  secret: 'ahhsjdhakasfhbasjkfhsakfsahf',
   store: sessionStore,
   resave: false,
-  saveUninitialized : false
+  saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -58,14 +58,17 @@ app.post('/sign-up', function (req, res) {
             console.log("there is error during insert into account ")
           } else {
             const user_id = result.insertId;
+            console.log(user_id)
             // use login to make the session to user
-            req.login(user_id, function(err){
+            req.login(user_id, function (err) {
+              user.id = user_id;
               res.send({
                 status: 200,
-                success: user
+                success: user,
+                data: user
               });
             });
-           
+
           }
         });
       } else {
@@ -89,19 +92,19 @@ app.post('/sign-in', function (req, res) {
       if (result.length > 0) {
         if (result[0].password === password) {
           // select user info from database and pass it to res
-          db.selectUserInfo(result[0].id, result[0].id_roles, function (err, result){
-            console.log("success",result);
-            const user_id = result[0].id_account;
+          db.selectUserInfo(result[0].id, result[0].id_roles, function (err, result) {
+            console.log("success", result);
+            const user_id = result[0].id;
             // use login to make the session to user
-            req.login(user_id, function(err){
+            req.login(user_id, function (err) {
               res.send({
                 status: 200,
                 success: "login_success",
-                data:result[0]
+                data: result[0]
               });
             });
           })
-         
+
         } else {
           res.send({
             status: 401,
@@ -118,7 +121,7 @@ app.post('/sign-in', function (req, res) {
   })
 });
 
-app.get('/logout', function(req, res){
+app.get('/logout', function (req, res) {
   // console.log(req.user);
   // console.log(req.isAuthenticated);
   req.logOut();
@@ -130,7 +133,7 @@ app.get('/logout', function(req, res){
 });
 
 // get request to latest-items 
-app.get('/latest-items',function(req, res) {
+app.get('/latest-items', function (req, res) {
   db.selectLatestItems(req.body, function (err, result) {
     if (err) {
       console.log("ERROR", err)
@@ -138,16 +141,16 @@ app.get('/latest-items',function(req, res) {
       res.send({
         status: 200,
         success: "get top ten items successfuly",
-        data:result
+        data: result
       });
     }
   });
 });
 
 // get request to retrive all the advertiser
-app.get('/advertisers', function(req, res){
-  db.selectAdvertisers (function(err, results){
-    if(err) {
+app.get('/advertisers', function (req, res) {
+  db.selectAdvertisers(function (err, results) {
+    if (err) {
       console.log(err);
     } else {
       res.send(results);
@@ -155,34 +158,70 @@ app.get('/advertisers', function(req, res){
   })
 })
 
-app.post('/search', authenticationMiddleware() ,function(req, res){
-   console.log(req.body);
-   res.send({
-    status: 200,
-    success: "success"
-  });
+// post request to search
+app.post('/search', authenticationMiddleware(), function (req, res) {
+  console.log(req.body);
+  const term = req.body.target;
+  db.search(term, function (err, results) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({
+        status: 200,
+        success: "successed!",
+        data: results
+      });
+    }
+  })
+
 });
 
+// get request to retrive categories from database
+app.get('/categories', function (req, res) {
+  db.selectAllCategories(function (err, results) {
+    if (err) throw err;
+    res.send({
+      status: 200,
+      success: "successed!",
+      data: results
+    });
+  })
+})
+
+// post request to retrive adfertisers for specific categories from database
+app.post('/adv-category', function (req, res) {
+
+  db.selectAdvertisers(function (err, results) {
+    if (err) throw err;
+    res.send({
+      status: 200,
+      success: "successed!",
+      data: results
+    });
+  }, req.body.id_cat);
+});
+
+
 // store  data to session here we pass user_id
-passport.serializeUser(function(user_id, done) {
+passport.serializeUser(function (user_id, done) {
   done(null, user_id);
 });
 // read from the session
-passport.deserializeUser(function(user_id, done) {
-    done(null, user_id);
+passport.deserializeUser(function (user_id, done) {
+  done(null, user_id);
 });
 
 //Used to restrict access to particular pages in combination with Passport.js
-function authenticationMiddleware () {  
-	return (req, res, next) => {
-		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+function authenticationMiddleware() {
+  return (req, res, next) => {
+    console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
-	    if (req.isAuthenticated()) return next();
-	    res.send({
-        status: 404,
-        success: "redirectTologin"
-      });
-	}
+    if (req.isAuthenticated()) return next();
+    res.send({
+      status: 404,
+      success: "redirectTologin"
+    });
+  }
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

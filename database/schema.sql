@@ -9,8 +9,7 @@ USE adCraft;
 DROP TABLE IF EXISTS `users`;
 		
 CREATE TABLE `users` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT ,
-  `id_account` INTEGER ,
+  `id` INTEGER NOT NULL  ,
   `firstName` VARCHAR(25) NOT NULL,
   `lastName` VARCHAR(25) NOT NULL,
   `gender` VARCHAR(10) NOT NULL,
@@ -36,7 +35,7 @@ CREATE TABLE `reports` (
 DROP TABLE IF EXISTS `advertiser`;
 		
 CREATE TABLE `advertiser` (
-  `id` INTEGER  NOT NULL AUTO_INCREMENT,
+  `id` INTEGER  NOT NULL ,
   `firstName` VARCHAR(25) NOT NULL,
   `lastName` VARCHAR(25) NOT NULL,
   `gender` VARCHAR(10) NOT NULL,
@@ -45,7 +44,6 @@ CREATE TABLE `advertiser` (
   `numFeedback` INTEGER  NOT NULL,
   `rateAvg` DOUBLE  NOT NULL,
   `location` VARCHAR(100)  NOT NULL,
-  `id_account` INTEGER NOT NULL,
   `id_categories` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
@@ -123,10 +121,10 @@ CREATE TABLE `roles` (
 -- Foreign Keys 
 
 
-ALTER TABLE `users` ADD FOREIGN KEY (id_account) REFERENCES `account` (`id`);
+ALTER TABLE `users` ADD FOREIGN KEY (id) REFERENCES `account` (`id`);
 ALTER TABLE `reports` ADD FOREIGN KEY (id_advertiser) REFERENCES `advertiser` (`id`);
 ALTER TABLE `reports` ADD FOREIGN KEY (id_users) REFERENCES `users` (`id`);
-ALTER TABLE `advertiser` ADD FOREIGN KEY (id_account) REFERENCES `account` (`id`);
+ALTER TABLE `advertiser` ADD FOREIGN KEY (id) REFERENCES `account` (`id`);
 ALTER TABLE `advertiser` ADD FOREIGN KEY (id_categories) REFERENCES `categories` (`id`);
 ALTER TABLE `advertiser_Items` ADD FOREIGN KEY (id_advertiser) REFERENCES `advertiser` (`id`);
 ALTER TABLE `advertiser_Items` ADD FOREIGN KEY (id_items) REFERENCES `items` (`id`);
