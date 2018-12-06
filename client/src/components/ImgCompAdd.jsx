@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/styles.css";
-const axios = require("axios");
+// const axios = require("axios");
 
 export default class ImgCompAdd extends React.Component {
  constructor(props) {
@@ -30,12 +30,12 @@ export default class ImgCompAdd extends React.Component {
             'content-type': 'multipart/form-data'
         }
     };
-    //!!!
-    axios.post("/",formData,config)
-        .then((response) => {
-            alert("The file is successfully uploaded");
-        }).catch((error) => {
-    });
+    //!!! TODO
+    // axios.post("/",formData,config)
+    //     .then((response) => {
+    //         alert("The file is successfully uploaded");
+    //     }).catch((error) => {
+    // });
   }
 
   onChange(e) {

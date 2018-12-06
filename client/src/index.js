@@ -7,8 +7,6 @@ import PopSignIn from './PopSignIn.js';
 import UserDashboard from './UserDashboard.jsx';
 import * as serviceWorker from './serviceWorker';
 import Advertiser from './components/Advertiser.jsx';
-import AdvertiserItems from './components/advertiser_items.jsx';
-import AdvertiserItemsGrid from './components/advertiser_items_grid.jsx';
 
 import { Router, Route, browserHistory } from 'react-router';
 import AddItem from './components/AddItemComp.jsx';
@@ -25,6 +23,7 @@ class Home extends React.Component {
             <Route path="/sign-up" exact component={PopSignUp} />
           </Route>
           <Route path="/user-dashboard/:id" exact component={UserDashboard} />
+          <Route path="/adv-profile/:id" exact component={Advertiser} />
       </Router>
     );
   }
