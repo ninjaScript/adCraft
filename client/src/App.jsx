@@ -8,6 +8,8 @@ import { Grid } from '@material-ui/core';
 import Category from './components/Category.js';
 import ItemList from './components/itemList.js';
 import Footer from "./components/Footer.js";
+
+
 //App component for Rendering Usage User experience
 class App extends Component {
   constructor(props) {
@@ -59,7 +61,6 @@ class App extends Component {
         </Grid>
         <Footer />
       </Grid>
-
     );
 
   }

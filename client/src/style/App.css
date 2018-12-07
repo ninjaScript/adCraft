@@ -1,11 +1,10 @@
 /*importing font styles and css components are isential part of we design fonts.googleapis are very good source of any type of designs*/
 @import url('https://fonts.googleapis.com/css?family=Varela Round:300,400,700');
-@font-face {
-  font-family: projectFont;
-  src: url(./SmoothieShoppe.ttf);
-}
+
+
 
 /*initial View Styling*/
+/***************************** 1st Page ************************************/
 * {
     box-sizing: border-box;
     font-family: 'Varela Round', sans-serif;
@@ -15,13 +14,10 @@
 body {
     margin: auto;
     padding: auto;
-}
-
-/*set to light color as themed in our website*/
-body {
     background-color: #e5e3dc;
 }
 
+/***************************** Header ************************************/
 /* initial container for header*/
 .container {
     width: 100%;
@@ -134,91 +130,50 @@ i {
     margin-left: -30px;
 }
 
-/**/
+/***************************** Video 1st Page ************************************/
+/*positioning Commercially made Video Add*/
 .video-container {
   position: absolute;
-  margin-top: 100px;
+  margin-top: 80px;
   padding: 0;
   width: 100%;
-  height: 60%; 
+  height: 65%; 
   overflow: hidden;   
 
 }
 
-/**/
+/*angle cut for our video presentation*/
 .video-container video {
-  position: relative;
   width: 100% !important; 
   height: auto !important; 
-  background: #006789;
-  opacity: 0.8;
 }
 
-/**/
+/* Description of our video add*/
 .content {
     position: absolute;
-   text-align: center;
+    display: flex;
+    justify-content: center;
     bottom: 200px;
     width: 100%;
     padding: 20px;
+    margin-bottom: -160px;
+    top: 50px;
+    color: #ffaa3b;
+    font-size: 60px; 
 }
 
-.flex-item + .flex-item {
-  margin-left: 10px;
-    bottom: 100px;
-    left: 300px;
-    right: 300px;
-    padding: 20px;
-    text-align: center;
-    bottom: 120px;
-    
-}
-
-.content p{
-  color: #e5e3dc;
-  font-size: 50px; 
-  text-align: center
-}
 
 .titleDesc {
-    border-radius: 20px; 
-    padding: 10px;
-    background:#006789 ;
-    color: #ffaa3b;
-}
-/**/
-.myBtn {
-    width: 200px;
-    font-size: 23px;
-    padding: 10px;
-    border-radius: 15px;
-    background: #006789;
-    color: #ffaa3b;
+    width: 400px;
+    height: 1500px;
+    margin-left:-1510px;
+    margin-top: -70px;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
 }
 
-/**/
-#myBtn {
-    position: sticky;
-    width: 200px;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 15px;
-    background: #fff;
-    color: #000;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: 15px;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-#myBtn:hover {
-  background: #343434;
-  border-color: white;
-  color: #fff;
-}
+/***************************** Sign Up Modal ************************************/
 
 /*Sign Up*/
 .backdrop {
@@ -299,6 +254,7 @@ div.footer:hover {
     text-align: center;
 }
 
+/***************************** LogIn 1st Page ************************************/
 /*Log In*/
 
 .backdrop1 {
@@ -380,6 +336,7 @@ div.footer1:hover {
     margin-left: 160px;
 }
 
+/***************************** SideBar Main Page ************************************/
 /*side bar CSS*/
 
 .bm-item {
@@ -400,16 +357,14 @@ div.footer1:hover {
   height: 30px;
   left: 36px;
   top: 36px;
-  color: #b8b7ad;
 }
 
 .bm-burger-bars {
-  background: #f3f6f7;
+  background: #006789;
   margin-top: -15px;
   position: fixed;
   margin-left: -20px;
   margin-right: 20px;
-  color: #b8b7ad;
 }
 
 .bm-cross-button {
@@ -417,7 +372,6 @@ div.footer1:hover {
   width: 24px;
   margin-right: 20px;
   margin-top: 5px;
-  color: #b8b7ad;
 }
 
 .bm-cross {
@@ -435,7 +389,7 @@ div.footer1:hover {
 }
 
 .bm-morph-shape {
-  fill: #fff;
+  fill: #373a47;
 }
 
 .bm-item-list {
@@ -446,41 +400,40 @@ div.footer1:hover {
   background: rgba(0, 0, 0, 0.3);
 }
 
+/***************************** Category 1st Page ************************************/
+
 .category {
-  margin-top: 750px;
-  
+  margin-top: 710px;
+  margin-left: 260px;
+  margin-bottom: 0px;
 }
 .category1 {
-  transition: all .2s ease-in-out; 
+  height: 100px;
+ 
 }
 
 .category1:hover {
-  transform: scale(1);
-  opacity: 0.7;
   cursor: pointer;
 }
 
 .category2 {
-  transition: all .2s ease-in-out; 
+  height: 100px;
 }
 
 .category2:hover {
-  transform: scale(1);
-  opacity: 0.7;
   cursor: pointer;
 }
 
 .category3 {
-  transition: all .2s ease-in-out; 
+  height: 100px;
 }
 
 .category3:hover {
-  transform: scale(1);
-  opacity: 0.7;
   cursor: pointer;
 }
 
 #myBtn1 {
+  outline: none;
   position: absolute;
   width: 200px;
   font-size: 18px;
@@ -488,19 +441,27 @@ div.footer1:hover {
   background: #fff;
   color: #000;
   cursor: pointer;
-  margin-left: 150px;
-  margin-top: -100px;
-  border: none;
+  margin-left: 50px;
+  margin-top: -470px;
+  border: 2px solid #343434 !important;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  border-radius: 10px;
+}
+
+#myBtn1:hover{
+  background: #006789;
+  border: 2px solid #fff !important;
+  color: #fff;
+  border-radius: 10px;
 }
 
 .border {
-  font-family: projectFont;
-  margin-top: 15px;
+ 
+  margin-top: 50px;
   text-align: center;
-  width: 1549px;
+  width: 1409px;
   padding: 5px 5px;
   background: #f1f1f1;
   color: #000;
@@ -509,46 +470,91 @@ div.footer1:hover {
   text-decoration: none;
   display: inline-block;
 }
+/***************************** AboutUs Section 1st Page ************************************/
 
+.card {
+  margin-top: -3px;
+  margin-left:0px;
+  right: 100px;
+  text-align: justify;
+  max-width: 1400px;
+  height: 900px;
+}
+
+.arrange {
+  padding: 10px 50px;
+}
+
+h2 {
+  padding: 10px 50px;
+}
+
+.media {
+  margin-top: 2%;
+  margin-left: 2%;
+  height: 100px;
+  width: 50px;
+  transition: all 2s cubic-bezier(1.000, -0.530, 0.405, 1.425);
+}
+
+.media:active {
+  
+  margin-left: 495px;
+  transform: none;
+}
+
+
+.ninjaScript {
+  margin-left: 350px;
+}
+/***************************** Item Part 1st Page ************************************/
 /*Styles for itemList First Page*/
 
 .item {
   transition: all .3s ease-in-out;
-  
+}
+
+.item:hover .overlay{
+  height: 100%;
+  transform: scale(1.02);
+  opacity: 0.7;
 }
 
 .item:hover {
   transform: scale(1.02);
-  opacity: 0.7;
   cursor: pointer;
-  backface-visibility: unset;
 }
 
-
+.descProd {
+  text-align: justify;
+  top: 10px;
+}
 .root {
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  overflow: hidden;
+  overflow: auto;
 }
 
-
 .gridList {
+  position: relative;
+  float: left;
   width: 900px;
   min-height: 400px;
-  min-width: 900px;
+  min-width: 100px;
   overflow: hidden;
   height: 100% !important;
   }
 
-
-
+/***************************** Footer 1st Page ************************************/
 /*Footer*/
 .lastFooter {
   width: 100%;
   margin-top: 150px;
   overflow: hidden;
-  height: 300px;
+  position: relative;
+  display: block;
+  height: 200px;
   background: #343434;
 }

@@ -20,8 +20,6 @@ export default class ImgCompAdd extends React.Component {
     this.props.getImg(event.target.files[0])
   }
 
-  
-
 
 
 

@@ -24,15 +24,17 @@ const formatDate = () => {
 }
 
 // function to add roles to database (user and advertiser)
+
 const addRoles = function (role, callback) {
   var sqlInsIntoRolesTable = `INSERT INTO roles (role) VALUES("${role.role}");`;
+
   // execute query 
   connection.query(sqlInsIntoRolesTable, function (err, result) {
     if (err) {
-      console.log('Error during insert into roles table', err);
-      callback(err, null);
+      console.log('Error during insert into roles table', err)
+      callback(err, null)
     } else {
-      console.log('insert into roles Successed!');
+      console.log('insert into roles Successed!')
       callback(null, result);
     }
   });
@@ -200,14 +202,15 @@ const selectLatestItems = function (user, callback) {
 // depend on the id if pass to function or not
 const selectAdvertisers = function (callback, id) {
   let sql = `select advertiser.*, categories.name  from advertiser 
-            inner join categories on advertiser.id_categories = categories.id;`;
+            inner join categories on advertiser.id_categories = categories.id where `;
+
    if(id) {
-    sql = `select advertiser.*, categories.name  from advertiser 
-    inner join categories on advertiser.id_categories = categories.id 
+    sql = `select advertiser.*, categories.name  from advertiser
+    inner join categories on advertiser.id_categories = categories.id
     and categories.id = ${id}`;
    }
-   
-  
+
+
   connection.query(sql, function (err, results) {
     if (err) {
       console.log('Error during select data from advertisers\n', err);
@@ -251,6 +254,26 @@ const selectAllCategories = function (callback) {
     }
   })
 }
+
+
+
+//this function is to search items in the database including the location
+
+
+
+const selectAdvertiserforCategory = function (id, callback) {
+  let sqlAdvertiser = `select advertiser.*, categories.name from advertiser 
+	inner join categories on advertiser.id_categories = categories.id
+    where categories.id = '${id}'`;
+  connection.query(sqlAdvertiser, function (err, result) {
+    if (err) {
+      throw err
+    } else {
+      callback(null, result);
+    }
+  });
+}
+
 
 module.exports.selectAll = selectAll;
 module.exports.insertAccount = insertAccount;
