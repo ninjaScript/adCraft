@@ -77,14 +77,6 @@ export default class SignUpAdv extends React.Component {
     }
   }
 
-
-
-
-
-
-
-
-
   // handle when click to send info to server
   handleOnClick(e) {
     e.preventDefault();
