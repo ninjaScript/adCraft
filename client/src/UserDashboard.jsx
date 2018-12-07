@@ -135,19 +135,20 @@ export default class UserDashboard extends React.Component {
       height: "100%"
     }
     return (
-      <div>
-        <Sidebar handleonClickSideList={this.handleonClickSideList.bind(this)} data={this.state.categories} />
+      <Grid>
         <DaHeader user={this.state.user} logout={this.logout.bind(this)} />
-        <Grid container style={{ display: "flex", justifyContent: "center", }} >
-          <Grid style={{ height: "1500px" }} item md={10}>
+        <Sidebar handleonClickSideList={this.handleonClickSideList.bind(this)} data={this.state.categories} />
+
+          <div style= {{height:"1000px"}}>
             <Paper style={paper}>
               <div>
                 <h1>Search in adCraft community</h1>
               </div>
-              <div style={{ marginLeft: "25%", marginTop: "80px" }}>
+               <center><div style={{ marginTop: "80px" }}>
                 <SearchBar search={this.search.bind(this)} />
               </div>
-              <div style={{ marginTop: "100px" }}>
+              </center>
+              <div style={{ marginTop: "100px" , display: 'flex', justifyContent: 'center',overflow: 'hidden', }}>
                 <h2>{this.state.notFound}</h2>
                 <AdvertiserGridList
                   data={this.state.advertisers}
@@ -155,9 +156,8 @@ export default class UserDashboard extends React.Component {
                 />
               </div>
             </Paper>
-          </Grid>
-        </Grid>
-      </div >
+          </div>
+      </Grid >
     )
   }
 }

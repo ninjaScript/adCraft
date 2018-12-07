@@ -18,11 +18,11 @@ export default class Advertiser extends React.Component {
     $.ajax({
       url: '/adv-items',
       type: 'POST',
-      data : JSON.stringify({adv_Id: this.props.location.state.advertiesr.id }),
+      data : JSON.stringify({adv_id: this.props.location.state.advertiesr.id }),
       contentType: 'application/json',
-      success: (data) => {
-        console.log(data);
-        this.setState({ items: data })
+      success: (res) => {
+        console.log(res);
+        this.setState({ items: res.data })
       },
       error: (err) => {
         console.log(err);

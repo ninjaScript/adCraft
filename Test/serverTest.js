@@ -9,7 +9,7 @@ describe('/POST SingIn', () => {
 	it('it should POST SingIn request return status code equal 200', (done) => {
 		// Test data.
     let UserInfo = {
-    	phoneNumber: 0786597458,
+    	phoneNumber: "0786597458",
       password: "password"
     }
     chai.request(server)
@@ -23,6 +23,8 @@ describe('/POST SingIn', () => {
     });
   });
 });
+
+
 // Test to check SingUp request.
 describe('/POST SingUp', () => {
 	it('it should POST SingUp responce return status code equal 200 and the success object', (done) => {
@@ -30,7 +32,7 @@ describe('/POST SingUp', () => {
     let UserInfo = {
     	firstName: "Mohammad",
     	lastName: "Rawashdeh",
-    	phoneNumber: 0786597458,
+    	phoneNumber: "0786597458",
       password: "password",
       gender: "male"
     }

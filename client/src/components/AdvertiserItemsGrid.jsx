@@ -23,22 +23,23 @@ export default class AdvertiserItemsGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log(this.props.items)
   }
 
   render() {
     return (
       <div style = {style.root} >
-        <GridList cols={3}  style={style.gridList}>
-          <AdvertiserItems 
-            userID = {this.props.userID}
-          />
-          <AdvertiserItems/>
-          <AdvertiserItems/>
-          <AdvertiserItems/>
-          <AdvertiserItems/>
-          <AdvertiserItems/>
+        <GridList cols={4}  style={style.gridList}>
+          {
+            this.props.items.map((item) =>(
+              <AdvertiserItems key = {item}
+                item = {item}
+                userID = {this.props.userID}
+              />
+            ))
+          }
         </GridList>
-      </div >
+      </div>
     )
   }
 }

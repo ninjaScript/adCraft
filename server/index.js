@@ -40,7 +40,7 @@ app.use(passport.session());
 
 
 app.post('/sign-up', function (req, res) {
-
+  console.log("User",req.body);
   var user = {
     "firstName": req.body.firstName,
     "lastName": req.body.lastName,
@@ -60,14 +60,14 @@ app.post('/sign-up', function (req, res) {
           if (err) {
             console.log("there is error during insert into account ")
           } else {
-            const user_id = result.insertId;
+            let user_id = result.insertId;
             console.log(user_id)
             // use login to make the session to user
             req.login(user_id, function (err) {
               user.id = user_id;
               res.send({
                 status: 200,
-                success: user,
+                success: "Successed !",
                 data: user
               });
             });
@@ -95,9 +95,17 @@ app.post('/sign-in', function (req, res) {
       if (result.length > 0) {
         if (result[0].password === password) {
           // select user info from database and pass it to res
-          db.selectUserInfo(result[0].id, result[0].id_roles, function (err, result) {
+          let table  = "users"
+          console.log("Roles",result[0])
+          if(result[0].id_roles === 2){
+            console.log("Change table")
+             table = "advertiser"
+          }
+
+          db.selectUserInfo(result[0].id, result[0].id_roles, table , function (err, result) {
             console.log("success", result);
-            const user_id = result[0].id;
+            let user_id = result[0].id;
+            console.log("user",result[0])
             // use login to make the session to user
             req.login(user_id, function (err) {
               res.send({
@@ -246,9 +254,6 @@ app.post('/', (req, res) => {
 ///////////////
 
 
-
-
-
 // get request to retrive categories from database
 app.get('/categories', function (req, res) {
   db.selectAllCategories(function (err, results) {
@@ -274,6 +279,18 @@ app.post('/adv-category', function (req, res) {
   }, req.body.id_cat);
 });
 
+// post request to retrive items for advertiser 
+app.post('/adv-items', function(req, res){
+  console.log(req.body);
+  db.selectItems(req.body.adv_id,function (err, results) {
+    if (err) throw err;
+    res.send({
+      status: 200,
+      success: "successed!",
+      data: results
+    });
+  });
+});
 
 
 // store  data to session here we pass user_id

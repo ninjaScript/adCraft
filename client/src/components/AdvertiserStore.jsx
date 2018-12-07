@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 const style = {
   card: {
-    maxWidth: 325,
+    maxWidth: 320,
     margin : 10,
     textAlign :"left"
     },
