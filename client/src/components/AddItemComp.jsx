@@ -7,7 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ImgCompAdd from './ImgCompAdd.jsx'
-
+import $ from "jquery";
+const axios = require("axios");
 
 export default class AddItem extends React.Component {
     constructor(props) {
@@ -20,9 +21,58 @@ export default class AddItem extends React.Component {
       img: null
 
     };
-    this.handleClickOpen = this.handleClickOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this)
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
+
+
+
+
+    handleOnClick(e) {
+    e.preventDefault();
+    console.log(this.state);
+    // if the validation true  send data
+    
+      $.ajax({
+        url: '/add-item',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+         	name: this.state.name,
+      		price: this.state.price,
+      		descr: this.state.descr,
+      		img: this.state.img
+        }),
+        success: (res) => {
+          
+        },
+        error: (err) => {
+          console.log('err', err);
+        }
+      }); 
+    
+  }
+  onFormSubmit(e){
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('myImage',this.state.img);
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    };
+    //!!!
+    axios.post("/add-item",formData,config)
+        .then((response) => {
+            alert("The file is successfully uploaded");
+        }).catch((error) => {
+    });
+  }
+
 
 
 
@@ -30,7 +80,7 @@ export default class AddItem extends React.Component {
     e.preventDefault();
     let target = e.target;
     this.setState({ [target.name]: target.value });
-    console.log(this.state);
+    console.log(target.value);
   }
 
 
@@ -46,8 +96,13 @@ export default class AddItem extends React.Component {
 
   getImg(Img) {
     this.setState({img: Img})
-    console.log(this.state.Img)
   };
+
+  onClick(e) {
+  	this.handleClose()
+  	this.handleOnClick(e)
+  	this.onFormSubmit(e)
+  }
 
   render() {
     return (
@@ -63,7 +118,7 @@ export default class AddItem extends React.Component {
             <DialogContentText>
               To Add an Item please fill the following Form below.
             </DialogContentText>
-            <form>
+            <form action="/add-item" method="post" encType="multipart/form-data">
 	            <TextField
 	              autoFocus
 	              margin="dense"
@@ -72,7 +127,7 @@ export default class AddItem extends React.Component {
 	              label="Name"
 	              type="text"
 	              value={this.state.name}
-	              onChange={this.handleChange.bind(this)}
+	              onChange={this.handleChange}
 	              fullWidth
 	            />
 	            <TextField
@@ -82,7 +137,7 @@ export default class AddItem extends React.Component {
 	              label="Description"
 	              type="text"
 	              value={this.state.descr}
-	              onChange={this.handleChange.bind(this)}
+	              onChange={this.handleChange}
 	              fullWidth
 	            />
 	            <TextField
@@ -92,17 +147,17 @@ export default class AddItem extends React.Component {
 	              name= "price"
 	              type="number"
 	              value={this.state.price}
-	              onChange={this.handleChange.bind(this)}
+	              onChange={this.handleChange}
 	              fullWidth
 	            />
+	            <ImgCompAdd getImg={this.getImg.bind(this)}/>
             </form>
-            <ImgCompAdd getImg={this.getImg.bind(this)}/>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.onClick} color="primary">
               Add Item
             </Button>
           </DialogActions>
