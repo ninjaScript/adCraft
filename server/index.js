@@ -191,9 +191,10 @@ app.post('/search', authenticationMiddleware(), function (req, res) {
 
 
 //////////////
+//upload images to items.
 const storage = multer.diskStorage({
    destination: function(req, file, cb){
-    cb(null, '../public/uploads')
+    cb(null, __dirname + '/../client/public/ItemImages')
    },
    filename: function(req, file, cb){
       cb(null,"IMAGE-" + Date.now() + file.originalname);
@@ -207,49 +208,30 @@ const upload = multer({
 }).single('myImage')
 
 
-app.post('/', (req, res) => {
-  if (!req.file) {
-    console.log("No file received");
-  } else {
-    console.log('file received');
-    
-  }
+app.post('/add-item', upload, (req, res) => {
+  console.log(req.file)
+});
+//////////////////////
+// upload images to advertisers.
+const storageAdv = multer.diskStorage({
+   destination: function(req, file, cb){
+    cb(null, __dirname + '/../client/public/AdvertiserImages')
+   },
+   filename: function(req, file, cb){
+      cb(null,"IMAGE-" + Date.now() + file.originalname);
+   }
 });
 
-// const upload = multer({
-//    storage: storage,
-//    limits:{fileSize: 1000000},
-// }).single("myImage");
+
+const uploadAdv = multer({
+   storage: storageAdv,
+   limits:{fileSize: 1000000},
+}).single('myAdvImage')
 
 
-
-
-
-// app.post('/',(req, res) => {
-//   upload(req, res,(err) => {
-//     if (err) {
-//       console.log(err)
-//       //error occurred when uploading.
-//     }
-//     console.log(req.file)
-//     res.send("qusaylol")
-//     // Everything went fine.
-//   })
-// })
-
-
-
-// app.post("/upload",function(){
-//    upload(req, res, (err) => {
-//       console.log("Request ---", req.body);
-//       console.log("Request file ---", req.file);
-      
-//       //Here you get file.
-//       /*Now do where ever you want to do*/
-//       if(!err)
-//          return res.send(200).end();
-//    })
-// });
+app.post('/sign-up-adv', uploadAdv, (req, res) => {
+  console.log(req.file)
+});
 
 ///////////////
 

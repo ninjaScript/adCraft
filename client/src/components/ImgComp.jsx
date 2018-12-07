@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/styles.css";
-// const axios = require("axios");
+
 
 export default class ImgComp extends React.Component {
  constructor(props) {
@@ -9,7 +9,6 @@ export default class ImgComp extends React.Component {
       img: null
     };
     this.fileChangedHandler = this.fileChangedHandler.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this)
   }
 
@@ -21,26 +20,10 @@ export default class ImgComp extends React.Component {
     this.props.getImg(event.target.files[0])
   }
 
-  onFormSubmit(e){
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('myImage',this.state.img);
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    };
-    //!!! TODO
-    // axios.post("/",formData,config)
-    //     .then((response) => {
-    //         alert("The file is successfully uploaded");
-    //     }).catch((error) => {
-    // });
-  }
+
 
   onChange(e) {
   	this.fileChangedHandler(e)
-  	this.onFormSubmit(e)
   }
 
 	render(){
