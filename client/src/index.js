@@ -12,6 +12,7 @@ import AdvertiserItemsGrid from './components/advertiser_items_grid.jsx';
 
 import { Router, Route, browserHistory } from 'react-router';
 import AddItem from './components/AddItemComp.jsx';
+import SignUpAdv from './components/SignUpAdv.jsx';
 class Home extends React.Component {
   constructor(props) {
     super(props);
