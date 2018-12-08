@@ -34,6 +34,7 @@ var item = {
   price: 33,
   imgUrl: "https://i.imgur.com/KXBhaNv.jpg",
   descr: "its the best bike",
+  id_advertiser: 1,
   createdAt: db.formatDate()
 }
 
@@ -42,6 +43,7 @@ var item2 = {
   price: 332,
   imgUrl: "https://i.imgur.com/KXBhaNv.jpg",
   descr: "its the best bike2",
+  id_advertiser: 2,
   createdAt: db.formatDate()
 }
 
@@ -79,6 +81,13 @@ describe('Database ', function () {
 
 
   it('should insert role to db', function (done) {
+    db.addRoles(roleUser, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+      }
+    })
 
     db.addRoles(roleAdv, function (err, result) {
       if (err) {
@@ -127,7 +136,7 @@ describe('Database ', function () {
 
 
   it('should insert items to db', function (done) {
-    db.insertIntoItems('4', item2, function (err, result) {
+    db.insertIntoItems(2, item2, function (err, result) {
       if (err) {
         throw err
       } else {
@@ -143,6 +152,18 @@ describe('Database ', function () {
       if (err) {
         throw err
       } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+  it('should search user info from tables', function (done) {
+    db.selectUserInfo(2, 2, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        console.log("lol",result)
         expect(result).to.be.not.null;
         done()
       }
