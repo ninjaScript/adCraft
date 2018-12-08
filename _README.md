@@ -1,12 +1,12 @@
 # Project Name
 
-> Pithy project description
+> AdCraft.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Esraa Zaitoun.
+  - __Scrum Master__: Mohammad Al-Rawashdeh.
+  - __Development Team Members__: Radwan Abdoh, Qusay Al-Bawareed.
 
 ## Table of Contents
 
@@ -14,37 +14,42 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
 ## Usage
-
-> Some usage instructions
+> 1- Clone the repo.
+> 2- Open the repo in the terminal window.
+> 3- npm install.
+> 4- Open client folder in the terminal window.
+> 5- npm install.
+> * To run te server:
+    from the repo we run this comand: npm run server
+  * To run test for the server and database:
+    from the repo we run this comand: npm run test
+  * To run client:
+    from the client folder run this comand: npm start
+  * To run test for the client:
+    from the client folder run this comand: npm test
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node.js with Express.
+- MySQL.
+- React.
+- Material Design.
+- CSS.
 
 ## Development
 
 ### Installing Dependencies
+Just need to run this comand:
 
-From within the root directory:
-
-```sh
-sudo npm install -g bower
-npm install
-bower install
-```
+npm install.
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+This is our project's Roadmap: https://waffle.io/ninjaScript/adCraft-App
 
 
 ## Contributing
