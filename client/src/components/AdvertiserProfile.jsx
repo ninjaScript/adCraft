@@ -85,7 +85,7 @@ export default class AdvertiserProfile extends React.Component {
         <Card style={styles.card}>
           <Grid>
             <CardMedia style={styles.media}
-              image="http://localhost:3000/AdvertiserImages/IMAGE-1544198154061adcraft%20logo.jpg"
+              image={this.props.advertiesr.imgUrl}
             />
           </Grid>
           <Grid>
