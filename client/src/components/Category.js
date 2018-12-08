@@ -14,16 +14,17 @@ import WhyUs from './WhyUs.js';
 { /*************************************** Category Component for our 1st page component included are AboutUs WhyUs and OurProduct *********************************/}
 class Category extends Component {
 
+
   // stateless function needed for some minor functionality such as onclick and base on function to not intercept conflict between clicks
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       isHiddenAboutUs: false,
       isHiddenProduct: false,
       isHiddenExplore: false
     }
   }
-  toggleHiddenAboutUs () {
+  toggleHiddenAboutUs() {
     this.setState({
       isHiddenAboutUs: !this.state.isHiddenAboutUs,
       isHiddenProduct: false,
@@ -31,7 +32,7 @@ class Category extends Component {
     })
   }
 
-  toggleHiddenProduct () {
+  toggleHiddenProduct() {
     this.setState({
       isHiddenProduct: !this.state.isHiddenProduct,
       isHiddenAboutUs: false,
@@ -39,12 +40,12 @@ class Category extends Component {
     })
   }
 
-  toggleHiddenExplore () {
+  toggleHiddenExplore() {
     this.setState({
       isHiddenExplore: !this.state.isHiddenExplore,
       isHiddenProduct: false,
       isHiddenAboutUs: false,
-      
+
     })
   }
 
@@ -52,6 +53,7 @@ class Category extends Component {
   //usage of hidden div applied here as programmed above in a stateless function
   render() {
     return (
+
       <Grid className="adCategory" container spacing={20}>
         <Grid className="category1" item xs toggleHiddenAboutUs={this.toggleHiddenAboutUs} toggleHiddenProduct={this.toggleHiddenProduct} toggleHiddenExplore={this.toggleHiddenExplore}>
           <img   style={{backgroundColor:"#006789"}} height="100" width="1400" alt="" />
@@ -70,6 +72,7 @@ class Category extends Component {
             </Paper>
           </Grid>
         </Grid>
+
       <Grid className="us">{this.state.isHiddenProduct && <OurServices />}</Grid>
         <Grid className="category3" item xs>
           <img style={{backgroundColor:"#ffaa3b"}} height="100" width="1400" alt="" />
@@ -78,6 +81,7 @@ class Category extends Component {
               <button id="myBtn1" onClick={this.toggleHiddenExplore.bind(this)}>Why Choose Us?</button>
             </Paper>
           </Grid>
+
         </Grid>    
       <Grid className="us">{this.state.isHiddenExplore && <WhyUs />}</Grid>
        <Grid>

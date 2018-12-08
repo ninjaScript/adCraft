@@ -76,28 +76,28 @@ const insertAccount = function (user, callback) {
 }
 
 // this function to insert into user table
-const insertIntoUser = function (user, result, callback) {
+const insertIntoUser = function (user, resultAccount, callback) {
   // sql query  to insert
   let sqlInsIntoUserTable = `INSERT INTO users (id,firstName, lastName , gender) 
-    VALUES( ${result.insertId},"${user.firstName}", "${user.lastName}", "${user.gender}");`;
+    VALUES( ${resultAccount.insertId},"${user.firstName}", "${user.lastName}", "${user.gender}");`;
   // exute query 
   connection.query(sqlInsIntoUserTable, function (err, result) {
     if (err) {
       console.log('Error during insert into user table', err);
       callback(err, null);
     } else {
-      console.log('insert into user Successed!');
-      callback(null, result);
+      console.log('insert into user Successed!', resultAccount);
+      callback(null, resultAccount);
     }
   });
 }
 
 // this function to insert into advertiser table
-const insertIntoAdv = function (user, result, callback) {
+const insertIntoAdv = function (user, resultAccount, callback) {
   // sql query  to insert
   var sqlInsIntoAdvertiserTable = `INSERT INTO advertiser (id, firstName, lastName, gender, email, 
 	imgUrl, numFeedback, rateAvg, location, id_categories) 
-	VALUES("${result.insertId}", "${user.firstName}", "${user.lastName}", "${user.gender}","${user.email}", "${user.imgUrl}",
+	VALUES("${resultAccount.insertId}", "${user.firstName}", "${user.lastName}", "${user.gender}","${user.email}", "${user.imgUrl}",
 	"${user.numFeedback}", "${user.rateAvg}", "${user.location}", "${user.id_categories}");`;
   // "${user.id_account}"
   // execute query 
@@ -106,8 +106,8 @@ const insertIntoAdv = function (user, result, callback) {
       console.log('Error during insert into advertiser table', err);
       callback(err, null);
     } else {
-      console.log('insert into advertiser Successed!');
-      callback(null, result);
+      console.log('insert into advertiser Successed!', resultAccount);
+      callback(null, resultAccount);
     }
   });
 }
@@ -124,7 +124,7 @@ const insertIntoCat = function (catName, callback) {
       console.log('Error during insert into Categories table', err);
       callback(err, null);
     } else {
-      console.log('insert into Categories Successed!');
+      console.log('insert into Categories Successed!', result);
       callback(null, result);
     }
   });
@@ -167,10 +167,10 @@ const advertiser_Items = function (adv_id, item_id, callback) {
 
 ////////////////////////////select functions /////////////
 
-const selectUserInfo = function (id, rolesId, callback) {
-  var sql = `select account.phoneNumber, account.id_roles, users.* from account 
-	inner join users 
-	on account.id = users.id
+const selectUserInfo = function (id, rolesId, table,callback) {
+  var sql = `select account.phoneNumber, account.id_roles, ${table}.* from account 
+	inner join ${table} 
+	on account.id = ${table}.id
     where account.id = '${id}' and account.id_roles='${rolesId}'`;
   connection.query(sql, function (err, result) {
     if (err) {
@@ -202,7 +202,7 @@ const selectLatestItems = function (user, callback) {
 // depend on the id if pass to function or not
 const selectAdvertisers = function (callback, id) {
   let sql = `select advertiser.*, categories.name  from advertiser 
-            inner join categories on advertiser.id_categories = categories.id where `;
+            inner join categories on advertiser.id_categories = categories.id ;`;
 
    if(id) {
     sql = `select advertiser.*, categories.name  from advertiser
@@ -255,11 +255,27 @@ const selectAllCategories = function (callback) {
   })
 }
 
+//function to select items for each advertiser
+ 
+const selectItems = function(adv_id, callback){
+  let sql = `select items.* from advertiser 
+  inner join advertiser_items 
+  on advertiser.id = advertiser_items.id_advertiser
+  inner join items
+  on items.id = advertiser_items.id_items
+  and advertiser.id = '${adv_id}';`;
+  connection.query(sql, function (err, results) {
+    if (err) {
+      console.log('Error during select items of database\n', err);
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+}
 
 
 //this function is to search items in the database including the location
-
-
 
 const selectAdvertiserforCategory = function (id, callback) {
   let sqlAdvertiser = `select advertiser.*, categories.name from advertiser 
@@ -288,3 +304,4 @@ module.exports.selectLatestItems = selectLatestItems;
 module.exports.selectAdvertisers = selectAdvertisers;
 module.exports.search = search;
 module.exports.selectAllCategories = selectAllCategories;
+module.exports.selectItems = selectItems;

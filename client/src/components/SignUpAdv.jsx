@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/styles.css";
 import $ from "jquery";
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import {
   Paper,
   Button,
@@ -11,6 +11,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Grid,
   Typography
 } from "@material-ui/core";
 import PNG from '../style/signup.png';
@@ -36,7 +37,7 @@ export default class SignUpAdv extends React.Component {
       errorPhone: "",
       errorPassword: "",
       validation: false,
-      isSignUp:false
+      isSignUp: false
     };
     this.handleOnClick = this.handleOnClick.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -77,14 +78,6 @@ export default class SignUpAdv extends React.Component {
     }
   }
 
-
-
-
-
-
-
-
-
   // handle when click to send info to server
   handleOnClick(e) {
     e.preventDefault();
@@ -107,10 +100,10 @@ export default class SignUpAdv extends React.Component {
           id_roles: 2
         }),
         success: (res) => {
-          if(res.success !== 'userExist') {
+          if (res.success !== 'userExist') {
             browserHistory.push({
-            pathname: "/user-dashboard/7Adv",
-            state: { user: res.data }
+              pathname: "/user-dashboard/7Adv",
+              state: { user: res.data }
             });
           } else {
             alert("This user is exist");
@@ -119,38 +112,38 @@ export default class SignUpAdv extends React.Component {
         error: (err) => {
           console.log('err', err);
         }
-      }); 
+      });
     }
   }
 
   //helping ImgComp
   getImg(Img) {
-    this.setState({img: Img})
+    this.setState({ img: Img })
     console.log(this.state.Img)
   }
   // help DropDownMenu
   getCategory(term) {
-    this.setState({category: term})
+    this.setState({ category: term })
     console.log(this.state.category)
-   }
+  }
 
 
 
-  onFormSubmit(e){
+  onFormSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('myAdvImage',this.state.img);
+    formData.append('myAdvImage', this.state.img);
     const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
     };
     //!!!
-    axios.post("/sign-up-adv",formData,config)
-        .then((response) => {
-            alert("The file is successfully uploaded");
-        }).catch((error) => {
-    });
+    axios.post("/sign-up-adv", formData, config)
+      .then((response) => {
+        alert("The file is successfully uploaded");
+      }).catch((error) => {
+      });
   }
 
 
@@ -165,8 +158,8 @@ export default class SignUpAdv extends React.Component {
 
 
     return (
-      <div className="container">
-        <Paper className="style">
+      <Grid container md style = {{display:"flex", justifyContent: "center"}}>
+        <Paper style= {{padding : "30px" , width: "60%", margin: "20px"}}>
           <div>
             <Typography variant="display2" align="center" color="primary" >
               <img src={PNG} width="100" height="100" alt="" />
@@ -176,9 +169,9 @@ export default class SignUpAdv extends React.Component {
             </Typography>
           </div>
           <form action="/sign-up-adv" method="post" encType="multipart/form-data">
-            <ImgComp getImg={this.getImg.bind(this)}/>
+            <ImgComp getImg={this.getImg.bind(this)} />
             <div>
-            <DropDown getCategory={this.getCategory.bind(this)}/>               
+              <DropDown getCategory={this.getCategory.bind(this)} />
             </div>
             <TextField
               label="First Name"
@@ -281,7 +274,7 @@ export default class SignUpAdv extends React.Component {
             Already have an Account?
           </Button>
         </Paper>
-      </div>
+      </Grid>
     );
   }
 

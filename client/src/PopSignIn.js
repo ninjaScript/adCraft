@@ -22,7 +22,7 @@ class PopSignIn extends React.Component {
               X
             </button>
           </div>
-        <div class="forLogin">
+        <div className="forLogin">
           <SignIn />
         </div>
         </div>

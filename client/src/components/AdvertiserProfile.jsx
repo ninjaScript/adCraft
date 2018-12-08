@@ -8,14 +8,15 @@ import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
+import AddItem from './AddItemComp.jsx';
 
 
 export default class AdvertiserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibaleBtn: true
+      visibaleBtn: true,
+      isDailogOpen: false
     };
   }
 
@@ -25,6 +26,25 @@ export default class AdvertiserProfile extends React.Component {
       this.setState({ visibaleBtn: false })
     }
   }
+
+  // openDialog 
+
+  openDialog(){
+    this.setState({isDailogOpen: true});
+    console.log(this.state.isDailogOpen)
+  }
+
+  closeDialog (){
+    this.setState({isDailogOpen: false});
+
+  }
+
+  // thsi function excute the bide funcation from the advertiser compnent 
+  // it will bind to addItem component
+  addItems(formData) {
+    this.props.addItems(formData);
+  }
+
 
   render() {
 
@@ -38,7 +58,7 @@ export default class AdvertiserProfile extends React.Component {
         padding: '15px',
         margin: '10px',
         display: 'flex',
-        width: "70%"
+        width: "100%"
 
       },
       details: {
@@ -47,6 +67,7 @@ export default class AdvertiserProfile extends React.Component {
       },
       header: {
         color: "#006789",
+        fontWeight: "bold"
       },
       content: {
         flex: '1 0 auto',
@@ -54,11 +75,8 @@ export default class AdvertiserProfile extends React.Component {
       media: {
         width: 220,
         height: 220,
-      },
-      button: {
-        margin: 10,
-        color: '#006789',
-      },
+      }
+     
 
     }
 
@@ -67,7 +85,7 @@ export default class AdvertiserProfile extends React.Component {
         <Card style={styles.card}>
           <Grid>
             <CardMedia style={styles.media}
-              image="http://news2news.today/wp-content/uploads/2017/09/cute-profile-picture-ideas-600x600.jpg"
+              image="http://localhost:3000/AdvertiserImages/IMAGE-1544198154061adcraft%20logo.jpg"
             />
           </Grid>
           <Grid>
@@ -93,12 +111,14 @@ export default class AdvertiserProfile extends React.Component {
                 </Typography>
               </CardContent>
               <CardActions>
-                {
-                  // check on the button state depend on the user role
-                  this.state.visibaleBtn && <Button variant="raised" style={styles.button}>
-                    Add Items </Button>
-                }
+                {/* add items component*/}
+                <AddItem 
+                  visibaleBtn = {this.state.visibaleBtn} 
+                  advertiesrID = {this.props.advertiesr.id}
+                  addItems = {this.addItems.bind(this)}
+                />
               </CardActions>
+              
             </div>
           </Grid>
         </Card>
