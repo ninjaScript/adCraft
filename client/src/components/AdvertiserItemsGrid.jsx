@@ -39,6 +39,7 @@ export default class AdvertiserItemsGrid extends React.Component {
               <AdvertiserItems key = {item}
                 item = {item}
                 userID = {this.props.userID}
+                deleteItem = {this.props.deleteItem.bind(this)}
               />
             ))
           }

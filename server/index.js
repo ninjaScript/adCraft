@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var options = {
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "password",
   database: "adCraft"
 };
 // create object of mysqlstore and pass the option and we want to edit the session config
@@ -214,6 +214,7 @@ app.post('/add-item', upload, (req, res) => {
   let imgUrl = 'http://' + req.get('host') + '/ItemImages/' + req.file.filename;
   // add image url to item object
   item.imgUrl = imgUrl;
+  item.createdAt = db.formatDate();
   // insert into database
   db.insertIntoItems(item.advertiserID, item, function (err, result) {
     if (err) {
@@ -256,6 +257,50 @@ const uploadAdv = multer({
 
 app.post('/sign-up-adv', uploadAdv, (req, res) => {
   console.log(req.file)
+   // recive the data from the formData request;
+   let advertiser = JSON.parse(req.body.advertiser);
+   // make link to image to save in database
+   let imgUrl = 'http://' + req.get('host') + '/AdvertiserImages/' + req.file.filename;
+   // add image url to item object
+   advertiser.imgUrl = imgUrl;
+    
+   console.log(advertiser)
+   // check if the account exist or not 
+  db.isAccountExist(advertiser.phoneNumber, function (err, result) {
+    if (err) {
+      console.log("error in check ", err)
+    } else {
+      if (result.length === 0) {
+        db.insertAccount(advertiser, function (err, result) {
+          if (err) {
+            console.log("there is error during insert into account ")
+          } else {
+            // let user_id = result.insertId;
+            // console.log(user_id)
+            // use login to make the session to user
+            db.selectUserInfo(result.insertId, 2, "advertiser", function (err, result) {
+              console.log("success", result);
+              let user_id = result[0].id;
+              // use login to make the session to user
+              req.login(user_id, function (err) {
+                res.send({
+                  status: 200,
+                  success: "login_success",
+                  data: result[0]
+                });
+              });
+            })
+
+          }
+        });
+      } else {
+        res.send({
+          status: 404,
+          success: "userExist",
+        });
+      }
+    }
+  });
 });
 
 ///////////////
@@ -299,7 +344,28 @@ app.post('/adv-items', function (req, res) {
   });
 });
 
+app.post('/delete-item', function(req, res) {
+  console.log("Delete Item");
+  db.deleteItem(req.body.item_id, function(err, result) {
+    if(err) {
+      console.log("Error during delete item", err);
+    } else {
+      console.log("The Items deleted")
+      db.selectItems(req.body.adv_id, function (err, results) {
+        if (err) throw err;
+        res.send({
+          status: 200,
+          success: "successed!",
+          data: results
+        });
+      });
+    }
+  })
+})
 
+
+
+// config the session with passport
 // store  data to session here we pass user_id
 passport.serializeUser(function (user_id, done) {
   done(null, user_id);

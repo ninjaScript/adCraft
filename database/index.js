@@ -98,7 +98,7 @@ const insertIntoAdv = function (user, resultAccount, callback) {
   var sqlInsIntoAdvertiserTable = `INSERT INTO advertiser (id, firstName, lastName, gender, email, 
 	imgUrl, numFeedback, rateAvg, location, id_categories) 
 	VALUES("${resultAccount.insertId}", "${user.firstName}", "${user.lastName}", "${user.gender}","${user.email}", "${user.imgUrl}",
-	"${user.numFeedback}", "${user.rateAvg}", "${user.location}", "${user.id_categories}");`;
+	"${2596}", "${23}", "${user.location}", "${user.category}");`;
   // "${user.id_account}"
   // execute query 
   connection.query(sqlInsIntoAdvertiserTable, function (err, result) {
@@ -183,7 +183,7 @@ const selectUserInfo = function (id, rolesId, table,callback) {
 
 // This function to get the latest 10 items from the items table.
 
-const selectLatestItems = function (user, callback) {
+const selectLatestItems = function (callback) {
   var sqlTopTenItems = `SELECT advertiser.firstName, advertiser.lastName, items.name, items.price, items.imgUrl, items.descr,
                          items.createdAt FROM items
                          INNER JOIN advertiser_Items ON advertiser_Items.id_items = items.id
@@ -290,6 +290,25 @@ const selectAdvertiserforCategory = function (id, callback) {
   });
 }
 
+///////////////// delete funcations
+
+// function to delete item from the advertiser_items and items table
+const deleteItem = function (item_id, callback) {
+  let sql = `delete from advertiser_items where advertiser_items.id_items = '${item_id}';`;
+  connection.query(sql, function(err, result) {
+    if(err) throw err ;
+    deleteItemFromTableItem (item_id, callback);
+  })
+
+}
+
+const deleteItemFromTableItem = function (item_id, callback){
+  let sql = `delete from items where id = '${item_id}';`;
+  connection.query(sql, function(err, result) {
+    if(err) throw err ;
+    callback(null, result);
+  })
+}
 
 module.exports.selectAll = selectAll;
 module.exports.insertAccount = insertAccount;
@@ -305,3 +324,4 @@ module.exports.selectAdvertisers = selectAdvertisers;
 module.exports.search = search;
 module.exports.selectAllCategories = selectAllCategories;
 module.exports.selectItems = selectItems;
+module.exports.deleteItem = deleteItem;

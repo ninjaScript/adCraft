@@ -53,6 +53,27 @@ export default class Advertiser extends React.Component {
     });
   }
 
+  deleteItem (item_id) {
+    console.log(item_id)
+    // make request to server to delete the item 
+    $.ajax({
+      url: '/delete-item',
+      type: 'POST',
+      data : JSON.stringify({adv_id: this.props.location.state.advertiesr.id, item_id: item_id }),
+      contentType: 'application/json',
+      success: (res) => {
+        console.log(res);
+        alert("You deleted items that has "+ item_id);
+        this.setState({ items: res.data })
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+
   render() {
     return (
       <div>
@@ -67,6 +88,7 @@ export default class Advertiser extends React.Component {
           <AdvertiserItemsGrid
             items={this.state.items}
             userID={this.props.location.state.user.id_roles}
+            deleteItem = {this.deleteItem.bind(this)}
           />
         </div>
       </div>

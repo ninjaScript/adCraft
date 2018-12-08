@@ -15,7 +15,7 @@ var advertiser = {
   location: "amman",
   id_categories: 1,
   id_roles: 2,
-  phoneNumber: "c",
+  phoneNumber: "0797777770",
   password: "helloworld",
   createdAt: db.formatDate()
 }
@@ -56,7 +56,7 @@ var user = {
 
   firstName: "Ali",
   lastName: "hasan",
-  phoneNumber: "0796305984",
+  phoneNumber: "0796305985",
   password: "helloworld",
   gender: "male",
   id_roles: 1,
@@ -156,7 +156,6 @@ describe('Database ', function () {
       }
     })
   });
-
 
 });
 

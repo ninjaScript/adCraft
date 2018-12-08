@@ -164,10 +164,15 @@ export default class SignUpAdv extends React.Component {
     //!!!
     axios.post("/sign-up-adv", formData, config)
       .then((res) => {
+        console.log(res)
         if (res.data.success !== 'userExist') {
+          
           browserHistory.push({
             pathname: "/adv-profile/" + res.data.data.id,
-            state: { user: res.data.data }
+            state: { 
+              advertiesr: res.data.data,
+              user : res.data.data
+             }
           });
         } else {
           alert("This user is exist");
