@@ -13,7 +13,7 @@ var advertiser = {
   numFeedback: 70,
   rateAvg: 5,
   location: "amman",
-  id_categories: 1,
+  category: 1,
   id_roles: 2,
   phoneNumber: "0797777770",
   password: "helloworld",
@@ -136,7 +136,7 @@ describe('Database ', function () {
 
 
   it('should insert items to db', function (done) {
-    db.insertIntoItems(2, item2, function (err, result) {
+    db.insertIntoItems(7, item2, function (err, result) {
       if (err) {
         throw err
       } else {
@@ -183,14 +183,14 @@ describe('Database ', function () {
 
 
     it('should select advertisers', function (done) {
-    db.selectAdvertisers(1, function (err, result) {
+    db.selectAdvertisers(function (err, result) {
       if (err) {
         throw err
       } else {
         expect(result).to.be.not.null;
         done()
       }
-    })
+    }, 1)
   });
 
 

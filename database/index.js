@@ -199,26 +199,24 @@ const selectLatestItems = function (callback) {
 
 // function to select all the advertiser and select advertiser for specific category
 // depend on the id if pass to function or not
-const selectAdvertisers = function (id, callback) {
+const selectAdvertisers = function (callback, id) {
   let sql = `select advertiser.*, categories.name  from advertiser 
-            inner join categories on advertiser.id_categories = categories.id ;`;
+            inner join categories on advertiser.id_categories = categories.id;`;
 
    if(id) {
     sql = `select advertiser.*, categories.name  from advertiser
     inner join categories on advertiser.id_categories = categories.id
     and categories.id = ${id}`;
    }
-
-
   connection.query(sql, function (err, results) {
     if (err) {
-      console.log('Error during select data from advertisers\n', err);
-      callback(err, null);
+      console.log('Error during select data from advertisers', err);
     } else {
       callback(null, results);
     }
   })
 }
+
 
 // function to search in advertiser table debend on name or city 
 // ,item table , categories table

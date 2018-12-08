@@ -20,7 +20,15 @@ var options = {
   host: "us-cdbr-iron-east-01.cleardb.net",
   user: "b625a4a27a00be",
   password: "d77c446e",
-  database: "adCraft"
+  database: "heroku_9e28b24ede6cb89"
+  //   //  host: "localhost",
+  //   //  user: "root",
+  //   //  password: "password",
+  //   //  database: "adCraft"
+  // host: "db4free.net",
+  // user: "ninjascript2",
+  // password: "password",
+  // database: "adcraft2"
 };
 // create object of mysqlstore and pass the option and we want to edit the session config
 var sessionStore = new MySQLStore(options)
@@ -231,10 +239,10 @@ app.post('/add-item', upload, (req, res) => {
             data: results
           });
         }
-       });
-  }
+      });
+    }
   })
-  
+
 });
 //////////////////////
 // upload images to advertisers.
@@ -256,15 +264,15 @@ const uploadAdv = multer({
 
 app.post('/sign-up-adv', uploadAdv, (req, res) => {
   console.log(req.file)
-   // recive the data from the formData request;
-   let advertiser = JSON.parse(req.body.advertiser);
-   // make link to image to save in database
-   let imgUrl = 'http://' + req.get('host') + '/AdvertiserImages/' + req.file.filename;
-   // add image url to item object
-   advertiser.imgUrl = imgUrl;
-    
-   console.log(advertiser)
-   // check if the account exist or not 
+  // recive the data from the formData request;
+  let advertiser = JSON.parse(req.body.advertiser);
+  // make link to image to save in database
+  let imgUrl = 'http://' + req.get('host') + '/AdvertiserImages/' + req.file.filename;
+  // add image url to item object
+  advertiser.imgUrl = imgUrl;
+
+  console.log(advertiser)
+  // check if the account exist or not 
   db.isAccountExist(advertiser.phoneNumber, function (err, result) {
     if (err) {
       console.log("error in check ", err)
@@ -343,10 +351,10 @@ app.post('/adv-items', function (req, res) {
   });
 });
 
-app.post('/delete-item', function(req, res) {
+app.post('/delete-item', function (req, res) {
   console.log("Delete Item");
-  db.deleteItem(req.body.item_id, function(err, result) {
-    if(err) {
+  db.deleteItem(req.body.item_id, function (err, result) {
+    if (err) {
       console.log("Error during delete item", err);
     } else {
       console.log("The Items deleted")
@@ -394,7 +402,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
- }
+}
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
