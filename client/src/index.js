@@ -24,13 +24,14 @@ class Home extends React.Component {
           </Route>
           <Route path="/user-dashboard/:id" exact component={UserDashboard} />
           <Route path="/adv-profile/:id" exact component={Advertiser} />
+          <Route path="/signup-adv" exact component={SignUpAdv} />
       </Router>
     );
   }
 }
 
 
-ReactDOM.render(<SignUpAdv/>, document.getElementById('root'));
+ReactDOM.render(<Home/>, document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change

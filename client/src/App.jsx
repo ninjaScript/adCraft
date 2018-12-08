@@ -41,6 +41,7 @@ class App extends Component {
   // Imaging experience for DOM appearance containing header, video, and other components with react base functionality
   render() {
     return (
+      <Grid class="parallax">
       <Grid container spacing={16} className="container center">
         <Grid item xs={12}>
           <Header toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
@@ -48,9 +49,11 @@ class App extends Component {
         <Grid item xs={12}>
           <Video />
         </Grid>
-        <PopSignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></PopSignUp>
-        <PopSignIn show={this.state.isOpenSignIn} onClose={this.toggleLogin}></PopSignIn>
+       
         <Grid className="category">
+        <Grid item xs className="quote" style={{marginLeft: "350px"}}>
+          <h1 id="topQuote" style={{marginTop: "100px", marginBottom: "55px"}}>Challenge your business.<span id="topQuote" style={{color:"#006789"}}> Advertise</span>. Stay motivated.</h1>
+        </Grid>
           <Category />
         </Grid>
         <Grid className="border">
@@ -61,8 +64,10 @@ class App extends Component {
         </Grid>
         <Footer />
       </Grid>
+        <PopSignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></PopSignUp>
+        <PopSignIn show={this.state.isOpenSignIn} onClose={this.toggleLogin}></PopSignIn>
+      </Grid>
     );
-
   }
 }
 
