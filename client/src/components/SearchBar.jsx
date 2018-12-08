@@ -30,6 +30,8 @@ class SearchBar extends  React.Component {
       },
       addUser: {
         marginRight: "10px",
+        color: "#fff",
+        background: "#006789" 
       }, 
     }
     return (
@@ -49,7 +51,6 @@ class SearchBar extends  React.Component {
             <Button 
               onClick ={this.search.bind(this)}
               variant="contained"
-              color="primary" 
               style={style.addUser}
             >
               search

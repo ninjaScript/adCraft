@@ -67,10 +67,23 @@ export default class SignIn extends React.Component {
       success: (res) => {
         if (res.success === 'login_success'){
           // redirest to main page
-          browserHistory.push({
-            pathname: "/user-dashboard/" + res.data.id+ "",
-            state: { user: res.data }
-          });
+          if(res.data.id_roles === 1) {
+            browserHistory.push({
+              pathname: "/user-dashboard/" + res.data.id + "",
+              state: { user: res.data }
+            });
+          } else {
+            browserHistory.push({
+              pathname: "/adv-profile/" + res.data.id,
+              state: {
+                // object contain adv data
+                advertiesr: res.data,
+                // obj contain user data
+                user: res.data
+              }
+            })
+          }
+         
         } else {
           alert("check on your password or phone number")
         }

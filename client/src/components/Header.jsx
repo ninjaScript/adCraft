@@ -23,7 +23,9 @@ export default class Header extends React.Component {
               <li className="menu__list-item"><a className="menu__link" href="https://www.instagram.com/adcraft_advertisement/?hl=en"><i className="fa fa-instagram fa-lg"></i></a></li>
               <li className="menu__list-item"><a className="menu__link" href="https://twitter.com/adCraft20"><i className="fa fa-twitter fa-lg"></i></a></li>
               <li className="menu__list-item"><Link to ="/sign-in" activeClassName={{color:"red"}}  className="menu__link"  onClick={this.props.toggleLogin}>Login</Link></li>
-              <li className="menu__list-item"><Link to ="/sign-up" activeClassName={{color:"red"}}  className="menu__link"  onClick={this.props.toggleSignup}>Sign up</Link></li>
+              <li className="menu__list-item"><Link to ="/sign-up" activeClassName={{color:"red"}}  className="menu__link"  onClick={this.props.toggleSignup}>Sign up as user</Link></li>
+              <li className="menu__list-item"><Link to ="/signup-adv" activeClassName={{color:"red"}}  className="menu__link"  onClick={this.props.toggleSignup}>Sign up as advertiser</Link></li>
+
             </ul>
           </Grid>
         </nav>

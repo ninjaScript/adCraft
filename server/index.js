@@ -7,9 +7,8 @@ const passport = require('passport');
 var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
 const multer = require("multer");
-
 const app = express();
-app.use(express.static(__dirname + '/../client/build'));
+app.use(express.static(__dirname + '/../client/public'));
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var options = {
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "1234",
   database: "adCraft"
 };
 // create object of mysqlstore and pass the option and we want to edit the session config
@@ -40,7 +39,7 @@ app.use(passport.session());
 
 
 app.post('/sign-up', function (req, res) {
-
+  console.log("User", req.body);
   var user = {
     "firstName": req.body.firstName,
     "lastName": req.body.lastName,
@@ -60,14 +59,14 @@ app.post('/sign-up', function (req, res) {
           if (err) {
             console.log("there is error during insert into account ")
           } else {
-            const user_id = result.insertId;
+            let user_id = result.insertId;
             console.log(user_id)
             // use login to make the session to user
             req.login(user_id, function (err) {
               user.id = user_id;
               res.send({
                 status: 200,
-                success: user,
+                success: "Successed !",
                 data: user
               });
             });
@@ -95,9 +94,17 @@ app.post('/sign-in', function (req, res) {
       if (result.length > 0) {
         if (result[0].password === password) {
           // select user info from database and pass it to res
-          db.selectUserInfo(result[0].id, result[0].id_roles, function (err, result) {
+          let table = "users"
+          console.log("Roles", result[0])
+          if (result[0].id_roles === 2) {
+            console.log("Change table")
+            table = "advertiser"
+          }
+
+          db.selectUserInfo(result[0].id, result[0].id_roles, table, function (err, result) {
             console.log("success", result);
-            const user_id = result[0].id;
+            let user_id = result[0].id;
+            console.log("user", result[0])
             // use login to make the session to user
             req.login(user_id, function (err) {
               res.send({
@@ -137,7 +144,7 @@ app.get('/logout', function (req, res) {
 
 // get request to latest-items 
 
-app.get('/latest-items',function(req, res) {
+app.get('/latest-items', function (req, res) {
   db.selectLatestItems(function (err, result) {
     if (err) {
       console.log("ERROR", err)
@@ -185,39 +192,65 @@ app.post('/search', authenticationMiddleware(), function (req, res) {
 //////////////
 //upload images to items.
 const storage = multer.diskStorage({
-   destination: function(req, file, cb){
+  destination: function (req, file, cb) {
     cb(null, __dirname + '/../client/public/ItemImages')
-   },
-   filename: function(req, file, cb){
-      cb(null,"IMAGE-" + Date.now() + file.originalname);
-   }
+  },
+  filename: function (req, file, cb) {
+    cb(null, "IMAGE-" + Date.now() + file.originalname);
+  }
 });
 
 
 const upload = multer({
-   storage: storage,
-   limits:{fileSize: 1000000},
+  storage: storage,
+  limits: { fileSize: 1000000 },
 }).single('myImage')
 
 
 app.post('/add-item', upload, (req, res) => {
-  console.log(req.file)
+  // recive the data from the formData request;
+  let item = JSON.parse(req.body.item);
+  // make link to image to save in database
+  let imgUrl = 'http://' + req.get('host') + '/ItemImages/' + req.file.filename;
+  // add image url to item object
+  item.imgUrl = imgUrl;
+  // insert into database
+  db.insertIntoItems(item.advertiserID, item, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      // retrive the data after update  the items
+      db.selectItems(item.advertiserID, function (err, results) {
+        if (err) {
+          throw err;
+        } else {
+          console.log(results)
+          res.send({
+            status: 200,
+            success: "successed!",
+            data: results
+          });
+        }
+       });
+  }
+  })
+  
 });
 //////////////////////
 // upload images to advertisers.
 const storageAdv = multer.diskStorage({
-   destination: function(req, file, cb){
+  destination: function (req, file, cb) {
     cb(null, __dirname + '/../client/public/AdvertiserImages')
-   },
-   filename: function(req, file, cb){
-      cb(null,"IMAGE-" + Date.now() + file.originalname);
-   }
+  },
+  filename: function (req, file, cb) {
+    cb(null, "IMAGE-" + Date.now() + file.originalname);
+  }
 });
 
 
 const uploadAdv = multer({
-   storage: storageAdv,
-   limits:{fileSize: 1000000},
+  storage: storageAdv,
+  limits: { fileSize: 10000000 },
 }).single('myAdvImage')
 
 
@@ -226,9 +259,6 @@ app.post('/sign-up-adv', uploadAdv, (req, res) => {
 });
 
 ///////////////
-
-
-
 
 
 // get request to retrive categories from database
@@ -256,6 +286,18 @@ app.post('/adv-category', function (req, res) {
   }, req.body.id_cat);
 });
 
+// post request to retrive items for advertiser 
+app.post('/adv-items', function (req, res) {
+  console.log(req.body);
+  db.selectItems(req.body.adv_id, function (err, results) {
+    if (err) throw err;
+    res.send({
+      status: 200,
+      success: "successed!",
+      data: results
+    });
+  });
+});
 
 
 // store  data to session here we pass user_id

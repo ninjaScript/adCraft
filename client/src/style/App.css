@@ -158,22 +158,39 @@ i {
 /* Description of our video add*/
 .content {
     position: absolute;
+   text-align: center;
+    bottom: 100px;
     display: flex;
     justify-content: center;
-    bottom: 200px;
+    bottom: 100px;
     width: 100%;
     padding: 20px;
-    margin-bottom: -160px;
     top: 50px;
     color: #ffaa3b;
     font-size: 60px; 
 }
 
+.flex-item + .flex-item {
+  margin-left: 10px;
+    bottom: 100px;
+    left: 200px;
+    right: 200px;
+    padding: 20px;
+    text-align: center;
+    bottom: 120px;
+    
+}
+
+.content p{
+  color: #e5e3dc;
+  font-size: 40px; 
+  text-align: center
+}
 
 .titleDesc {
     width: 400px;
     height: 1500px;
-    margin-left:-1510px;
+    margin-left:20px;
     margin-top: -70px;
     padding: 20px;
     background: rgba(0,0,0,0.5);
@@ -367,7 +384,7 @@ div.footer1:hover {
 }
 
 .bm-burger-bars {
-  background: #006789;
+  background: #fff;
   margin-top: -15px;
   position: fixed;
   margin-left: -20px;
@@ -417,6 +434,7 @@ div.footer1:hover {
 }
 
 .category {
+
   margin-top: 750px;
   margin-left: 260px;
   margin-bottom: 0px;

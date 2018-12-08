@@ -16,7 +16,7 @@ export default class ImgCompAdd extends React.Component {
     this.setState({
       img: event.target.files[0],
     })
-    console.log(this.state.Img)
+    console.log(event.target.files[0])
     this.props.getImg(event.target.files[0])
   }
 

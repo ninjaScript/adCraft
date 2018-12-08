@@ -6,11 +6,16 @@ import {browserHistory } from 'react-router';
 const style ={
   root: {
     display: 'flex',
-    justifyContent: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
     overflow: 'hidden',
+    padding: 20,
+    marginLeft : 20,
+    marginRight: 20
+  
   },
   gridList: {
-    width: '70%',
+    width: '100%',
     height: '100%',
   },
 };
@@ -32,13 +37,6 @@ export default class AdvertiserGridList extends React.Component {
               visitProfile = {this.props.visitProfile.bind(this)}  
             />
           )}
-          {/* <AdvertiserStore/>
-          <AdvertiserStore/>
-          <AdvertiserStore/>
-          <AdvertiserStore/>
-          <AdvertiserStore/>
-          <AdvertiserStore/>
-          <AdvertiserStore/> */}
         </GridList>
       </div >
     )
