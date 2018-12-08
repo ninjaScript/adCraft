@@ -1,14 +1,17 @@
+// { /*************************************** Header Component  *********************************/}
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import '../style/App.css';
 import {Link} from 'react-router'
 
+// header component with statemess functionality, Sign in and Log in included as a modal functionality in this component
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
+ 
+  // icons and links included to be rendered and declairing classes for css usage
   render() {
     return (
       <Grid>
