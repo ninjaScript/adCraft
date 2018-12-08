@@ -31,14 +31,14 @@ class DropDown extends React.Component {
     super(props);
     this.state = {
       openDrop: false,
-      category: ""  
+      category: ""
     };
   };
 
-      //might be wrong
+  //might be wrong
   handleChangeDrop(event) {
     this.setState({ [event.target.name]: event.target.value });
-    this.props.getCategory(event.target.value)
+    this.props.getCategoryId(event.target.value)
   };
   handleCloseDrop() {
     this.setState({ openDrop: false });
@@ -50,12 +50,14 @@ class DropDown extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-          <form autoComplete="off">
+      <form autoComplete="off">
         <Button className={classes.button} onClick={this.handleOpenDrop.bind(this)}>
           Choose Category
         </Button>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="demo-controlled-open-select">Category</InputLabel>
+        <FormControl fullWidth className={classes.formControl}>
+          <InputLabel htmlFor="demo-controlled-open-select">
+             Select your category
+          </InputLabel>
           <Select required={true}
             open={this.state.open}
             onClose={this.handleCloseDrop.bind(this)}
@@ -70,9 +72,13 @@ class DropDown extends React.Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {
+              this.props.categories.map((category) =>(
+                <MenuItem value={category.id}>
+                  {category.name}
+                 </MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
       </form>
