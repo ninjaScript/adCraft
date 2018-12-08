@@ -16,6 +16,7 @@ import {
 import PNG from '../style/signup.png';
 import DropDown from './DropDownMenu.jsx'
 import ImgComp from './ImgComp.jsx'
+const axios = require("axios");
 
 
 
@@ -37,7 +38,10 @@ export default class SignUpAdv extends React.Component {
       validation: false,
       isSignUp:false
     };
-    this.handleOnClick = this.handleOnClick.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
 
@@ -130,6 +134,33 @@ export default class SignUpAdv extends React.Component {
     console.log(this.state.category)
    }
 
+
+
+  onFormSubmit(e){
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('myAdvImage',this.state.img);
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    };
+    //!!!
+    axios.post("/sign-up-adv",formData,config)
+        .then((response) => {
+            alert("The file is successfully uploaded");
+        }).catch((error) => {
+    });
+  }
+
+
+
+  onClick(e) {
+    this.handleOnClick(e)
+    this.onFormSubmit(e)
+  }
+
+
   render() {
 
 
@@ -144,7 +175,7 @@ export default class SignUpAdv extends React.Component {
               </Typography>
             </Typography>
           </div>
-          <form>
+          <form action="/sign-up-adv" method="post" encType="multipart/form-data">
             <ImgComp getImg={this.getImg.bind(this)}/>
             <div>
             <DropDown getCategory={this.getCategory.bind(this)}/>               
@@ -155,7 +186,7 @@ export default class SignUpAdv extends React.Component {
               name="firstName"
               margin="normal"
               value={this.state.firstName}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               fullWidth
             />
             <TextField
@@ -165,7 +196,7 @@ export default class SignUpAdv extends React.Component {
               required={true}
               margin="normal"
               value={this.state.lastName}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               fullWidth
             />
 
@@ -177,7 +208,7 @@ export default class SignUpAdv extends React.Component {
               name="phoneNumber"
               margin="normal"
               value={this.state.phoneNumber}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               fullWidth
             />
             <Typography
@@ -196,7 +227,7 @@ export default class SignUpAdv extends React.Component {
               margin="normal"
               name="password"
               value={this.state.password}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               fullWidth
             />
             <Typography
@@ -212,7 +243,7 @@ export default class SignUpAdv extends React.Component {
               <RadioGroup
                 aria-label="Gender"
                 value={this.state.gender}
-                onChange={this.handleChange.bind(this)}
+                onChange={this.handleChange}
                 name="gender"
               >
                 <FormControlLabel
@@ -228,7 +259,7 @@ export default class SignUpAdv extends React.Component {
               </RadioGroup>
             </FormControl>
             <Button
-              onClick={this.handleOnClick.bind(this)}
+              onClick={this.onClick}
               className="btnStyle"
               color="inherit"
               style={{ backgroundColor: "#006789" }}
