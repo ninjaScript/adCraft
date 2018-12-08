@@ -1,44 +1,39 @@
 # Project Name #
-
-<!-- 
-> This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
-
-There is an approach called "working backwards" that is widely used at Amazon. They work backwards from the customer, rather than starting with an idea for a product and trying to bolt customers onto it. While working backwards can be applied to any specific product decision, using this approach is especially important when developing new products or features.
-
-For new initiatives a product manager typically starts by writing an internal press release announcing the finished product. The target audience for the press release is the new/updated product's customers, which can be retail customers or internal users of a tool or technology. Internal press releases are centered around the customer problem, how current solutions (internal or external) fail, and how the new product will blow away existing solutions.
-
-If the benefits listed don't sound very interesting or exciting to customers, then perhaps they're not (and shouldn't be built). Instead, the product manager should keep iterating on the press release until they've come up with benefits that actually sound like benefits. Iterating on a press release is a lot less expensive than iterating on the product itself (and quicker!).
-
-If the press release is more than a page and a half, it is probably too long. Keep it simple. 3-4 sentences for most paragraphs. Cut out the fat. Don't make it into a spec. You can accompany the press release with a FAQ that answers all of the other business or execution questions so the press release can stay focused on what the customer gets. My rule of thumb is that if the press release is hard to write, then the product is probably going to suck. Keep working at it until the outline for each paragraph flows. 
-
-Oh, and I also like to write press-releases in what I call "Oprah-speak" for mainstream consumer products. Imagine you're sitting on Oprah's couch and have just explained the product to her, and then you listen as she explains it to her audience. That's "Oprah-speak", not "Geek-speak".
-
-Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
- -->
+  > AdCraft
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Advertisements for home business.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Home based entrepreneur and customers that in need with product services. 
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Welcome to adCraft Advertising, your number one source for all Home to Commercial Business Advertisement.
+  We're dedicated to giving you the very best of Advertising Services, with a focus on dependability, customer service and uniqueness.
+  You can find any home made product in our website, no need to visit any other websites to make sure that you get the best service.
+  Founded this year, 2018 by four talented personnel, Mohammad Rawashdeh, Radwan Abdoh, Esraa Zaitoun, and Qusay Al-Bawareed.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Today a lot of people can't go out and work or to get a job. So they prefer to start there own business at home.
+  The big problem they faced now a days is that how they can publish there prouducts in one place without fearing from deleting there advertisement, and without paying a lot for this advertisement.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Our project collects all the type of home business in one website.
+  The website contain categories like fshion, baked goods, crafts, food,sweets, and more. 
+  If you are an Advertiser, we can easily create account for you, add advertisements for your products including the price, description, and your location. Every thing is free you can add advertisements for all your products.
+  As a Customer anything you want to get  and you want to make sure that it's home made, just visit our website and try it. Every advertisement has been rated from other customers, so you can check the quality of this prouduct.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > Adcraft Advertising has come a long way from its beginnings in a small idea of great minds from RBK's Students in wonders of Jordan. When the four pioneer first started out, there   passion for helping other entrepreneur be more eco-friendly, providing the best  advertising tools for his fellow businessman and women drove him to do intense research,  having sleepless nights, and gaving them the impetus to turn hard work and inspiration into  to a booming online store. We now serve customers all over Jordan, the world, the Amman area, and are thrilled to be a part of the quirky, eco-friendly, fair business advertising trade wing of the advertising industry such as fashion, baked goods, crafts and more.
+  We hope you enjoy our Advertisement Services as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > You can just sign-up with your phone number, then you can see all the advertisment of home made products.
+  If you are an Advertiser, you should add your business, location,  email, in additinal to phone number.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > The app was so reliable my profit in my business increased since i start using it, I gonna recommend it to my family and friends.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > To try our website please visit this link:
+
