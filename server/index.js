@@ -17,14 +17,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // configration MySqlStore to save the sessions;
 var options = {
-  host: "localhost",
-  user: "root",
-  password: "password",
+  host: "us-cdbr-iron-east-01.cleardb.net",
+  user: "b625a4a27a00be",
+  password: "d77c446e",
   database: "adCraft"
 };
 // create object of mysqlstore and pass the option and we want to edit the session config
 var sessionStore = new MySQLStore(options)
-
 
 // configration session
 app.use(session({
@@ -387,6 +386,15 @@ function authenticationMiddleware() {
     });
   }
 }
+
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  // Handle React routing, return all requests to React app
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+ }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
