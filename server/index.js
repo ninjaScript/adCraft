@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var options = {
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "password",
   database: "adCraft"
 };
 // create object of mysqlstore and pass the option and we want to edit the session config
