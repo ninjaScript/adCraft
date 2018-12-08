@@ -171,7 +171,7 @@ const selectUserInfo = function (id, rolesId, table,callback) {
   var sql = `select account.phoneNumber, account.id_roles, ${table}.* from account 
 	inner join ${table} 
 	on account.id = ${table}.id
-    where account.id = '${id}' and account.id_roles='${rolesId}'`;
+    where account.id = ${id} and account.id_roles=${rolesId};`;
   connection.query(sql, function (err, result) {
     if (err) {
       throw err
@@ -182,7 +182,6 @@ const selectUserInfo = function (id, rolesId, table,callback) {
 }
 
 // This function to get the latest 10 items from the items table.
-
 const selectLatestItems = function (callback) {
   var sqlTopTenItems = `SELECT advertiser.firstName, advertiser.lastName, items.name, items.price, items.imgUrl, items.descr,
                          items.createdAt FROM items
@@ -200,7 +199,7 @@ const selectLatestItems = function (callback) {
 
 // function to select all the advertiser and select advertiser for specific category
 // depend on the id if pass to function or not
-const selectAdvertisers = function (callback, id) {
+const selectAdvertisers = function (id, callback) {
   let sql = `select advertiser.*, categories.name  from advertiser 
             inner join categories on advertiser.id_categories = categories.id ;`;
 
@@ -324,4 +323,5 @@ module.exports.selectAdvertisers = selectAdvertisers;
 module.exports.search = search;
 module.exports.selectAllCategories = selectAllCategories;
 module.exports.selectItems = selectItems;
+module.exports.selectAdvertiserforCategory = selectAdvertiserforCategory;
 module.exports.deleteItem = deleteItem;

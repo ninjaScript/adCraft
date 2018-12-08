@@ -34,6 +34,7 @@ var item = {
   price: 33,
   imgUrl: "https://i.imgur.com/KXBhaNv.jpg",
   descr: "its the best bike",
+  id_advertiser: 1,
   createdAt: db.formatDate()
 }
 
@@ -42,6 +43,7 @@ var item2 = {
   price: 332,
   imgUrl: "https://i.imgur.com/KXBhaNv.jpg",
   descr: "its the best bike2",
+  id_advertiser: 2,
   createdAt: db.formatDate()
 }
 
@@ -85,7 +87,6 @@ describe('Database ', function () {
         throw err
       } else {
         expect(result).to.be.not.null;
-        done()
       }
     })
     db.addRoles(roleAdv, function (err, result) {
@@ -98,17 +99,17 @@ describe('Database ', function () {
     })
   });
 
-  // it('should insert accountUser and user to db', function (done) {
+  it('should insert accountUser and user to db', function (done) {
 
-  //   db.insertAccount(user, function (err, result) {
-  //     if (err) {
-  //       throw err
-  //     } else {
-  //       expect(result).to.be.not.null;
-  //       done()
-  //     }
-  //   })
-  // });
+    db.insertAccount(user, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
 
   it('should insert categories to db', function (done) {
     db.insertIntoCat(categories, function (err, result) {
@@ -135,7 +136,7 @@ describe('Database ', function () {
 
 
   it('should insert items to db', function (done) {
-    db.insertIntoItems('2', item2, function (err, result) {
+    db.insertIntoItems(2, item2, function (err, result) {
       if (err) {
         throw err
       } else {
@@ -156,6 +157,94 @@ describe('Database ', function () {
       }
     })
   });
+
+  it('should search user info from tables', function (done) {
+    db.selectUserInfo(2, 2, 'advertiser',function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        console.log("lol",result)
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+    it('should get 10 latest items', function (done) {
+    db.selectLatestItems(function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+
+    it('should select advertisers', function (done) {
+    db.selectAdvertisers(1, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+
+    it('should select advertisers', function (done) {
+    db.search('amman', function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+
+    it('should select all categories', function (done) {
+    db.selectAllCategories(function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+
+
+    it('should select all items for advertiser', function (done) {
+    db.selectItems(1, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        console.log("test:",result)
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+
+
+    it('should select all items for advertiser category', function (done) {
+    db.selectAdvertiserforCategory(1, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
+  });
+
+
 
 });
 
