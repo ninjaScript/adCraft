@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/styles.css";
 import $ from "jquery";
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import {
   Paper,
   Button,
@@ -11,11 +11,12 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Grid,
   Typography
 } from "@material-ui/core";
 import PNG from '../style/signup.png';
 import DropDown from './DropDownMenu.jsx'
-import ImgComp from './ImgComp.jsx'
+import ImgCompAdd from './ImgCompAdd.jsx'
 const axios = require("axios");
 
 
@@ -32,11 +33,12 @@ export default class SignUpAdv extends React.Component {
       open: false,
       location: "",
       img: null,
-      category: "",
+      category: 0,
       errorPhone: "",
       errorPassword: "",
       validation: false,
-      isSignUp:false
+      isSignUp: false,
+      categories: []
     };
     this.handleOnClick = this.handleOnClick.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -44,6 +46,23 @@ export default class SignUpAdv extends React.Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+
+  componentDidMount() {
+
+    $.ajax({
+      url: '/categories',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (res) => {
+        if (res.data.length > 0){
+          this.setState({categories : res.data})
+        }
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
 
   // this function to deal eith the textField and get the data
   handleChange(e) {
@@ -77,80 +96,84 @@ export default class SignUpAdv extends React.Component {
     }
   }
 
-
-
-
-
-
-
-
-
   // handle when click to send info to server
   handleOnClick(e) {
     e.preventDefault();
-    console.log(this.state);
-    // if the validation true  send data
-    if (this.state.validation) {
-      $.ajax({
-        url: '/sign-up',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          phoneNumber: this.state.phoneNumber,
-          password: this.state.password,
-          gender: this.state.gender,
-          img: this.state.img,
-          location: this.state.location,
-          category: this.state.category,
-          id_roles: 2
-        }),
-        success: (res) => {
-          if(res.success !== 'userExist') {
-            browserHistory.push({
-            pathname: "/user-dashboard/7Adv",
-            state: { user: res.data }
-            });
-          } else {
-            alert("This user is exist");
-          }
-        },
-        error: (err) => {
-          console.log('err', err);
-        }
-      }); 
-    }
+    // console.log(this.state);
+    // // if the validation true  send data
+    // if (this.state.validation) {
+    //   $.ajax({
+    //     url: '/sign-up',
+    //     type: 'POST',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify({
+    //       firstName: this.state.firstName,
+    //       lastName: this.state.lastName,
+    //       phoneNumber: this.state.phoneNumber,
+    //       password: this.state.password,
+    //       gender: this.state.gender,
+    //       img: this.state.img,
+    //       location: this.state.location,
+    //       category: this.state.category,
+    //       id_roles: 2
+    //     }),
+    //     success: (res) => {
+          
+    //     },
+    //     error: (err) => {
+    //       console.log('err', err);
+    //     }
+    //   });
+    // }
   }
 
   //helping ImgComp
-  getImg(Img) {
-    this.setState({img: Img})
-    console.log(this.state.Img)
+  getImg(img) {
+    this.setState({ img: img })
+    console.log(this.state.img)
   }
-  // help DropDownMenu
-  getCategory(term) {
-    this.setState({category: term})
+  // help DropDownMenu to get category id 
+  getCategoryId(id) {
+    this.setState({ category: id })
     console.log(this.state.category)
-   }
+  }
 
 
 
-  onFormSubmit(e){
+  onFormSubmit(e) {
     e.preventDefault();
+    let  data= JSON.stringify({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      phoneNumber: this.state.phoneNumber,
+      password: this.state.password,
+      gender: this.state.gender,
+      img: this.state.img,
+      location: this.state.location,
+      category: this.state.category,
+      id_roles: 2
+    })
     const formData = new FormData();
-    formData.append('myAdvImage',this.state.img);
+    formData.append('myAdvImage', this.state.img);
+    formData.append('advertiser', data)
     const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
     };
     //!!!
-    axios.post("/sign-up-adv",formData,config)
-        .then((response) => {
-            alert("The file is successfully uploaded");
-        }).catch((error) => {
-    });
+    axios.post("/sign-up-adv", formData, config)
+      .then((res) => {
+        if (res.data.success !== 'userExist') {
+          browserHistory.push({
+            pathname: "/adv-profile/" + res.data.data.id,
+            state: { user: res.data.data }
+          });
+        } else {
+          alert("This user is exist");
+        }
+      }).catch((error) => {
+      });
   }
 
 
@@ -165,20 +188,23 @@ export default class SignUpAdv extends React.Component {
 
 
     return (
-      <div className="container">
-        <Paper className="style">
+      <Grid container md style={{ display: "flex", justifyContent: "center" }}>
+        <Paper style={{ padding: "30px", width: "60%", margin: "20px" }}>
           <div>
             <Typography variant="display2" align="center" color="primary" >
               <img src={PNG} width="100" height="100" alt="" />
               <Typography className="_Signup" variant="display2" align="center" style={{ "color": "#006789" }}>
-                Sign Up As An Advertiser
+                Sign Up As Advertiser
               </Typography>
             </Typography>
           </div>
           <form action="/sign-up-adv" method="post" encType="multipart/form-data">
-            <ImgComp getImg={this.getImg.bind(this)}/>
+            <ImgCompAdd getImg={this.getImg.bind(this)} />
             <div>
-            <DropDown getCategory={this.getCategory.bind(this)}/>               
+              <DropDown 
+                getCategoryId={this.getCategoryId.bind(this)}
+                categories = {this.state.categories}
+              />
             </div>
             <TextField
               label="First Name"
@@ -196,6 +222,16 @@ export default class SignUpAdv extends React.Component {
               required={true}
               margin="normal"
               value={this.state.lastName}
+              onChange={this.handleChange}
+              fullWidth
+            />
+            <TextField
+              label="Location"
+              type="text"
+              name="location"
+              required={true}
+              margin="normal"
+              value={this.state.location}
               onChange={this.handleChange}
               fullWidth
             />
@@ -281,7 +317,7 @@ export default class SignUpAdv extends React.Component {
             Already have an Account?
           </Button>
         </Paper>
-      </div>
+      </Grid>
     );
   }
 

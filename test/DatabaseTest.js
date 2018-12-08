@@ -5,17 +5,17 @@ var expect = require('chai').expect;
 var should = require('chai').should();
 
 var advertiser = {
-  firstName: "Mohammad",
+  firstName: "Kenan",
   lastName: "Hasan",
   gender: "male",
   email: "qusay@example.com",
   imageUrl: "https://i.imgur.com/EDge1nS.jpg",
-  numFeedback: 80,
+  numFeedback: 70,
   rateAvg: 5,
   location: "amman",
   id_categories: 1,
   id_roles: 2,
-  phoneNumber: "0796305984",
+  phoneNumber: "c",
   password: "helloworld",
   createdAt: db.formatDate()
 }
@@ -89,6 +89,14 @@ describe('Database ', function () {
       }
     })
 
+    db.addRoles(roleUser, function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.be.not.null;
+        done()
+      }
+    })
     db.addRoles(roleAdv, function (err, result) {
       if (err) {
         throw err
@@ -99,17 +107,17 @@ describe('Database ', function () {
     })
   });
 
-  it('should insert accountUser and user to db', function (done) {
+  // it('should insert accountUser and user to db', function (done) {
 
-    db.insertAccount(user, function (err, result) {
-      if (err) {
-        throw err
-      } else {
-        expect(result).to.be.not.null;
-        done()
-      }
-    })
-  });
+  //   db.insertAccount(user, function (err, result) {
+  //     if (err) {
+  //       throw err
+  //     } else {
+  //       expect(result).to.be.not.null;
+  //       done()
+  //     }
+  //   })
+  // });
 
   it('should insert categories to db', function (done) {
     db.insertIntoCat(categories, function (err, result) {

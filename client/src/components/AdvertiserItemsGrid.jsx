@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 
 import AdvertiserItems from './AdvertiserItems.jsx';
+import { Paper } from '@material-ui/core';
 
 const style = {
   root: {
@@ -11,10 +12,13 @@ const style = {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    marginLeft: 25
+    padding: 20,
+    marginLeft : 20,
+    marginRight: 20
+  
   },
   gridList: {
-    width: '70%',
+    width: '100%',
     height: '100%',
   },
 };
@@ -23,22 +27,23 @@ export default class AdvertiserItemsGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log(this.props.items)
   }
 
   render() {
     return (
-      <div style = {style.root} >
-        <GridList cols={3}  style={style.gridList}>
-          <AdvertiserItems 
-            userID = {this.props.userID}
-          />
-          <AdvertiserItems/>
-          <AdvertiserItems/>
-          <AdvertiserItems/>
-          <AdvertiserItems/>
-          <AdvertiserItems/>
+      <Paper style = {style.root} >
+        <GridList cols={4}  style={style.gridList}>
+          {
+            this.props.items.map((item) =>(
+              <AdvertiserItems key = {item}
+                item = {item}
+                userID = {this.props.userID}
+              />
+            ))
+          }
         </GridList>
-      </div >
+      </Paper>
     )
   }
 }

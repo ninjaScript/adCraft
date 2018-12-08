@@ -15,7 +15,7 @@ export default class Video extends React.Component {
           <source src={video} type="video/mp4"/>
         </video>
         <div spacing={16} className="content">
-          <span className="titleDesc">adCraft a big community for crafty homemade products </span>
+          <p className="titleDesc">adCraft a big community for crafty homemade products </p>
         </div>
       </div>
     )

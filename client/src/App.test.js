@@ -9,7 +9,7 @@ import Category from './components/Category.js';
 import { expect } from 'chai';
 import ItemList from './components/itemList.js';
 import Header from './components/Header.jsx';
-
+import renderer from 'react-test-renderer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -34,14 +34,12 @@ describe('<App />', () => {
   });
 });
 
-describe('Test Button component', () => {
-  it('Test click event', () => {
-    const mockCallBack = jest.fn();
+test('renders button with passed props', () => {
+  const component = renderer.create(
+    <Button onClick={() => {}} label="test label" />
+  );
 
-    const button = shallow((<Category onClick={mockCallBack}>Ok!</Category>));
-    button.find('button').simulate('click');
-    expect(mockCallBack.mock.calls.length).toEqual(1);
-  });
+  expect(component.toJSON()).toMatchSnapshot();
 });
 
 
