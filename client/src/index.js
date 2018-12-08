@@ -7,10 +7,9 @@ import PopSignIn from './PopSignIn.js';
 import UserDashboard from './UserDashboard.jsx';
 import * as serviceWorker from './serviceWorker';
 import Advertiser from './components/Advertiser.jsx';
-
 import { Router, Route, browserHistory } from 'react-router';
-import AddItem from './components/AddItemComp.jsx';
 import SignUpAdv from './components/SignUpAdv.jsx';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +30,7 @@ class Home extends React.Component {
 }
 
 
-ReactDOM.render(<Home/>, document.getElementById('root'));
+ReactDOM.render(<SignUpAdv/>, document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change

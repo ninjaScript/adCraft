@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 
 const style = {
   card: {
-    maxWidth: 320,
-    margin : 10,
+    width: 290,
+    margin : 7,
     textAlign :"left"
     },
   media: {
@@ -20,7 +20,7 @@ const style = {
     marginLeft: 10,
   },
   button: {
-    marginLeft: 100,
+    marginLeft: 80,
   },
 };
 

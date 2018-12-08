@@ -129,8 +129,8 @@ export default class UserDashboard extends React.Component {
 
   render() {
     const paper = {
-      padding: "5px",
       margin: "10px",
+      paddingTop: 20,
       textAlign: "center",
       height: "100%"
     }
@@ -139,16 +139,16 @@ export default class UserDashboard extends React.Component {
         <DaHeader user={this.state.user} logout={this.logout.bind(this)} />
         <Sidebar handleonClickSideList={this.handleonClickSideList.bind(this)} data={this.state.categories} />
 
-          <div style= {{height:"1000px"}}>
+          <div>
             <Paper style={paper}>
               <div>
                 <h1>Search in adCraft community</h1>
-              </div>
+              </div >
                <center><div style={{ marginTop: "80px" }}>
                 <SearchBar search={this.search.bind(this)} />
               </div>
               </center>
-              <div style={{ marginTop: "100px" , display: 'flex', justifyContent: 'center',overflow: 'hidden', }}>
+              <div>
                 <h2>{this.state.notFound}</h2>
                 <AdvertiserGridList
                   data={this.state.advertisers}

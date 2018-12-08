@@ -2,6 +2,8 @@ import React from 'react';
 import AdvertiserProfile from './AdvertiserProfile.jsx';
 import AdvertiserItemsGrid from './AdvertiserItemsGrid.jsx';
 import $ from 'jquery';
+const axios = require("axios");
+
 export default class Advertiser extends React.Component {
 
   constructor(props) {
@@ -28,6 +30,27 @@ export default class Advertiser extends React.Component {
         console.log(err);
       }
     });
+  }  
+
+  // this function to add items to database it pass tp advertiserProfile
+  addItems(formData) {
+    console.log("Helllllll")
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+    // !!!
+    axios.post("/add-item", formData, config)
+      .then((res) => {
+        console.log(res)
+        if(res.data.data.length > 0) {
+          this.setState({items: res.data.data})
+        }
+        alert("The file is successfully uploaded");
+       
+      }).catch((error) => {
+    });
   }
 
   render() {
@@ -37,6 +60,7 @@ export default class Advertiser extends React.Component {
           <AdvertiserProfile
             advertiesr={this.props.location.state.advertiesr}
             user={this.props.location.state.user}
+            addItems = {this.addItems.bind(this)}
           />
         </div>
         <div>

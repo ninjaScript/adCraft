@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 const style = {
   card: {
-    width: "350px",
+    width: "300px",
     maxHeight: 400,
     margin: 7,
   },
@@ -23,7 +23,7 @@ const style = {
     color: "#cc0000",
   },
   button: {
-    marginLeft: 80,
+    marginLeft: 100,
     color: "#006789",
   },
 };
@@ -65,17 +65,17 @@ export default class AdvertiserItems extends React.Component {
         <Card style={style.card}>
           <CardActionArea>
             <CardMedia style={style.media}
-              image="https://cdn-image.foodandwine.com/sites/default/files/1509031600/arugua-and-squash-salad-XL-RECIPE1217.jpg"
+              image= {this.props.item.imgUrl}
             />
             <CardContent style= {{textAlign:"left"}}>
-              <Typography gutterBottom variant="h4" style={{ "color": "#006789", fontWeight:"bold" }}>
+              <Typography gutterBottom variant="h6" style={{ "color": "#006789", fontWeight:"bold" }}>
                 {this.props.item.name}
             </Typography>
               <Typography variant="subtitle1">
                 { "Desc: " +this.props.item.descr}
             </Typography>
-              <Typography variant="h6" style ={{fontWeight:"bold"}}>
-                {"The price is:" + this.props.item.price +" JD"}
+              <Typography variant="h6">
+                {"Price :" + this.props.item.price +" JD"}
             </Typography>
             </CardContent>
           </CardActionArea>
