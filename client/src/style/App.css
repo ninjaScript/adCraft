@@ -1,7 +1,13 @@
 /*importing font styles and css components are isential part of we design fonts.googleapis are very good source of any type of designs*/
 @import url('https://fonts.googleapis.com/css?family=Varela Round:300,400,700');
-
-
+@font-face {
+  font-family: myFirstFont;
+  src: url(./SmoothieShoppe.ttf);
+}
+@font-face {
+  font-family: myFont;
+  src: url(./Signerica.ttf);
+}
 
 /*initial View Styling*/
 /***************************** 1st Page ************************************/
@@ -11,10 +17,11 @@
 }
 
 /* set to zero for the page to maximize potential for design*/
-body {
+body, html {
     margin: auto;
     padding: auto;
-    background-color: #e5e3dc;
+    height: 100%;
+    background: #cbcac9;
 }
 
 /***************************** Header ************************************/
@@ -137,7 +144,7 @@ i {
   margin-top: 80px;
   padding: 0;
   width: 100%;
-  height: 65%; 
+  height: 75%; 
   overflow: hidden;   
 
 }
@@ -401,9 +408,16 @@ div.footer1:hover {
 }
 
 /***************************** Category 1st Page ************************************/
+.quote {
+  font-size: 20px;
+}
+
+#topQuote {
+  font-family: myFirstFont;
+}
 
 .category {
-  margin-top: 710px;
+  margin-top: 750px;
   margin-left: 260px;
   margin-bottom: 0px;
 }
@@ -434,19 +448,19 @@ div.footer1:hover {
 
 #myBtn1 {
   outline: none;
-  position: absolute;
+  
   width: 200px;
   font-size: 18px;
   padding: 10px 20px;
   background: #fff;
-  color: #000;
+  color: #fff;
   cursor: pointer;
-  margin-left: 50px;
-  margin-top: -470px;
+  margin-left: 10px;
+  margin-top: -70px;
   border: 2px solid #343434 !important;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
   border-radius: 10px;
 }
 
@@ -458,7 +472,6 @@ div.footer1:hover {
 }
 
 .border {
- 
   margin-top: 50px;
   text-align: center;
   width: 1409px;
@@ -472,7 +485,42 @@ div.footer1:hover {
 }
 /***************************** AboutUs Section 1st Page ************************************/
 
-.card {
+.media1 {
+  margin-top: 20px;
+  margin-left: 650px;
+  height: 100px;
+  width: 100px;
+}
+
+.mediaMission {
+  margin-left: 580px;
+  height: 100px;
+  width: 200px;
+  margin-bottom: 0px;
+}
+
+#mission {
+  font-family: myFirstFont;
+}
+
+#mission1 {
+  font-family: myFirstFont;
+  margin-left: 50px;
+  margin-bottom: 40px;
+}
+
+#mission2 {
+  font-family: myFirstFont;
+  margin-left: -50px;
+  margin-bottom: 0px;
+}
+
+.card, .card1, .card2 {
+  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url(./background.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin-top: -3px;
   margin-left:0px;
   right: 100px;
@@ -485,28 +533,309 @@ div.footer1:hover {
   padding: 10px 50px;
 }
 
+#arrange2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#arrange3 {
+  margin-top: 10px;
+}
+
 h2 {
   padding: 10px 50px;
 }
 
 .media {
-  margin-top: 2%;
-  margin-left: 2%;
-  height: 100px;
-  width: 50px;
-  transition: all 2s cubic-bezier(1.000, -0.530, 0.405, 1.425);
+  -webkit-transition: all 0.1s ease;
+     -moz-transition: all 0.1s ease;
+       -o-transition: all 0.1s ease;
+      -ms-transition: all 0.1s ease;
+          transition: all 0.1s ease;
 }
 
-.media:active {
-  
-  margin-left: 495px;
-  transform: none;
+.media:hover {
+  border: 5px solid #ffaa3b;
+  border-radius: 50%;
+}
+p {
+  margin: 0;
 }
 
+#closing{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+#signature {
+  font-family: myFont;
+}
 .ninjaScript {
-  margin-left: 350px;
+  margin-top: 80px;
+  margin-left: 230px;
 }
+
+/***********************************OurServices****************************************/
+.card1 {
+  margin-top: -3px;
+  margin-left:0px;
+  right: 100px;
+  text-align: justify;
+  max-width: 1400px;
+  height: 1950px;
+}
+
+/*SlideShow functionality including transform and animation property usage from CSS*/
+.tech-slideshow {
+  height: 200px;
+  width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.tech-slideshow > div {
+  height: 200px;
+  width: 3226px;
+  background: url(./collage.jpg) 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 150%;
+  transform: translate3d(0, 0, 0);
+}
+.tech-slideshow .mover-1 {
+  animation: moveSlideshow 12s linear infinite;
+}
+.tech-slideshow .mover-2 {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  background-position: 0 -200px;
+  animation: moveSlideshow 15s linear infinite;
+}
+.tech-slideshow:hover .mover-2 {
+  opacity: 1;
+}
+
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-55.6666%);  
+  }
+}
+
+.media2 {
+  height: 100px;
+  width: 100px;
+  margin-top: -80px;
+  margin-left: 700px;
+}
+
+.questionContainer {
+  margin-left: -50px;
+}
+
+#q {
+  font-family: myFirstFont;
+  margin-left: 200px;
+}
+
+#w {
+  font-family: myFirstFont;
+}
+
+.p1 {
+  margin-top: 100px;
+  height: 100px;
+  width: 500px;
+}
+
+.p2 {
+  margin-top: 200px;
+  margin-left: 750px;
+  height: 100px;
+  width: 500px;
+}
+
+.p3 {
+  margin-top: 100px;
+  height: 100px;
+  width: 500px;
+}
+
+.p4 {
+  margin-top: 200px;
+  margin-left: 750px;
+  height: 100px;
+  width: 500px;
+}
+
+.downloadAd {
+  margin-top: 150px;
+}
+
+.organize {
+  height: 300px;
+  width: 400px;
+  margin-top: -160px;
+  margin-left: 800px;
+}
+
+.upload {
+  height: 200px;
+  width: 400px;
+  margin-top: -160px;
+  margin-left: -1500px;
+}
+
+.publish {
+  height: 200px;
+  width: 400px;
+  margin-top: -160px;
+  margin-left: 800px;
+}
+
+.utilize {
+  height: 200px;
+  width: 400px;
+  margin-top: -160px;
+  margin-left: -1500px;
+}
+
+.google {
+  outline: none;
+  background: url('./google.png');
+  cursor:pointer;
+  border: none;
+  background-size: cover;
+  border-radius: 20px;
+  height: 65px;
+  width: 200px;
+  padding: 1px 1px 1px 1px;
+}
+.apple {
+  outline: none;
+  background: url('./apple.png');
+  cursor:pointer;
+  border: none;
+  background-size: cover;
+  border-radius: 20px;
+  height: 65px;
+  width: 200px;
+  padding: 1px 1px 1px 1px;
+}
+.addButton {
+  margin-top: -150px;
+  margin-left: 500px;
+  margin-bottom: 100px;   
+}
+/***************************** WhyUs 1st Page ************************************/
+.organize1 {
+  height: 100px;
+  width: 100px;
+  margin-top: -160px;
+  margin-left: -150px;
+}
+
+.organize2 {
+  height: 100px;
+  width: 100px;
+  margin-top: -500px;
+  margin-left: -150px;
+}
+
+.organize3 {
+  height: 100px;
+  width: 100px;
+  margin-top: -500px;
+  margin-left: -150px;
+}
+
+.organize4 {
+  height: 100px;
+  width: 100px;
+  margin-top: -500px;
+  margin-left: -150px;
+}
+
+#mission3 {
+  text-align: justify;
+  font-family: myFirstFont;
+  margin-left: -50px;
+  margin-bottom: 0px;
+}
+
+.p5 {
+  text-align: justify;
+  margin-left: 200px;
+  margin-top: 50px;
+  height: 100px;
+  width: 400px;
+}
+
+.p6 {
+  text-align: justify;
+  margin-left: 850px;
+  margin-top: 50px;
+  height: 100px;
+  width: 400px;
+}
+
+.org2 {
+  margin-top: -450px;
+}
+
+.mainOrg {
+  margin-left: -40px;
+}
+
+/*SlideShow functionality including transform and animation property usage from CSS*/
+.tech-slideshow1 {
+  height: 200px;
+  max-width: 1800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.tech-slideshow1 > div {
+  height: 200px;
+  width: 2700px;
+  background: url('./all.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+}
+.tech-slideshow1 .mover-3 {
+  animation: moveSlideshow 22s linear infinite;
+}
+.tech-slideshow1 .mover-4 {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  background-position: 0 -200px;
+  animation: moveSlideshow 15s linear infinite;
+}
+.tech-slideshow1:hover .mover-4 {
+  opacity: 1;
+}
+
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-66.6666%);  
+  }
+}
+
+.card2 {
+  margin-top: -3px;
+  margin-left:0px;
+  right: 100px;
+  text-align: justify;
+  height: 1000px;
+}
+
 /***************************** Item Part 1st Page ************************************/
 /*Styles for itemList First Page*/
 
