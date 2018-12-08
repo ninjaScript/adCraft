@@ -2,6 +2,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../server');
 var should = chai.should();
+const db = require('../database/index.js');
 
 chai.use(chaiHttp);
 // Test to check SingIn request.
@@ -30,23 +31,26 @@ describe('/POST SingUp', () => {
 	it('it should POST SingUp responce return status code equal 200 and the success object', (done) => {
 		// Test data.
     let UserInfo = {
-    	firstName: "Mohammad",
-    	lastName: "Rawashdeh",
-    	phoneNumber: "0786597458",
-      password: "password",
-      gender: "male"
+      firstName: "Aayli",
+      lastName: "haaaaass66ssan",
+      phoneNumber: "0776988974",
+      password: "helloworld",
+      gender: "male",
+      id_roles: 1,
+      createdAt: db.formatDate()
     }
     chai.request(server)
     .post('/sign-up')
     .send(UserInfo)
     .end((err, res) => {
+      console.log("qusay: ",res.body.data)
     	res.body.should.have.status(200);
       res.body.should.be.a('object');
       // res.body.should.have.property('errors');
-      res.body.success.should.have.property('firstName');
-      res.body.success.should.have.property('lastName');
-      res.body.success.should.have.property('phoneNumber');
-      res.body.success.should.have.property('password');
+      res.body.data.should.have.property('firstName');
+      res.body.data.should.have.property('lastName');
+      res.body.data.should.have.property('phoneNumber');
+      res.body.data.should.have.property('password');
       done();
     });
   });
