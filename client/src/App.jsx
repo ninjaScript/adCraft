@@ -8,7 +8,7 @@ import { Grid } from '@material-ui/core';
 import Category from './components/Category.js';
 import ItemList from './components/itemList.js';
 import Footer from "./components/Footer.js";
-
+import Community from "./components/Community.js";
 
 //App component for Rendering Usage User experience
 class App extends Component {
@@ -61,11 +61,15 @@ class App extends Component {
         </Grid>
         <Grid>
           <ItemList />
+          <h1 align="center" id="topQuote" style={{marginTop: "90px", marginBottom: "-30px"}}>Tap into a fast-growing community of millions of business enthusiasts of all levels from 120+ advertisers</h1>
+          <Community/>
         </Grid>
-        <Footer />
-      </Grid>
         <PopSignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></PopSignUp>
         <PopSignIn show={this.state.isOpenSignIn} onClose={this.toggleLogin}></PopSignIn>
+        
+      
+      </Grid>
+      <Footer />
       </Grid>
     );
   }
